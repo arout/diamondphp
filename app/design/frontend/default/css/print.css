@@ -1,0 +1,180 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block
+}
+
+body {
+	line-height: 1
+}
+
+ol, ul {
+	list-style: none
+}
+
+blockquote, q {
+	quotes: none
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+* {
+	font-family: 'Open Sans', sans-serif, Arial;
+}
+
+/* hide */
+
+#secondary-banner, footer, .copyright-wrap, .content-nav, .content-nav .gradient_button, .recent-vehicles-wrap, .efficiency-rating, .social-likes, .flex-direction-nav, .financing_calculator, header, .example-tabs, .listing-slider, .car-info, #google-map-listing {
+	display: none;
+}
+
+a:link:after, a:visited:after {
+	content: "";
+}
+
+#myTab li a {
+	background: none;
+	font-size: 26px;
+	border: 0;
+	box-shadow: none;
+}
+
+.print_friendly {
+	display: block;
+	font-family: 'Open Sans', sans-serif, Arial;
+}
+
+p, div {
+	page-break-inside: avoid;
+}
+
+.print_image {
+	display: block;
+	float: left;
+}
+
+.print_header li {
+	list-style-type: none;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.17em;
+}
+
+h5 {
+	font-size: .83em;
+}
+
+h6 {
+	font-size: .75em;
+}
+
+p, li {
+	font-size: 14px;
+	line-height: 16px;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Open Sans', sans-serif, Arial;
+	font-weight: 400;
+}
+
+.print_tabs h2:first-of-type {
+	margin-top: 20px;
+}
+
+.inventory-heading span, .inventory-heading .text-right em {
+	font-family: 'Open Sans', sans-serif, Arial;
+}
+
+.print_friendly .car-info {
+	display: table;
+}
+
+.print_friendly table.table, .print_friendly .car-info {
+	font-family: 'Open Sans', sans-serif, Arial;
+	width: 375px;
+	float: right;
+	border: none;
+}
+
+.print_friendly .car-info .table>tbody>tr>td {
+	padding: 0 0 9px 4px;
+}
+
+.print_header li {
+	font-size: 18px;
+}
+
+.inventory-heading .row > div {
+	float: left;
+	margin: 0;
+	padding: 0 0 0 20px;
+}
+
+.inventory-heading .row .text-right {
+	float: right;
+	margin: 0;
+	padding: 0 20px 0 0;
+	margin-top: -70px;
+}
+
+.inventory-heading h2 {
+	font-size: 28px;
+}
+
+.inventory-heading span {
+	font-size: 18px;
+}
+
+.print_header {
+	margin-bottom: -30px;
+	padding-bottom: 0;
+}
+ @page {
+ margin: 30px 25px;
+}
+
+#features ul {
+	-moz-column-count: 3;
+	-moz-column-gap: 20px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 20px;
+	column-count: 3;
+	column-gap: 20px;
+	margin-left: 0;
+}
+
+#features ul li {
+	padding-left: 20px;
+	line-height: 14px;
+}
+
+#features ul li .fa-li {
+	left: -8px;
+	top: 5px;
+	color: #c7081b;
+}

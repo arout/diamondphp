@@ -1,0 +1,21 @@
+{
+    "require": {
+        "pimple/pimple": "~3.0",
+        "symfony/event-dispatcher": "^3.1",
+        "doctrine/orm": "*",
+        "phpunit/php-code-coverage": "^4",
+        "phpunit/php-timer": "~1.0",
+        "psr/log": "^1.0",
+        "symfony/routing": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hal\\Block\\": "app/code/core/blocks",
+            "Hal\\Core\\": "app/code/core/system",
+            "Hal\\Config\\": "app/code/core/config",
+            "Hal\\Controller\\": "app/code/core/controllers",
+            "Hal\\Model\\": "app/code/core/models",
+            "Hal\\Module\\": "app/code/module"
+        }
+    }
+}
