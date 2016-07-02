@@ -3,10 +3,10 @@
  * An open source application development framework designed for PHP 7
  *
  * @package         Diamond PHP Framwework
- * @author          Andrew Rout [ arout@halcyon.com ]
+ * @author          Andrew Rout [ andrew@diamondphp.com ]
  * @copyright       Copyright (c) 2015, Andrew Rout
- * @license         http://halcyon.com/support/license
- * @link            http://halcyon.com
+ * @license         https://diamondphp.com/support/license
+ * @link            https://diamondphp.com
  * @since           Version 1.0
  * @filesource
  *
