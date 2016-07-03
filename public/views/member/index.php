@@ -1,6 +1,6 @@
 <script src="<?= PLUGINS_URL; ?>ckeditor/ckeditor.js"></script>
 
-<form action="<?= BASEURL; ?>documents/process" method="post" role="form">
+<form action="<?= BASE_URL; ?>documents/process" method="post" role="form">
 
 <h3>Create Document</h3>
 

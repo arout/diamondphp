@@ -8,7 +8,7 @@
                 <?php if( isset( $_SERVER['HTTP_REFERER'] ) ) { ?>
                     <a style="margin-right: 20px" class="btn btn-success" href="<?= $_SERVER['HTTP_REFERER']; ?>">Go back to where you were</a>
                 <?php } ?>
-                    <a class="btn btn-primary" href="<?= BASEURL; ?>">Go to home page</a>
+                    <a class="btn btn-primary" href="<?= BASE_URL; ?>">Go to home page</a>
             </div>
         </div>
     </div>
@@ -35,10 +35,10 @@
         </div>
         <div class="col-md-3 text-right">
         <p style="padding-top: 11px">
-            <a class="btn btn-info btn-block" href="<?= BASEURL; ?>friends/request/<?= $user['username']; ?>"><i class="fa fa-plus-circle"></i> Add Friend</a>
-            <a class="btn btn-success btn-block" href="<?= BASEURL; ?>messenger/send/<?= $user['username']; ?>"><i class="fa fa-envelope"></i> Send Message</a>
-            <a class="btn btn-warning btn-block" href="<?= BASEURL; ?>member/block/<?= $user['username']; ?>"><i class="fa fa-ban"></i> Block</a>
-            <a class="btn btn-danger btn-block" href="<?= BASEURL; ?>member/block/<?= $user['username']; ?>"><i class="fa fa-exclamation-triangle"></i> Report Spam</a></p>
+            <a class="btn btn-info btn-block" href="<?= BASE_URL; ?>friends/request/<?= $user['username']; ?>"><i class="fa fa-plus-circle"></i> Add Friend</a>
+            <a class="btn btn-success btn-block" href="<?= BASE_URL; ?>messenger/send/<?= $user['username']; ?>"><i class="fa fa-envelope"></i> Send Message</a>
+            <a class="btn btn-warning btn-block" href="<?= BASE_URL; ?>member/block/<?= $user['username']; ?>"><i class="fa fa-ban"></i> Block</a>
+            <a class="btn btn-danger btn-block" href="<?= BASE_URL; ?>member/block/<?= $user['username']; ?>"><i class="fa fa-exclamation-triangle"></i> Report Spam</a></p>
         </div>
         </div>
         

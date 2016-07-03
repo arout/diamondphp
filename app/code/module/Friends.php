@@ -41,7 +41,7 @@ class Friends {
                 # Send notification to inbox of friend request
                 $username = $this->model('Member')->get_username( $user );
                 $subject = "New friend request from $username";
-                $message = $username .' wants to be friends! <a href='. BASEURL .'friends/accept/'.$username.'>View your friend requests</a>';
+                $message = $username .' wants to be friends! <a href='. BASE_URL .'friends/accept/'.$username.'>View your friend requests</a>';
                 $this->toolbox('messenger')->admin_send( $subject, $message, $username, $user);
             }
         }
@@ -52,7 +52,7 @@ class Friends {
                 $username = $this->model('Member')->get_username( $friend );
                 $user = $this->model('Member')->get_member_id( $username );
                 $subject = "New friend request from $this->username";
-                $message = $this->username .' wants to be friends! <a href='. BASEURL .'friends/accept/'.$username.'>View your friend requests</a>';
+                $message = $this->username .' wants to be friends! <a href='. BASE_URL .'friends/accept/'.$username.'>View your friend requests</a>';
                 $this->toolbox('messenger')->admin_send( $subject, $message, $username, $user);
         }
     }

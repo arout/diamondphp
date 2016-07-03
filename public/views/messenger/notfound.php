@@ -4,7 +4,7 @@
         <div class="col-md-11 text-center">
             <h3><< Something went wrong >></h3>
             The requested message could not be found. That's all we know. <br><br>
-            <a class="btn btn-success" href="<?= BASEURL; ?>messenger">Go back to inbox</a>
+            <a class="btn btn-success" href="<?= BASE_URL; ?>messenger">Go back to inbox</a>
         </div>
     </div>
 </div>

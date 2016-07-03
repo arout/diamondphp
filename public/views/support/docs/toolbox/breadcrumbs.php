@@ -31,7 +31,7 @@ $this->setting['breadcrumbs'] = TRUE;
 
 <p>
 By default, the framework will set default page titles above the breadcrumbs 
-(not to be confused with the <a href="<?= BASEURL; ?>support/toolbox/title">HTML page titles</a>), to further enhance site navigation and SEO performance. However, best results, we strongly recommend setting your own page titles to achieve more targeted and engaging titles.
+(not to be confused with the <a href="<?= BASE_URL; ?>support/toolbox/title">HTML page titles</a>), to further enhance site navigation and SEO performance. However, best results, we strongly recommend setting your own page titles to achieve more targeted and engaging titles.
 </p>
  
 <p>
@@ -40,7 +40,7 @@ To customize your page titles, open the file <strong>Breadcrumbstitles.php</stro
 </p>
 
 <p>
-Page titles are set according to the currently active <a href="<?= BASEURL; ?>support/docs/controllers">controller</a> and controller action. For example, this document is displayed by the <strong>Support_Controller</strong>, using the <strong>toolbox()</strong> method contained in the support controller. By default (if the <strong>Breadcrumbstitles()</strong> function is commented out), the page titles simply display the name of the current controller - minus the "_Controller" segment - and the site name.
+Page titles are set according to the currently active <a href="<?= BASE_URL; ?>support/docs/controllers">controller</a> and controller action. For example, this document is displayed by the <strong>Support_Controller</strong>, using the <strong>toolbox()</strong> method contained in the support controller. By default (if the <strong>Breadcrumbstitles()</strong> function is commented out), the page titles simply display the name of the current controller - minus the "_Controller" segment - and the site name.
 </p>
 
 <p>
@@ -179,12 +179,12 @@ $_kw_titles =
 <div class="white-row">
 <legend>Adding dynamic data to page titles</legend>
 <p class="lead">
-If you are not yet familiar with the Developer Toolbox, <a href="<?= BASEURL; ?>support/toolbox/overview">read the toolbox documentation</a> to learn what features are available to you.
+If you are not yet familiar with the Developer Toolbox, <a href="<?= BASE_URL; ?>support/toolbox/overview">read the toolbox documentation</a> to learn what features are available to you.
 </p>
 
 <p>
 On many of your pages, to improve SEO performance and usability, you may wish to add dynamic data to your page titles. From inside controllers and models, you would use the <code>$this->toolbox</code> function to access toolbox services. Since the page title helper <strong>is</strong> a toolbox service, <code>$this->toolbox</code> of course is not available. Instead, we use the <var>$container</var> variable.<br><br>
-In the login example above, <code>$container['config']->setting['site_name']</code> is the equivalent of <code>$this->toolbox('config')->setting['site_name']</code>. More simply put, the syntax is identical, except you replace <strong><var>$this->toolbox('name_of_service')</var></strong> with <strong><var>$container['name_of_service']</var></strong>. With that in mind, it is imperative to get to know what the <a href="<?= BASEURL; ?>support/toolbox/overview">Developer Toolbox</a> has to offer.
+In the login example above, <code>$container['config']->setting['site_name']</code> is the equivalent of <code>$this->toolbox('config')->setting['site_name']</code>. More simply put, the syntax is identical, except you replace <strong><var>$this->toolbox('name_of_service')</var></strong> with <strong><var>$container['name_of_service']</var></strong>. With that in mind, it is imperative to get to know what the <a href="<?= BASE_URL; ?>support/toolbox/overview">Developer Toolbox</a> has to offer.
 </p>
 
 

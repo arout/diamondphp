@@ -12,7 +12,7 @@
         For those of you who are familiar with MVC, a minor note -- while kW Fusion is labeled as an MVC framework, like 
         nearly every other PHP framework available, it does not follow "true" MVC patterns in the strictest sense of the word. 
         We use controllers for routing and loading models and views. Models are used strictly for retrieving and storing data 
-        (our models can also access the <a href="<?= BASEURL; ?>support/toolbox/overview">Developer Toolbox</a> in order to 
+        (our models can also access the <a href="<?= BASE_URL; ?>support/toolbox/overview">Developer Toolbox</a> in order to 
         modify, sanitize or validate data before processing data). Views are simply template files that display the web page. 
         In reality, it is much closer to the PAC design pattern than MVC (again, much like the vast majority of frameworks out 
         in the wild).<br>
@@ -35,7 +35,7 @@
     </p>
     <p>
         You will find that the vast majority of your coding will involve the use of the 
-        <a href="<?= BASEURL; ?>support/toolbox/overview">Developer Toolbox</a>, as it comes with the ability to handle many different 
+        <a href="<?= BASE_URL; ?>support/toolbox/overview">Developer Toolbox</a>, as it comes with the ability to handle many different 
         scenarios that are common to most websites.
     </p>
 </div>

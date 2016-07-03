@@ -4,7 +4,7 @@
 
 <legend>Change password</legend>
         
-        <form method="post" id="cpass" class="white-row styleBackground" action="<?= BASEURL; ?>member/change_password">
+        <form method="post" id="cpass" class="white-row styleBackground" action="<?= BASE_URL; ?>member/change_password">
 			
 			<div>
                 <div class="form-group">

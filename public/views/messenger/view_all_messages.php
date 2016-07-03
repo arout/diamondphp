@@ -45,10 +45,10 @@
 				<form name="messenger">
 				
 				<tr id="<?= $mail['mid']; ?>">
-					<td><a href="<?= BASEURL; ?>member/view/<?= $mail['sender']; ?>"><img src="<?= USER_PICS_URL.$mail['username'].'/'.$mail['pic']; ?>" width="64px !important" /><br>
+					<td><a href="<?= BASE_URL; ?>member/view/<?= $mail['sender']; ?>"><img src="<?= USER_PICS_URL.$mail['username'].'/'.$mail['pic']; ?>" width="64px !important" /><br>
 						<?= $mail['sender']; ?>
 						</a></td>
-					<td><h4> <a href="<?= BASEURL; ?>messenger/view/<?= $mail['mid']; ?>">
+					<td><h4> <a href="<?= BASE_URL; ?>messenger/view/<?= $mail['mid']; ?>">
 							<?= $mail['subject']; ?>
 							</a> </h4>
 						<em>
@@ -84,7 +84,7 @@ $(document).ready(function()
         var del_id = $(this).attr('id');
         $.ajax(
         {
-            url:'<?= BASEURL; ?>public/plugins/ajax/messenger/del_message.php',
+            url:'<?= BASE_URL; ?>public/plugins/ajax/messenger/del_message.php',
             type:"post",
             data:'mid='+del_id,
             success:function(data)
@@ -112,7 +112,7 @@ $(document).ready(function()
 
         $.ajax(
         {
-            url:'<?= BASEURL; ?>messenger/flag_read',
+            url:'<?= BASE_URL; ?>messenger/flag_read',
             type:"post",
             data:'mid='+read_id,
             success:function(data)
@@ -122,7 +122,7 @@ $(document).ready(function()
                     <?php # Refresh total unread messages in top table ?>
                     $.ajax(
                     {
-                        url: "<?= BASEURL; ?>public/plugins/ajax/messenger/update_unread_count.php",
+                        url: "<?= BASE_URL; ?>public/plugins/ajax/messenger/update_unread_count.php",
                         type: "post",
                         data: {rid:"<?php echo $rid; ?>"},
                         success:function(response)
@@ -148,7 +148,7 @@ $(document).ready(function()
         var star_name = $(this).attr('name');
         $.ajax(
         {
-            url:'<?= BASEURL; ?>messenger/flag_important',
+            url:'<?= BASE_URL; ?>messenger/flag_important',
             type:"post",
             data:'mid='+star_id,
             success:function(data)

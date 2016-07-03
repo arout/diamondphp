@@ -5,7 +5,7 @@
         <form id="signup" class="white-row" method="post" action="">
         
             <legend>Editing <?= $profile['username']; ?>'s profile</legend>
-            <small>To change your password, <a href="<?= BASEURL; ?>member/change_password">go here</a></small>
+            <small>To change your password, <a href="<?= BASE_URL; ?>member/change_password">go here</a></small>
             
             <?php if( isset( $data['saved'] ) ) echo $data['saved']; ?>
             
@@ -130,7 +130,7 @@ $(document).ready(function()
                 var zip = $(this).val();//get select value
                 $.ajax(
                 {
-                    url:'<?= BASEURL; ?>public/plugins/ajax/get_city.php',
+                    url:'<?= BASE_URL; ?>public/plugins/ajax/get_city.php',
                     type:"post",
                     data:{zip:$(this).val()},
                     success:function(response)
@@ -148,7 +148,7 @@ $(document).ready(function()
                 var zip = $(this).val();//get select value
                 $.ajax(
                 {
-                    url:"<?= BASEURL; ?>public/plugins/ajax/get_state.php",
+                    url:"<?= BASE_URL; ?>public/plugins/ajax/get_state.php",
                     type:"post",
                     data:{zip:$(this).val()},
                     success:function(response)

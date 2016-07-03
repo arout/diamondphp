@@ -25,7 +25,7 @@ class Breadcrumbs {
         // If the framework is installed in a sub-directory, add the sub-directory name 
         // after the final trailing slash. Make sure to add another trailing slash at the end
         // Example:   @$base = ($_SERVER['HTTPS'] ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/SUBDIRECTORY_NAME/';
-        $base = BASEURL;
+        $base = BASE_URL;
     
         // Initialize a temporary array with our breadcrumbs. (starting with our home page, which is assumed will be the base URL)
         $breadcrumbs = array( "<a href=\"$base\">$home</a>" );

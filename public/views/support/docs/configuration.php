@@ -57,6 +57,6 @@
     
     <p>
         That is it, your installation and configuration is now complete! Head on over the 
-        <a href="<?= BASEURL; ?>support/docs/overview" />overview</a> page to get some tips on working with the framework.
+        <a href="<?= BASE_URL; ?>support/docs/overview" />overview</a> page to get some tips on working with the framework.
     </p>
 </div>

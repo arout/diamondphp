@@ -2,7 +2,7 @@
     
 <script src="<?= PLUGINS_URL; ?>ckeditor/ckeditor.js"></script>
 
-<form action="<?= BASEURL; ?>documents/process" method="post" role="form">
+<form action="<?= BASE_URL; ?>documents/process" method="post" role="form">
 
 
     <div class="row white-row styleBackground" style="border-radius: 0 !important;">
@@ -11,7 +11,7 @@
     <div class="col-xs-12 col-md-3">
 							<div class="item-box">
 								<figure>
-									<a class="item-hover" href="<?= BASEURL.'member/view/'.$data['recipient']; ?>">
+									<a class="item-hover" href="<?= BASE_URL.'member/view/'.$data['recipient']; ?>">
 										<span class="overlay color2"></span>
 										<span class="inner">
 											<span class="block fa fa-plus fsize20"></span>
@@ -33,7 +33,7 @@
         <?php if( $data['history'] != FALSE ) {
 echo '<pre style="margin-top: 20px"><legend class="white">Message History</legend>';
 foreach( $data['history'] as $history ): ?>
-<span class="pull-left"><i class="fa fa-envelope"></i> <a href="<?= BASEURL.'messenger/view/'.$history['mid']; ?>"><?= $history['subject']; ?></a></span><span class="pull-right"><?= $this->toolbox('formatter')->datetime($history['date']); ?></span> 
+<span class="pull-left"><i class="fa fa-envelope"></i> <a href="<?= BASE_URL.'messenger/view/'.$history['mid']; ?>"><?= $history['subject']; ?></a></span><span class="pull-right"><?= $this->toolbox('formatter')->datetime($history['date']); ?></span> 
 <?php endforeach; echo '</pre>'; }?>
 </div>
     

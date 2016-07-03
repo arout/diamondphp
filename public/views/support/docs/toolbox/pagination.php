@@ -56,7 +56,7 @@ Next, you will need to setup a few configuration options.
 
 	<h4 class="bg10">$url_segment</h4>
 	The URL segment used to track the current page number. 
-	Use the <a href="<?= BASEURL; ?>support/docs/router">router class</a> to identify the URL segment.<br><br>
+	Use the <a href="<?= BASE_URL; ?>support/docs/router">router class</a> to identify the URL segment.<br><br>
 
 	<div class="alert alert-warning"> 
 	Note that when using the router url segments, the first segment, <strong>$this->route->request[0]</strong> is always reserved for the controller, 

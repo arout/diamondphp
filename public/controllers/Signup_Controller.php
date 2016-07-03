@@ -177,7 +177,7 @@ class Signup_Controller extends Hal\Controller\Base_Controller {
 				$subject = "Did You Forget Your Password?";
 				$from = $this->config->setting('site_name');
 				$message = "You (or someone claiming to be you) has requested to reset your profile password on " . $this->config->setting('site_name') . ".<br>
-				If you requested your password to be reset, please do so here: " . BASEURL . 'member/password_reset/' . $data['create_token'] . ".<br>
+				If you requested your password to be reset, please do so here: " . BASE_URL . 'member/password_reset/' . $data['create_token'] . ".<br>
 				If you did not request a password reset, or otherwise feel this is in error, there is no need to do anything. Your password and other information
 				is safe, and has not been accessed or changed in any way.";
 

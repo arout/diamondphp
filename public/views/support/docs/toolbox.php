@@ -63,26 +63,26 @@
 					<div class="col-md-4">
 						<ul class="list-icon star color">
 							
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/useragent">Browser Data</a></li>
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/formatter">Formatter</a></li>
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/validation">Form Validation</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/useragent">Browser Data</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/formatter">Formatter</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/validation">Form Validation</a></li>
 							
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<ul class="list-icon star color">
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/geoip">GeoIP</a></li>
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/notifications">Notifications</a></li>
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/uploader">Image Uploader</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/geoip">GeoIP</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/notifications">Notifications</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/uploader">Image Uploader</a></li>
 							
 						</ul>
 					</div>
 
 					<div class="col-md-4">
 						<ul class="list-icon star color">
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/pagination">Pagination</a></li>
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/hash">Password / Data Encryption</a></li>
-							<li><a href="<?= BASEURL; ?>support/docs/toolbox/sessions">User authentication / Login</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/pagination">Pagination</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/hash">Password / Data Encryption</a></li>
+							<li><a href="<?= BASE_URL; ?>support/docs/toolbox/sessions">User authentication / Login</a></li>
 							
 						</ul>
 					</div>

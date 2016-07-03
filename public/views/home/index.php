@@ -29,7 +29,7 @@
 						<div class="featured-box nobg border-only left-separator">
 							<i class="fa fa-book"></i>
 							<h4>Well Documented</h4>
-							<p>A framework is only as good as it's documentation, and you will find plenty of that <a href="<?= BASEURL; ?>support/docs">here</a></p>
+							<p>A framework is only as good as it's documentation, and you will find plenty of that <a href="<?= BASE_URL; ?>support/docs">here</a></p>
 						</div>
 					</div>
 					<div class="col-md-3">

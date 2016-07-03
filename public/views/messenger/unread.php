@@ -8,14 +8,14 @@
 
         <tr>
             <td width="15%"><span class="label label-primary">
-            <a href="<?= BASEURL; ?>member/view/<?= urlencode( $mail['sender'] ); ?>" />
+            <a href="<?= BASE_URL; ?>member/view/<?= urlencode( $mail['sender'] ); ?>" />
                 <img class="img-responsive" width="50px" src="<?= USER_PICS_URL.$mail['username'].'/'; ?><?= $mail['pic']; ?>" />
                 <?= $mail['sender']; ?></span>
             </a>
             </td>
             <td width="55%"><h4><?= $mail['subject']; ?></h4></td>
             <td width="20%"><?= $this->toolbox('formatter')->datetime( $mail['date'] ); ?></td>
-            <td width="10%"><a href="<?= BASEURL; ?>messenger/view/<?= $mail['mid']; ?>" /><button class="label btn-success">View</button></a></td>
+            <td width="10%"><a href="<?= BASE_URL; ?>messenger/view/<?= $mail['mid']; ?>" /><button class="label btn-success">View</button></a></td>
         </tr>
 
         <?php endforeach; ?>
