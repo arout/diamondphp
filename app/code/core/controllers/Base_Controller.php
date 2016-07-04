@@ -8,44 +8,38 @@ namespace Hal\Controller;
 
 class Base_Controller {
 
-	# public $block;
-	protected $core;
-	protected $db;
-	private $controller;
-	private $controller_class;
-	private $controller_filename;
-	protected $param;
-	protected $route;
-	protected $model;
-	public $view;
-	protected $action;
-	public $config;
-	protected $data;
-	public $session;
-	# Input sanitation class
-	public $input;
-	public $cache;
-	public $toolbox;
-	public $load;
-	# System logger class
-	public $log;
-	# Helpers located in /app/code/helpers
-	public $helper;
+	protected 	$action;
+	public 		$cache;
+	public 		$config;
+	private 	$controller;
+	private 	$controller_class;
+	private 	$controller_filename;
+	protected 	$core;
+	protected 	$cron;
+	protected 	$data;
+	protected 	$db;
+	public 		$load;
+	public 		$log;
+	protected 	$model;
+	protected 	$param;
+	protected 	$route;
+	public 		$session;
+	public 		$toolbox;
+	public 		$view;
 
 	public function __construct($app) {
 
-		$this->core    = $app;
-		# $this->block   = $app['system_block'];
-		$this->db      = $app['database'];
-		$this->config  = $app['config'];
-		$this->route   = $app['router'];
-		$this->model   = $app['system_model'];
-		$this->load    = $app['load'];
-		$this->toolbox = $app['toolbox'];
-		$this->log     = $app['log'];
-		$this->session = $app['session'];
-		# $this->input   = self::input();
 		$this->cache   = self::cache();
+		$this->config  = $app['config'];
+		$this->core    = $app;
+		$this->cron    = $app['cron'];
+		$this->db      = $app['database'];
+		$this->load    = $app['load'];
+		$this->log     = $app['log'];
+		$this->model   = $app['system_model'];
+		$this->route   = $app['router'];
+		$this->session = $app['session'];
+		$this->toolbox = $app['toolbox'];
 
 	}
 

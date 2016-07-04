@@ -12,9 +12,13 @@
         "psr-4": {
             "Hal\\Block\\": "app/code/core/blocks",
             "Hal\\Core\\": "app/code/core/system",
+            "Hal\\ControllerOverride\\": "public/override/controllers",
+            "Hal\\CoreControllerOverride\\": "app/code/override/controllers",
             "Hal\\Config\\": "app/code/core/config",
             "Hal\\Controller\\": "app/code/core/controllers",
             "Hal\\Model\\": "app/code/core/models",
+            "Hal\\ModelOverride\\": "public/override/models",
+            "Hal\\CoreModelOverride\\": "app/code/override/models",
             "Hal\\Module\\": "app/code/module"
         }
     }

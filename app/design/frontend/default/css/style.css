@@ -1,27 +1,3 @@
-
-/***********************************************************************
-       ___         __                        __  _          
-      /   | __  __/ /_____  ____ ___  ____  / /_(_)   _____ 
-     / /| |/ / / / __/ __ \/ __ `__ \/ __ \/ __/ / | / / _ \
-    / ___ / /_/ / /_/ /_/ / / / / / / /_/ / /_/ /| |/ /  __/
-   /_/  |_\__,_/\__/\____/_/ /_/ /_/\____/\__/_/ |___/\___/   
-      __          ________                 ____      _ __     
-     / / __ __   /_  __/ / ___ __ _ ___   / __/__ __(_) /____ 
-    / _ | // /    / / / _ | -_)  ' | -_) _\ \ / // / / __/ -_)
-   /_.__|_, /    /_/ /_//_|__/_/_/_|__/ /___/ \_,_/_/\__/\__/ 
-       /___/                                                                                     
-
-   Template Name:   Automotive
-   Description:     Car Dealership & Business HTML Website Template
-   Template URL:    http://demo.themesuite.com/automotive/
-   Version:         2.1
-   Author:          Theme Suite
-   Author URL:      http://www.themesuite.com/
-   Support:         http://support.themesuite.com/
-   
-***********************************************************************/
-
-
 /*  TABLE OF CONTENTS
 **************************************************
 	1.) Global Styles
@@ -2309,8 +2285,8 @@ footer form input[type=text] {
 	color: #999999;
 	font-size: 13px;
 	width:100%;
-	position:absolute !important;
-	bottom:0 !important;
+	/*position:absolute !important;
+	bottom:0 !important;*/
 	left:0;
 }
 
