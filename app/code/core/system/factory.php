@@ -17,6 +17,10 @@ $app['config'] = function ($c) {
 	return new \Hal\Config\Config;
 };
 
+$app['cron'] = function ($c) {
+	return new \Hal\Core\Cron;
+};
+
 require_once BASE_PATH . 'app/code/core/system/paths.php';
 
 $app['system_block'] = function ($c) {

@@ -3,9 +3,9 @@ namespace Hal\Core;
 
 class Loader {	
 	
-	// The file being requested
+	# The file being requested
 	public $_file;
-	// The directory containing requested file
+	# The directory containing requested file
 	protected $_dir;
 	protected $db;
 	public $toolbox;
@@ -64,13 +64,18 @@ class Loader {
 	
         $dir = MODELS_DIR;
 		$file = ucwords($file);
-		
-		if( is_readable( $dir.$file.'Model.php' ) ) {
+
+		if( is_readable( PUBLIC_OVERRIDE_PATH . 'models/' . $file .'Model.php' ) ) {
+			require_once( PUBLIC_OVERRIDE_PATH . 'models/'.$file.'Model.php' );
+			$this->model = $file.'Model';
+			return $this->model = new $this->model($this->db, $this->toolbox, $this->toolbox, $this->config);
+		}
+		elseif( is_readable( $dir.$file.'Model.php' ) ) {
 			require_once( $dir.$file.'Model.php' );
 			$this->model = $file.'Model';
 			return $this->model = new $this->model($this->db, $this->toolbox, $this->toolbox, $this->config);
 		}
-		else{
+		else {
 			$filename = $dir.$file.'Model.php';
 			$this->log->save( "Error opening {$filename}", 'system.log' );
 			require_once( $dir.'errors/model.php' );

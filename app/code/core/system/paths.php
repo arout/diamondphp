@@ -15,9 +15,6 @@ define('MODULES_PATH', BASE_PATH . 'app/code/module/');
 define('MODULES_URL', $app['config']->setting('site_url') . 'app/code/module/');
 define('TEMPLATE_URL', $app['config']->setting('template_url'));
 
-# Third party plugins
-define('EXTENSIONS_PATH', CORE_PATH . 'override/');
-
 /*
  * Define system and System paths
  * System folder contains core system files
@@ -29,6 +26,11 @@ define('PUBLIC_PATH', BASE_PATH . 'public/');
 define('CONFIG_PATH', CORE_PATH . 'config/');
 define('CACHE_DIR', BASE_PATH . 'var/cache/');
 define('LOG_PATH', BASE_PATH . 'var/logs/');
+
+# Override core files
+define('CORE_OVERRIDE_PATH', BASE_PATH . 'app/code/override/');
+# Override public files
+define('PUBLIC_OVERRIDE_PATH', PUBLIC_PATH . 'override/');
 
 # User-created blocks/controllers/models/views
 define('CONTROLLERS_DIR', PUBLIC_PATH . 'controllers/');
