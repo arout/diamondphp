@@ -28,6 +28,7 @@ ob_start();
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="shortcut icon" href="images/favicon.ico">
 <title><?=$this->toolbox('title')->get();?></title>
+<link href="<?=TEMPLATE_URL;?>css/custom.css" rel="stylesheet">
 <link href="<?=TEMPLATE_URL;?>css/bootstrap.min.css" rel="stylesheet">
 
 <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->

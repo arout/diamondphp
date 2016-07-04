@@ -12,6 +12,7 @@ class Loader {
 	public $data;
 	protected $config;
 	protected $session;
+	protected $log;
 	
 	public function __construct( $c ) {
 	
@@ -19,17 +20,19 @@ class Loader {
 	    $this->toolbox 	= $c['toolbox'];
 	    $this->config 	= $c['config'];
 	    $this->session 	= $c['session'];
+	    $this->log 		= $c['log'];
 	}
 
 	public function block($file, $data = NULL ){
     	
         $dir = BLOCKS_DIR;
 
-		if( is_readable($dir.$file) ) {
+		if( is_readable( $dir.$file ) ) {
 			require_once( $dir.$file );
 		}
 		else {
 			$filename = $dir.$file;
+			$this->log->save( "Error opening {$filename}", 'system.log' );
 			self::viewerror($filename, $data);
 		}
     }
@@ -49,6 +52,7 @@ class Loader {
 			require_once $filename;
 		} 
 		else {
+			$this->log->save( "Error opening {$filename}", 'system.log' );
 			echo '<div class="alert alert-danger"><h1>Fatal Error</h1>
 			<h4>Could not load file: '. $filename .'</h4>
 			Please ensure that the file exists and permission to read the file (644)
@@ -66,19 +70,16 @@ class Loader {
 			$this->model = $file.'Model';
 			return $this->model = new $this->model($this->db, $this->toolbox, $this->toolbox, $this->config);
 		}
-		else
+		else{
+			$filename = $dir.$file.'Model.php';
+			$this->log->save( "Error opening {$filename}", 'system.log' );
 			require_once( $dir.'errors/model.php' );
+		}
     }
 
-    public function tool($tool) {
-		
-		return $this->toolbox["$tool"];
-	}
-
     public function toolbox($helper) {
-
-	# Load a Toolbox helper
-	return $this->toolbox["$helper"];
+		# Load a Toolbox helper
+		return $this->toolbox["$helper"];
     }
 	
     public function view($file, $data = NULL ){
@@ -88,34 +89,20 @@ class Loader {
 		if( is_readable($dir.$file.'.php') ) {
 			require_once( $dir.$file.'.php' );
 		}
-		elseif( is_readable($dir.$file.'.inc') ) {
-			require_once( $dir.$file.'.php' );
-		}
-		elseif( is_readable($dir.$file.'.html') ) {
-			require_once( $dir.$file.'.php' );
-		}
-		elseif( is_readable($dir.$file.'.htm') ) {
-			require_once( $dir.$file.'.php' );
-		}
-		elseif( is_readable($dir.$file.'.shtml') ) {
-			require_once( $dir.$file.'.php' );
-		}
 		else {
-			$filename = $dir.$file;
+			$filename = $dir.$file.'.php';
+			$this->log->save( "Error opening {$filename}", 'system.log' );
 			self::viewerror($filename, $data);
 		}
     }
 
-    public function viewerror($file, $data = NULL){
+    public function viewerror($filename, $data = NULL){
     	
-        $dir = VIEWS_DIR;
-
-		if( is_readable($dir.$file.'.php') ) {
-			require_once( $dir.$file.'.php' );
+		if( is_readable($filename) ) {
+			require_once( $filename );
 		}
 		else {
-			$filename = $file;
-			require_once($dir.'error/view.php');
+			require_once(VIEWS_DIR.'error/view.php');
 		}
     }
 
@@ -127,7 +114,9 @@ class Loader {
 		if( is_readable($file) ) {
 			require_once( $file );
 		}
-		else
+		else {
+			$this->log->save( "Error opening {$file}", 'system.log' );
 			self::viewerror('errors/template.php', $data);
+		}
     }
 }

@@ -29,7 +29,7 @@ class Template {
 			// $this->session->error['template']['header_not_found'] = 'Could not load '. $data['file'];
 			$this->load->view( 'error/template_header', $data );
 		}
-		return $this->body();
+		# return $this->body();
 	}
 
 	public function body() {

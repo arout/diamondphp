@@ -12,7 +12,7 @@
             <div class="fb-share-button" data-href="https://diamondphp.com" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdiamondphp.com%2F&amp;src=sdkpreparse">Share</a></div>
         </span>
         <a class="toTop" href="#topNav">BACK TO TOP <i class="fa fa-arrow-circle-up"></i></a>
-    <div class="pull-right copyright-wrap">
+    <div class="copyright-wrap pull-right">
         <span class="copyright">
         <!-- <div class="fb-like" data-href="https://diamondphp.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
         <script>

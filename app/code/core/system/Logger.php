@@ -2,7 +2,7 @@
 namespace Hal\Core;
 
 /**
- * File:    /vendor/Fusion/System/Logger.php
+ * File:    /app/code/core/system/Logger.php
  * Purpose: Handles system and user-defined event logging
  */
 
@@ -10,7 +10,7 @@ class Logger {
 
 	public function save( $message = NULL, $logfile = 'system.log' ) {
 
-        /**
+        /*
          * Logging function for both user-defined and system errors
          */
         if( ! is_null( $message ) ) {
@@ -20,7 +20,7 @@ class Logger {
 	            $print_to_file = "EXCEPTION OCCURED\r\nDate\Time: ".date("Y-m-d H:i:s")."\r\n
 	            File name: $message->getFile()\r\nLine Number: $message->getLine()\nMessage: $message->getMessage()" . PHP_EOL;
 
-	            $open = fopen( LOG_PATH.$logfile, "ab" );
+	            $open = fopen( LOG_PATH.$logfile, "a" );
 	            fwrite( $open, $print_to_file );
 	            fclose( $open );
 
@@ -30,7 +30,7 @@ class Logger {
 
 	        	$print_to_file = "### Log Entry ###\r\nDate\Time: ".date("Y-m-d H:i:s")."\r\n$message\r\n" . PHP_EOL;
 
-	            $open = fopen( LOG_PATH.$logfile, "ab" );
+	            $open = fopen( LOG_PATH.$logfile, "a" );
 	            fwrite( $open, $print_to_file );
 	            fclose( $open );
 
@@ -42,7 +42,7 @@ class Logger {
     			$print_to_file = "### NOTICE ###\nDate\Time: ".date("Y-m-d H:i:s")."\n
 	            Cannot print a <null> message" . PHP_EOL;
 
-	            $open = fopen( LOG_PATH.$logfile, "ab" );
+	            $open = fopen( LOG_PATH.$logfile, "a" );
 	            fwrite( $open, $print_to_file );
 	            fclose( $open );
 
@@ -52,8 +52,8 @@ class Logger {
 
     public function clean() {
 
-    	# Maximum size of log file allowed, in bytes ( 100000000 = 100 MB)
-    	$max_size = 100000000;
+    	# Maximum size of log file allowed
+    	$max_size = $this->config->setting('log_file_max_size') * 1000000;
 
     	chdir( LOG_PATH );
 

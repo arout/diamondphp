@@ -50,7 +50,7 @@ function continue_install( $mod_rewrite, $pdo, $php_ver ) {
 
 	if ($mod_rewrite == true && $pdo == true && $php_ver >= 7.0)
 		echo '<div class="row alert alert-success text-center"><h3>Installation may continue</h3>
-		Next, open the Config.php file, located in <code class="red">'.BASE_PATH.'app/code/core/Config.php</code>, and edit your site settings before using Diamond PHP.</div><button>Continue</button>';
+		Next, open the Config.php file, located in <code class="red">app/code/core/Config.php</code>, and edit your site settings before using Diamond PHP.</div><button>Continue</button>';
 	else 
 		echo '<div class="row alert alert-danger text-center"><h3>Diamond PHP cannot be run on this system</h3>Please review the chart above to review and correct errors.</div><button disabled>Continue</button>';
 

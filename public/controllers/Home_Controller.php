@@ -22,7 +22,7 @@ class Home_Controller extends Hal\Controller\Base_Controller {
 
 		//$api = $this->helper->load('config');
 		//echo $api->api_key;
-		$this->load->view('home/requirements');
+		$this->load->view('home/index');
 
 	}
 

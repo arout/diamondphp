@@ -3,7 +3,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="center-box">
                 <div class="row">
-                    <p class="lead text-center"> If you prefer downloading from our repository or wish contribute to the kW Fusion project, 
+                    <p class="lead text-center"> If you prefer downloading from our repository or wish contribute to the Diamond PHP project, 
                         visit us on <a class="btn btn-xs btn-success" target="_blank" href="https://github.com/arout/diamondphp/"><i class="fa fa-github"></i> GitHub</a> </p>
                     <div class="text-left">
                         <?php
@@ -17,11 +17,11 @@
                         <div class="white-row">
                             
                             <legend>
-                            <h4>Project Status <span class="badge">Beta</span><br>
-                                <small>Projected release date: Jan 18, 2015</small></h4>
+                            <h4>Development Status <span class="badge">Beta</span><br>
+                                <small>Projected release date: Sep 1, 2016</small></h4>
                             </legend>
 
-                            
+                            <!--
                             <div class="row text-left">
                                 <div class="col-md-12">
                                     <div class="progress-bars">
@@ -49,9 +49,33 @@
                                 </div>
                             </div>
                         </div>
+                        -->
+
+
+                            <div class="right-container">
+                                <h3 class="margin-bottom-25">TASK STATUS <small class="pull-right"><em>(as of <?= date("D, m-d-Y"); ?>)</em></small></h3>
+                                <div class="progressbar">
+                                    <div class="bs-example">
+                                        <div class="progress margin-bottom-15">
+                                            <div class="progress-bar progress-bar-danger" data-width="100">Conception</div>
+                                        </div>
+                                        <div class="progress margin-bottom-15">
+                                            <div class="progress-bar progress-bar-danger" data-width="100">Design</div>
+                                        </div>
+                                        <div class="progress margin-bottom-15">
+                                            <div class="progress-bar progress-bar-danger" data-width="92">Code</div>
+                                        </div>
+                                        <div class="progress margin-bottom-15">
+                                            <div class="progress-bar progress-bar-danger" data-width="79">Testing</div>
+                                        </div>
+                                        <div class="progress margin-bottom-15">
+                                            <div class="progress-bar progress-bar-danger" data-width="36">Documentation</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                                 
-                        <div class="divider styleColor"><!-- divider --> 
-                            <i class="fa fa-leaf"></i> </div>
+                        <div class="divider styleColor"><p><br></p></div>
                         <h2>Notify me <strong>as soon as</strong> download is available</h2>
                         <form method="post" action="" class="input-group">
                             <input type="email" class="form-control" name="email" id="s" required placeholder="Email Address" />

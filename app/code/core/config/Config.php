@@ -45,18 +45,35 @@ class Config {
 		# Time Zone
 		$this->setting['time_zone'] = 'America/New_York';
 
-		# Error reporting levels ( on or off )
-		# Turn this off in live environment
+		# Error reporting ( 'on' / 'off' )
+		# This setting determines whether to display errors in browser.
+		# It is intended for development purposes only --
+		# TURN THIS SETTING OFF IN A LIVE ENVIRONMENT
 		$this->setting['error_reports'] = 'on';
+
+		# Log run time errors to file ( /var/logs/system.log )
+		# Note -- turning this off will disable error logging;
+		# however, you can still manually log errors using the
+		# Logger toolbox helper ( i.e., $this->log->save() )
+		$this->setting['log_errors'] = TRUE;
+
+		# Maximum file size allowed for log files
+		# Once this size is reached, the log file will be archived, and new log file created
+		# Enter the size in megabytes. Set to 100 MB by default
+		$this->setting['log_file_max_size'] = 100;
 
 		# Name of the directory storing template files ( css/js/img, etc. )
 		$this->setting['template_name'] = 'default';
 
 		# Enable / disable breadcrumb links
-		$this->setting['breadcrumbs'] = FALSE;
+		$this->setting['breadcrumbs'] = TRUE;
 
 		# Put site in maintenance mode
 		$this->setting['maintenance_mode'] = FALSE;
+
+		# Upon registration, should new users be sent an email to confirm
+		# their account before it becomes active? Set to TRUE if yes, FALSE if no
+		$this->setting['signup_email_confirmation'] = TRUE;
 
 		/*
 		 * Gzip compression
@@ -117,10 +134,10 @@ class Config {
 		$protocol = '';
 		if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' )
             $protocol = 'https://';
-		elseif( !empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' )
+		elseif( ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' )
             $protocol = 'https://';
         else
-        	// Fall back to relative url if protocol can't be determined
+        	# Fall back to relative url if protocol can't be determined
         	$protocol = '//';
 
 
@@ -130,9 +147,10 @@ class Config {
 		 * Set $this->setting['site_url'] to a string (e.g., $this->setting['site_url'] = 'http://example.com')
 		 *
 		 * === IF YOUR SITE IS INSTALLED IN A SUBDIRECTORY ===
-		 * Change $uri[0][0] to $uri[0][1] below
+		 * 1. Change $uri[0][0] to $uri[0][1] below
+		 * 2. Include a trailing slash '/' at the end of the URL
 		 *
-		 * NO TRAILING SLASHES AT THE END OF THE URL
+		 * NO TRAILING SLASHES AT THE END OF THE URL UNLESS INSTALLED IN SUBDIRECTORY
 		 */
 		$this->setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][0];
 

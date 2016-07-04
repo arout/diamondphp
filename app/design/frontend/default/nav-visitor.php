@@ -1,8 +1,6 @@
 <?php
-
 $page = $app['router']->controller;
 $active = ' active';
-
 ?>
 
 <?php /*Header Start*/ ?>
@@ -48,7 +46,7 @@ $active = ' active';
                     <?php /* Collect the nav links, forms, and other content for toggling */ ?>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav pull-right">
-                            <li class="<?php if($page == 'Support') echo $active; ?>"><a href="<?=BASE_URL;?>support">Documentation</a></li>
+                            <li class="<?php if($page == 'Documentation') echo $active; ?>"><a href="<?=BASE_URL;?>support">Documentation</a></li>
                             <li class="<?php if($page == 'Download') echo $active; ?>"><a href="<?=BASE_URL;?>download">Download</a></li>
                             <li class="dropdown <?php if($page == 'Faq') echo $active; ?>"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
