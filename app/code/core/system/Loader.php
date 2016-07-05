@@ -112,8 +112,22 @@ class Loader {
     }
 
     public function template($file, $data = NULL, $app = null){
-		
+
         $dir  = $this->config->setting('template_folder');
+        $file = $dir.$file;
+
+		if( is_readable($file) ) {
+			require_once( $file );
+		}
+		else {
+			$this->log->save( "Error opening {$file}", 'system.log' );
+			self::viewerror('errors/template.php', $data);
+		}
+    }
+
+    public function admin_template($file, $data = NULL, $app = null){
+
+        $dir  = $this->config->setting('admin_template_folder');
         $file = $dir.$file;
 
 		if( is_readable($file) ) {

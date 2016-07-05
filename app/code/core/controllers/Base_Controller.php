@@ -58,8 +58,33 @@ class Base_Controller {
 		# URL parameters
 		$this->param = $this->route->param;
 
+		# Check if the admin controller is being requested
+		if ( $this->controller == 'Admin' && is_readable(CORE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
+			# File was found and has proper file permissions
+			require_once CORE_PATH . 'controllers/' . $this->controller_filename;
+
+			if (class_exists($this->controller_class)) {
+				# File found and class exists, so instantiate controller class
+				$__instantiate_class = new $this->controller_class($this->core);
+
+				if (method_exists($__instantiate_class, $action)) {
+					# Class method exists
+					$__instantiate_class->$action();
+				} else {
+					# Valid controller, but invalid action
+					$this->load->viewerror('errors/action', $this->controller_filename, $this->data, $this->route);
+				}
+			} 
+			else {
+				# Controller file exists, but class name
+				# is not formatted / spelled properly
+				$this->redirect('error/_404');
+				$this->data['controller-error'] = 'Controller file exists, but class name is not formatted / spelled properly';
+				$this->load->viewerror('error/controller-bad-classname', $data);
+			}
+		} 
 		# First search for requested controller file in override directory
-		if (is_readable(PUBLIC_OVERRIDE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
+		elseif (is_readable(PUBLIC_OVERRIDE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
 			# File was found and has proper file permissions
 			require_once PUBLIC_OVERRIDE_PATH . 'controllers/' . $this->controller_filename;
 

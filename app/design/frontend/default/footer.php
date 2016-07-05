@@ -67,7 +67,7 @@
             ?>
             </code> <br />
             <small>Diamond PHP is licensed and distributed under GNU GENERAL PUBLIC LICENSE v3 by <a href="https://twitter.com/arout77">Andrew Rout</a><br />
-            <a class="terminal" href="<?=BASE_URL;?>support/license">Learn more</a></small> </div>
+            <a class="terminal" href="<?=BASE_URL;?>documentation/license">Learn more</a></small> </div>
     </div>
 </div>
 </section>

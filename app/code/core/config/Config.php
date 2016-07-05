@@ -65,6 +65,9 @@ class Config {
 		# Name of the directory storing template files ( css/js/img, etc. )
 		$this->setting['template_name'] = 'default';
 
+		# Name of the directory storing template files for administration area of website( css/js/img, etc. )
+		$this->setting['admin_template_name'] = 'default';
+
 		# Enable / disable breadcrumb links
 		$this->setting['breadcrumbs'] = TRUE;
 
@@ -174,8 +177,14 @@ class Config {
 		# Location of template directory
 		$this->setting['template_folder'] = $this->setting['BASE_PATH'] . 'app/design/frontend/' . $this->setting['template_name'] . '/';
 
+		# Location of admin template directory
+		$this->setting['admin_template_folder'] = $this->setting['BASE_PATH'] . 'app/design/admin/' . $this->setting['template_name'] . '/';
+
 		# Template URL for fetching CSS / JS / IMG files
 		$this->setting['template_url'] = $this->setting['site_url'] . 'app/design/frontend/' . $this->setting['template_name'] . '/';
+
+		# Admin Template URL for fetching CSS / JS / IMG files
+		$this->setting['admin_template_url'] = $this->setting['site_url'] . 'app/design/admin/' . $this->setting['admin_template_name'] . '/';
 
 		# Convert image file size setting to kb
 		$this->setting['img_size'] = $this->setting['img_file_size'] * 1024;
@@ -195,7 +204,7 @@ class Config {
 		$this->setting['execution_time'] = (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]);
 
 		# Release version
-		$this->setting['software_version'] = '1.0.2';
+		$this->setting['software_version'] = '1.0.0';
 	}
 
 	public final function setting($setting = null) {

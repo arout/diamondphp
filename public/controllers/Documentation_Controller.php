@@ -5,6 +5,7 @@ class Documentation_Controller extends Hal\Controller\Base_Controller {
 	public function index() {
 		$data['load'] = $this->load;
 		$data['route'] = $this->route;
+		# $this->load->view('docs/toc', $data);
 		return $this->load->view('docs/index', $data);
 	}
 
@@ -67,6 +68,9 @@ class Documentation_Controller extends Hal\Controller\Base_Controller {
 				break;
 			case "blocks":
 				$this->load->view('docs/core/blocks', $data);
+				break;
+			case "override":
+				$this->load->view('docs/core/override', $data);
 				break;
 			case "logger":
 				$this->load->view('docs/core/logger', $data);
@@ -148,6 +152,11 @@ class Documentation_Controller extends Hal\Controller\Base_Controller {
 		$data['load'] = $this->load;
 		$data['route'] = $this->route;
 		$this->load->view('docs/faq', $data);
+	}
+
+	public function license() {
+
+		$this->load->view('docs/license');
 	}
 
 }

@@ -14,6 +14,7 @@ define('SYSTEM_PATH', CORE_PATH . 'system/');
 define('MODULES_PATH', BASE_PATH . 'app/code/module/');
 define('MODULES_URL', $app['config']->setting('site_url') . 'app/code/module/');
 define('TEMPLATE_URL', $app['config']->setting('template_url'));
+define('ADMIN_TEMPLATE_URL', $app['config']->setting('admin_template_url'));
 
 /*
  * Define system and System paths
@@ -26,6 +27,7 @@ define('PUBLIC_PATH', BASE_PATH . 'public/');
 define('CONFIG_PATH', CORE_PATH . 'config/');
 define('CACHE_DIR', BASE_PATH . 'var/cache/');
 define('LOG_PATH', BASE_PATH . 'var/logs/');
+define('CRON_PATH', BASE_PATH . 'var/crons/');
 
 # Override core files
 define('CORE_OVERRIDE_PATH', BASE_PATH . 'app/code/override/');

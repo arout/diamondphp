@@ -89,7 +89,7 @@ $app['friends'] = function ($c) {
 };
 
 $app['geoip'] = function ($c) {
-	return new \Hal\Module\Geoip($c['database']);
+	return new \Hal\Module\Geo($c['database']);
 };
 
 $app['hash'] = function ($c) {

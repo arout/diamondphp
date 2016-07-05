@@ -1,6 +1,4 @@
 <?php
-namespace App\Plugin;
-
 class Distance{
 
 		function get_distance_point_to_point($latitude1, $longitude1, $latitude2, $longitude2) {
@@ -111,10 +109,10 @@ class Distance{
 ######################################
 #	GeoIP
 ######################################
-require_once(GEOIP_DIR.'geoipcity.inc');
-require_once(GEOIP_DIR.'geoipregionvars.php');
+require_once('geoipcity.inc');
+require_once('geoipregionvars.php');
 
-$gi = geoip_open(GEOIP_DIR."GeoLiteCity.dat",GEOIP_STANDARD);
+$gi = geoip_open("GeoLiteCity.dat",GEOIP_STANDARD);
 
 if( !function_exists('getRealIpAddr') )
 {
