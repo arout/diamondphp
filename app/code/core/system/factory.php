@@ -48,7 +48,7 @@ $app['load'] = function ($c) {
 };
 
 $app['system_model'] = function ($c) {
-	return new \Hal\Model\System_Model($c['database'], $c['toolbox'], $c['session'], $c['config']);
+	return new \Hal\Model\System_Model($c);
 };
 
 $app['template'] = function ($c) {
@@ -157,4 +157,8 @@ $app['validate'] = function ($c) {
 $app['toolbox'] = function ($c) {
 	// Used to pass the toolbox as a function parameter to other objects
 	return $c;
+};
+
+$app['whitelist'] = function ($c) {
+	return new \Hal\Module\Whitelist;
 };

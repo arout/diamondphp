@@ -16,12 +16,12 @@ class System_Model {
 	public $load;
 	protected $toolbox;
 	
-	public function __construct( $db, $_toolbox, $session, $config ) {
+	public function __construct( $app ) {
 	
-		$this->db           = $db;
-		$this->config       = $config;
+		$this->db           = $app['database'];
+		$this->config       = $app['config'];
 		//$this->load       = $load;
-		$this->toolbox 	    = $_toolbox;
+		$this->toolbox 	    = $app['toolbox'];
 		$this->session      = self::session();
 		//$this->hash         = self::hash();
 		$this->cache        = self::cache();
