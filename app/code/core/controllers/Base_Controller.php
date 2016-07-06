@@ -59,7 +59,7 @@ class Base_Controller {
 		$this->param = $this->route->param;
 
 		# Check if the admin controller is being requested
-		if ( $this->controller == 'Admin' && is_readable(CORE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
+		if ( $this->controller == $this->config->setting('admin_controller') && is_readable(CORE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
 			# File was found and has proper file permissions
 			require_once CORE_PATH . 'controllers/' . $this->controller_filename;
 

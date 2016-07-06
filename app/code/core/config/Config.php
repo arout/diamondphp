@@ -33,6 +33,13 @@ class Config {
 		# Site admin name
 		$this->setting['site_admin'] = 'Admin';
 
+		# Site admin controller
+		# To change the default URL location of the admin area (http://example.com/admin)
+		# set the new controller name here. You must also rename the Admin_Controller.php
+		# file located in app/code/core/controllers, and the class name contained in the file
+		# to match the name you are setting below
+		$this->setting['admin_controller'] = 'Admin';
+
 		# Address
 		$this->setting['street_address'] = 'street_address';
 		$this->setting['city'] = 'city';
