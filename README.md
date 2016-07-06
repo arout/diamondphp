@@ -1,14 +1,11 @@
-Diamond PHP is a fully featured framework built for PHP 7 and offers extreme performance, a modular architecture, elegant syntax and an easy to use philosophy.
-
-Documentation is available at https://diamondphp.com/documentation
-
-
 # Diamond PHP Framework
 =======================
 
 
 #### WHAT IS Diamond PHP? ####
-Halcyon is a high performance, well documented and dead simple to use modern PHP / MVC framework.
+Diamond PHP is a fully featured framework built for PHP 7 and offers extreme performance, a modular architecture, elegant syntax and an easy to use philosophy.
+
+Documentation is available at https://diamondphp.com/documentation
 
 #### ANOTHER PHP FRAMEWORK? WHY? ####
 There are many great PHP frameworks available. Each has it's own pros and cons, it's own way of doing things, it's own philosophy and goals. Choosing a framework is often a personal choice -- whatever feels comfortable <strong>to you</strong> is what you will inevitably fall back on and continue to use. As such, it can be difficult to objectively say one framework is better than another, since it is usually a personal preference.
