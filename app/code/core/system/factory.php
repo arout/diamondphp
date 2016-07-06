@@ -48,7 +48,7 @@ $app['load'] = function ($c) {
 };
 
 $app['system_model'] = function ($c) {
-	return new \Hal\Model\System_Model($c);
+	return new \Hal\Model\System_Model($c['database'], $c['toolbox'], $c['config']);
 };
 
 $app['template'] = function ($c) {

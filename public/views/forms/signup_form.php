@@ -1,39 +1,130 @@
 <script>
+<?php /* City and state autofill */ ?>
 $(document).ready(function()
+{
+    $("#zip").change(function()
+    {
+        var zip = $(this).val();
+        $.ajax(
         {
-            $("#zip").change(function()
+            url:"<?= BASE_URL; ?>block/get_city/" + zip,
+            type:"post",
+            data:{zip:$(this).val()},
+            success:function(response)
             {
-                var zip = $(this).val();
-                $.ajax(
-                {
-                    url:"<?= BASE_URL; ?>block/get_city/" + zip,
-                    type:"post",
-                    data:{zip:$(this).val()},
-                    success:function(response)
-                    {
-                        $("#city").html(response);
-                    }
-                });
-            });
+                $("#city").html(response);
+            }
         });
+    });
+});
 		
 $(document).ready(function()
+{
+    $("#zip").change(function()
+    {
+        var zip = $(this).val();
+        $.ajax(
         {
-            $("#zip").change(function()
+            url:"<?= BASE_URL; ?>block/get_state/" + zip,
+            type:"post",
+            data:{zip:$(this).val()},
+            success:function(response)
             {
-                var zip = $(this).val();
-                $.ajax(
-                {
-                    url:"<?= BASE_URL; ?>block/get_state/" + zip,
-                    type:"post",
-                    data:{zip:$(this).val()},
-                    success:function(response)
-                    {
-                        $("#state").html(response);
-                    }
-                });
-            });
+                $("#state").html(response);
+            }
         });
+    });
+});
+<?php /* End city and state autofill */ ?>
+
+<?php /* Username availability check */ ?>
+$(document).ready(function() 
+{
+    //the min chars for username  
+    var min_chars = 6;  
+
+    //result texts  
+    var characters_error = '';  
+    var checking_html = 'Checking...';  
+
+    //when button is clicked  
+    $('#username').change(function(){  
+        //run the character number check  
+        if($('#username').val().length < min_chars){  
+            //if it's below the minimum show characters_error text '  
+            $('#username_availability_result').html(characters_error);  
+        }else{  
+            //else show the cheking_text and run the function to check  
+            $('#username_availability_result').html(checking_html);  
+            check_availability();  
+        }  
+    });  
+
+});  
+  
+//function to check username availability  
+function check_availability() 
+{
+    //get the username  
+    var username = $('#username').val();  
+
+    //use ajax to run the check  
+    $.post("<?= BASE_URL; ?>block/check_username/" + username, { username: username },  
+        function(result){  
+            //if the result is 0
+            if(result == 0){  
+                $('#username_availability_result').removeClass("btn btn-danger btn-sm").addClass("btn btn-success btn-sm").html('Username ' + username + ' is available');  
+            }else{  
+                $('#username_availability_result').removeClass("btn btn-success btn-sm").addClass("btn btn-danger btn-sm").html('Username ' + username + ' is not available. Please choose another username.');  
+            }  
+    });  
+  
+}
+<?php /* End username availability check */ ?>
+
+<?php /* email availability check */ ?>
+$(document).ready(function() 
+{
+    var min_chars = 6;  
+
+    //result texts  
+    var characters_error = '';  
+    var checking_html = 'Checking...';  
+
+    //when button is clicked  
+    $('#email').change(function(){  
+        //run the character number check  
+        if($('#email').val().length < min_chars){  
+            //if it's below the minimum show characters_error text '  
+            $('#email_availability_result').html(characters_error);  
+        }else{  
+            //else show the cheking_text and run the function to check  
+            $('#email_availability_result').html(checking_html);  
+            check_availability();  
+        }  
+    });  
+
+});  
+  
+//function to check email availability  
+function check_availability() 
+{
+    //get the email  
+    var email = $('#email').val();  
+
+    //use ajax to run the check  
+    $.post("<?= BASE_URL; ?>block/check_email/", { email: email },
+        function(result){  
+            //if the result is 0
+            if(result == 0){  
+                $('#email_availability_result').removeClass("btn btn-danger btn-sm").addClass("btn btn-success btn-sm").html('Username ' + email + ' is available');  
+            }else{  
+                $('#email_availability_result').removeClass("btn btn-success btn-sm").addClass("btn btn-danger btn-sm").html(email + ' is already registered. Please <a class="yellow" href="<?= BASE_URL; ?>login">reset your password</a> if you have forgotten it.');  
+            }  
+    });  
+  
+}
+<?php /* End email availability check */ ?>
 </script>
 
 <div class="row"> 
@@ -62,7 +153,8 @@ $(document).ready(function()
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Username</label>
-                        <input type="text" name="username" id="username" class="form-control" value="<?= $data['username'] ?>" placeholder="Username" >
+                        <input type="text" name="username" id="username" class="form-control col-xs-12 pull-left" value="<?= $data['username'] ?>" placeholder="Username" ><br>
+                        <span style='margin-top: 5px;' id="username_availability_result"></span>
                     </div>
                 </div>
             </div>
@@ -82,7 +174,8 @@ $(document).ready(function()
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="<?= $data['email'] ?>" placeholder="Email address" >
+                        <input type="email" name="email" id="email" class="form-control" value="<?= $data['email'] ?>" placeholder="Email address" ><br>
+                        <span style='margin-top: 5px;' id="email_availability_result"></span>
                     </div>
                 </div>
             </div>
