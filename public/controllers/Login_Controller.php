@@ -5,22 +5,39 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 	public function index() {
 
 		// Is two-step login process enabled?
-		if ($this->config->setting['login_math'] === TRUE) {
-
+		if ($this->config->setting['login_math'] === TRUE) 
+		{
 			$data['a'] = rand(1, 5);
 			$data['b'] = rand(1, 5);
 			$data['answer'] = $data['a'] * $data['b'];
 			$this->load->view('forms/login_form', $data);
 		} else {
-
 			$this->load->view('forms/login_form');
 		}
+		$this->_event_register();
+	}
+
+	public function __toString()
+	{
+		return 'Login_Controller';
+	}
+
+	public function _event_register()
+	{
+		$this->event->_register( 'member.login', 'Login_Controller', 'hello' );
+		// $this->dispatcher->dispatch('member.login');
+	}
+
+	public static function hello() 
+	{
+		echo "Hello, events!";
+		// $this->log->save('login event worked', 'member.log');
 	}
 
 	public function logout() {
 
 		$this->session->flush();
-		$this->redirect('welcome/index');
+		$this->redirect('home/index');
 	}
 
 	public function login_validate_math($data) {

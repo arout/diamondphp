@@ -6,7 +6,7 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/app/code/module/geoip/geoipregionvars.
 class Geo 
 {
 	# Use MaxMind GeoIP data to determine user location
-	private $record;
+	public $record;
 	public 	$ip_address;
 	public 	$latitude;
 	public 	$longitude;
@@ -14,6 +14,7 @@ class Geo
 	public 	$state;
 	public 	$state_code;
 	public 	$zipcode;
+	public  $country;
 	protected $db;
 
 	# Search radius properties
@@ -34,7 +35,7 @@ class Geo
 		$this->ip_address = $ip;
 
 
-		$gi = \geoip_open( $_SERVER['DOCUMENT_ROOT']."/app/code/module/geoip/GeoLiteCity.dat",GEOIP_STANDARD );
+		$gi = \geoip_open( $_SERVER['DOCUMENT_ROOT']."/app/code/module/geoip/GeoLiteCity.dat",\GEOIP_STANDARD );
 
 		$this->record = \geoip_record_by_addr( $gi, $this->ip_address );
 		$this->city = $this->record->city;
@@ -43,6 +44,7 @@ class Geo
 		$this->latitude = $this->record->latitude;
 		$this->longitude = $this->record->longitude;
 		$this->zipcode = $this->record->postal_code;
+		$this->country = $this->record->country_code;
 
 		\geoip_close($gi);
 	}

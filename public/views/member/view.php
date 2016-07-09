@@ -12,6 +12,7 @@
             </div>
         </div>
     </div>
+    
 <?php else: ?>
     
     <div class="white-row">
@@ -74,8 +75,6 @@
             </div>
             </section>
             <?php endif; ?>
-
-        
         
     <?php endforeach; ?>
     

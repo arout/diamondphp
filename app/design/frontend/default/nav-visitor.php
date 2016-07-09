@@ -37,10 +37,18 @@ $active = ' active';
                 <div class="container-fluid">
                     <?php /* Brand and toggle get grouped for better mobile display */ ?>
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a class="navbar-brand" href="<?=BASE_URL;?>"><span class="logo">
-                        <span class="primary_text"><?=$this->config->setting['site_name'];?></span>
-                        <span class="secondary_text"><?=$this->config->setting['site_slogan'];?></span></span></a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+                            <span class="sr-only">Toggle navigation</span> 
+                            <span class="icon-bar"></span> 
+                            <span class="icon-bar"></span> 
+                            <span class="icon-bar"></span> 
+                        </button>
+                        <a class="navbar-brand" href="<?=BASE_URL;?>">
+                        <span class="logo">
+                            <img src="<?= MEDIA_URL;?>logo.png" style="max-height: 32px; max-width: 160px; margin-top: 10px;" />
+                        </span>
+                        <!-- <span class="secondary_text"><?=$this->config->setting['site_slogan'];?></span></span> -->
+                        </a>
                         </div>
 
                     <?php /* Collect the nav links, forms, and other content for toggling */ ?>

@@ -1,13 +1,13 @@
 <?php
 namespace Hal\Controller;
 
-/**
+/*
  * File:    /app/code/core/system/base_controller.php
  * Purpose: Base class from which all controllers extend
  */
 
-class Base_Controller {
-
+class Base_Controller 
+{
 	protected 	$action;
 	public 		$cache;
 	public 		$config;
@@ -18,6 +18,7 @@ class Base_Controller {
 	protected 	$cron;
 	protected 	$data;
 	protected 	$db;
+	protected 	$dispatcher;
 	public 		$load;
 	public 		$log;
 	protected 	$model;
@@ -27,25 +28,25 @@ class Base_Controller {
 	public 		$toolbox;
 	public 		$view;
 
-	public function __construct($app) {
-
-		$this->cache   = self::cache();
-		$this->config  = $app['config'];
-		$this->core    = $app;
-		$this->cron    = $app['cron'];
-		$this->db      = $app['database'];
-		$this->load    = $app['load'];
-		$this->log     = $app['log'];
-		$this->model   = $app['system_model'];
-		$this->route   = $app['router'];
-		$this->session = $app['session'];
-		$this->toolbox = $app['toolbox'];
-
+	public function __construct($app) 
+	{
+		$this->cache 		= self::cache();
+		$this->config  		= $app['config'];
+		$this->core    		= $app;
+		$this->cron    		= $app['cron'];
+		$this->db      		= $app['database'];
+		$this->dispatcher 	= $app['dispatcher'];
+		$this->event    	= $app['event'];
+		$this->load    		= $app['load'];
+		$this->log     		= $app['log'];
+		$this->model   		= $app['system_model'];
+		$this->route   		= $app['router'];
+		$this->session 		= $app['session'];
+		$this->toolbox 		= $app['toolbox'];
 	}
 
-	public final function parse() {
-        
-
+	public final function parse() 
+	{
 		# Define child controller extending this class
 		$this->controller = $this->route->controller;
 		# The class name contained inside child controller
@@ -59,7 +60,8 @@ class Base_Controller {
 		$this->param = $this->route->param;
 
 		# Check if the admin controller is being requested
-		if ( $this->controller == $this->config->setting('admin_controller') && is_readable(CORE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
+		if ( $this->controller == $this->config->setting('admin_controller') && is_readable(CORE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) 
+		{ 
 			# File was found and has proper file permissions
 			require_once CORE_PATH . 'controllers/' . $this->controller_filename;
 
@@ -82,9 +84,10 @@ class Base_Controller {
 				$this->data['controller-error'] = 'Controller file exists, but class name is not formatted / spelled properly';
 				$this->load->viewerror('error/controller-bad-classname', $data);
 			}
-		} 
+		}
 		# First search for requested controller file in override directory
-		elseif (is_readable(PUBLIC_OVERRIDE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) { 
+		elseif (is_readable(PUBLIC_OVERRIDE_PATH . 'controllers/' . $this->controller_filename) && $this->controller_filename) 
+		{ 
 			# File was found and has proper file permissions
 			require_once PUBLIC_OVERRIDE_PATH . 'controllers/' . $this->controller_filename;
 
@@ -107,9 +110,9 @@ class Base_Controller {
 				$this->data['controller-error'] = 'Controller file exists, but class name is not formatted / spelled properly';
 				$this->load->viewerror('error/controller-bad-classname', $data);
 			}
-		} 
-		else {
-
+		}
+		else 
+		{
 			# Search for requested controller file in public directory
 			if (is_readable(CONTROLLERS_DIR . $this->controller_filename) && $this->controller_filename) { 
 				# File was found and has proper file permissions
@@ -118,10 +121,10 @@ class Base_Controller {
 				if (class_exists($this->controller_class)) {
 					# File found and class exists, so instantiate controller class
 					$__instantiate_class = new $this->controller_class($this->core);
-
 					if (method_exists($__instantiate_class, $action)) {
 						# Class method exists
 						$__instantiate_class->$action();
+						$this->dispatcher->addListener("{$this->controller}.{$action}", array( $__instantiate_class, '_event' ) );
 					} else {
 						# Valid controller, but invalid action
 						$this->load->viewerror('errors/action', $this->controller_filename, $this->data, $this->route);

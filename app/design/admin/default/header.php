@@ -22,9 +22,9 @@
     <link href="<?= ADMIN_TEMPLATE_URL;?>vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <?php /* JQVMap */ ?>
     <link href="<?= ADMIN_TEMPLATE_URL;?>vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-
     <?php /* Custom Theme Style */ ?>
     <link href="<?= ADMIN_TEMPLATE_URL;?>build/css/custom.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<?=MODULES_URL;?>ckeditor/ckeditor.js"></script>
   </head>
 
   <body class="nav-md">

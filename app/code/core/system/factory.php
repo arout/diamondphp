@@ -6,6 +6,7 @@
  * We will use Pimple to create our services
  * and manage dependencies
  */
+
 $app = new \Pimple\Container();
 
 $app['router'] = function ($c) {
@@ -22,6 +23,16 @@ $app['cron'] = function ($c) {
 };
 
 require_once BASE_PATH . 'app/code/core/system/paths.php';
+
+$app['dispatcher'] = new Hal\Core\Dispatch;
+
+$app['registry'] = function ($c) {
+	return new \Hal\Core\Registry($c);
+};
+
+$app['event'] = function ($c) {
+	return new \Hal\Core\Event( $c );
+};
 
 $app['system_block'] = function ($c) {
 	return new \Hal\Block\System_Block($c);
@@ -154,9 +165,9 @@ $app['validate'] = function ($c) {
 	return new \Hal\Module\Validation;
 };
 
-$app['toolbox'] = function ($c) {
+$app['toolbox'] = function ($app) {
 	// Used to pass the toolbox as a function parameter to other objects
-	return $c;
+	return $app;
 };
 
 $app['whitelist'] = function ($c) {

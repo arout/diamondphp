@@ -6,8 +6,8 @@ class Config {
 	public $setting = [];
 	private $db;
 
-	public function __construct() {
-
+	public function __construct() 
+	{
 		//** Global website settings **//
 
 		# Database Connection
@@ -31,14 +31,14 @@ class Config {
 		$this->setting['site_email'] = 'your_email';
 
 		# Site admin name
-		$this->setting['site_admin'] = 'Admin';
+		$this->setting['site_admin'] = 'Customer Care';
 
 		# Site admin controller
 		# To change the default URL location of the admin area (http://example.com/admin)
 		# set the new controller name here. You must also rename the Admin_Controller.php
 		# file located in app/code/core/controllers, and the class name contained in the file
 		# to match the name you are setting below
-		$this->setting['admin_controller'] = 'Admin';
+		$this->setting['site_admin'] = 'Admin';
 
 		# Address
 		$this->setting['street_address'] = 'street_address';
@@ -81,6 +81,9 @@ class Config {
 		# Put site in maintenance mode
 		$this->setting['maintenance_mode'] = FALSE;
 
+		# Check for common issues preventing system from running
+		$this->setting['system_startup_check'] = TRUE;
+
 		# Upon registration, should new users be sent an email to confirm
 		# their account before it becomes active? Set to TRUE if yes, FALSE if no
 		$this->setting['signup_email_confirmation'] = TRUE;
@@ -98,15 +101,13 @@ class Config {
 		 */
 		$this->setting['compression'] = TRUE;
 
-		/**
+		/*
 		 * Two step login process (i.e., should simple math problem be solved
 		 * in addition to username / password?)
 		 */
 		$this->setting['login_math'] = TRUE;
 
-		/*----------------------------------------
-		 * Image gallery settings
-		 */
+		# Image gallery settings
 		$this->setting['total_img_allowed'] = 10;
 		# Maximum allowed image file size in kb ( 1024kb is equal to 1MB )
 		$this->setting['img_file_size'] = 2048;
@@ -168,9 +169,8 @@ class Config {
 		# END OF USER EDITABLE SETTINGS -- DO NOT EDIT BELOW THIS LINE #
 		################################################################
 
-		/*----------------------------------------
-		 * Global system settings
-		 */
+
+		#== Global system settings ==#
 
 		# Location of front controller
 		$this->setting['BASE_PATH'] = BASE_PATH;
@@ -200,12 +200,10 @@ class Config {
 		$this->setting['notify_img_size'] = number_format(round($size / pow(1024, ($i = floor(log($size, 1024)))), 2)) . ' ' . $unit[$i];
 
 		# Enable / disable Memcached helper
-		if (extension_loaded('memcached')) {
+		if (extension_loaded('memcached'))
 			$this->setting['memcached'] = TRUE;
-		} else {
-
+		else
 			$this->setting['memcached'] = FALSE;
-		}
 
 		# Measure script execution time
 		$this->setting['execution_time'] = (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]);
@@ -214,23 +212,10 @@ class Config {
 		$this->setting['software_version'] = '1.0.0';
 	}
 
-	public final function setting($setting = null) {
-
+	public final function setting($setting = null) 
+	{
 		return $this->setting["$setting"];
 	}
-
-	/**
-     * Returns the *Singleton* instance of this class.
-     *
-     * @return Singleton The *Singleton* instance.
-     */
-    public static function getInstance() {
-        if (null === static::$instance) {
-            static::$instance = new static();
-        }
-        
-        return static::$instance;
-    }
 
     /**
      * Private clone method to prevent cloning of the instance

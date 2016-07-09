@@ -47,6 +47,14 @@ define('DOCS_DIR', CACHE_DIR . 'documents/');
 # Maxmind GeoIP directory
 define('GEOIP_DIR', MODULES_PATH . 'geoip/');
 
+# Media folder
+define('MEDIA_DIR', BASE_PATH . 'media/');
+define('MEDIA_URL', BASE_URL . 'media/');
+
+# Images folder
+define('IMAGES_DIR', MEDIA_PATH . 'images/');
+define('IMAGES_URL', MEDIA_URL . 'images/');
+
 # User pictures directory
-define('USER_PICS', BASE_PATH . 'media/images/profile/');
-define('USER_PICS_URL', BASE_URL . 'media/images/profile/');
+define('USER_PICS', IMAGES_PATH . 'profile/');
+define('USER_PICS_URL', IMAGES_URL . 'profile/');

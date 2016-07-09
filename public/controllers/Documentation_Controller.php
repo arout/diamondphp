@@ -1,7 +1,14 @@
 <?php
 
-class Documentation_Controller extends Hal\Controller\Base_Controller {
+class Documentation_Controller extends Hal\Controller\Base_Controller 
+{
 
+	public function __construct($app)
+	{
+		parent::__construct($app);
+		$this->load->view('docs/toc');
+	}
+	
 	public function index() {
 		$data['load'] = $this->load;
 		$data['route'] = $this->route;
@@ -59,6 +66,9 @@ class Documentation_Controller extends Hal\Controller\Base_Controller {
 				break;
 			case "database":
 				$this->load->view('docs/core/database', $data);
+				break;
+			case "events":
+				$this->load->view('docs/core/events', $data);
 				break;
 			case "router":
 				$this->load->view('docs/core/router', $data);

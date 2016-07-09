@@ -100,14 +100,14 @@ $(document).ready(function()
         }else{  
             //else show the cheking_text and run the function to check  
             $('#email_availability_result').html(checking_html);  
-            check_availability();  
+            check_email_availability();  
         }  
     });  
 
 });  
   
 //function to check email availability  
-function check_availability() 
+function check_email_availability() 
 {
     //get the email  
     var email = $('#email').val();  

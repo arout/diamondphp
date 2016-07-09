@@ -2,28 +2,37 @@
 
 class Admin_Controller extends Hal\Controller\Base_Controller
 {
-	
+	public function __construct($app)
+	{
+		parent::__construct($app);
+
+		// if( $this->session->get('username') == FALSE || $this->session->get('role') != 'admin' )
+		// {
+		// 	$this->redirect('admin/login');
+		// 	exit;
+		// }
+		// var_dump($this->toolbox('geoip')); exit;	
+	}
+
 	public function index()
 	{
-		/*
-		if( $this->cache()->get('username') == FALSE ) {
-		
-		$this->redirect('member/login');
-		exit;
-		}*/
-		
+		$data['city'] = $this->toolbox('geoip')->city;
+		$data['state'] = $this->toolbox('geoip')->state;
+		$data['state_code'] = $this->toolbox('geoip')->state_code;
+		$data['zipcode'] = $this->toolbox('geoip')->ip_address;
+		$data['country'] = $this->toolbox('geoip')->country; //Two digit country code
 		$data['admin_username'] = $this->session->get('username');
 		$this->load->view('admin/index', $data);
 	}
 	
+	public function cms()
+	{
+		$data['session_username'] = $this->cache()->get('username');
+		$this->view('admin/index', $data);
+	}
+
 	public function home()
 	{
-		if($this->cache()->get('username') == FALSE)
-		{
-			$this->redirect('admin/login');
-			exit;
-		}
-		
 		$data['session_username'] = $this->cache()->get('username');
 		$this->view('admin/index', $data);
 	}

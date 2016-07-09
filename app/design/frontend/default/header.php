@@ -102,7 +102,7 @@ $sliders = [
 	'login' => 'whyregister',
 ];
 
-// $app['toolbox']->slider->load($sliders);
+// $app['slider']->load($sliders);
 
 // Count unread messages
 //$data['count_messages'] = $this->toolbox('messenger')->count_unread();
