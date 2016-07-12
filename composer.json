@@ -8,7 +8,8 @@
         "psr/log": "^1.0",
         "symfony/routing": "^3.1",
         "ip2location/ip2location-php": "^8.0",
-        "geoip2/geoip2": "~2.0"
+        "geoip2/geoip2": "~2.0",
+        "symfony/dependency-injection": "^3.1"
     },
     "autoload": {
         "psr-4": {

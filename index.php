@@ -12,6 +12,9 @@
  *
  */
 
+if( ! defined( 'BASE_PATH' ) )
+	define('BASE_PATH', getcwd().'/');
+
 # Initiate global settings
 require_once getcwd() . '/app/code/core/system/global.php';
 

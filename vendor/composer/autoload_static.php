@@ -16,16 +16,29 @@ class ComposerStaticInite18e78be8fbbc2073913cce9fc97ba05
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Symfony\\Component\\DependencyInjection\\' => 38,
             'Symfony\\Component\\Console\\' => 26,
+        ),
+        'M' => 
+        array (
+            'MaxMind\\' => 8,
         ),
         'H' => 
         array (
             'Hal\\Module\\' => 11,
             'Hal\\Model\\' => 10,
+            'Hal\\ModelOverride\\' => 18,
             'Hal\\Core\\' => 9,
+            'Hal\\CoreModelOverride\\' => 22,
+            'Hal\\CoreControllerOverride\\' => 27,
             'Hal\\Controller\\' => 15,
+            'Hal\\ControllerOverride\\' => 23,
             'Hal\\Config\\' => 11,
             'Hal\\Block\\' => 10,
+        ),
+        'G' => 
+        array (
+            'GeoIp2\\' => 7,
         ),
         'D' => 
         array (
@@ -48,9 +61,17 @@ class ComposerStaticInite18e78be8fbbc2073913cce9fc97ba05
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
+        'Symfony\\Component\\DependencyInjection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/dependency-injection',
+        ),
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'MaxMind\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maxmind/web-service-common/src',
         ),
         'Hal\\Module\\' => 
         array (
@@ -60,13 +81,29 @@ class ComposerStaticInite18e78be8fbbc2073913cce9fc97ba05
         array (
             0 => __DIR__ . '/../..' . '/app/code/core/models',
         ),
+        'Hal\\ModelOverride\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/override/models',
+        ),
         'Hal\\Core\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/code/core/system',
         ),
+        'Hal\\CoreModelOverride\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/code/override/models',
+        ),
+        'Hal\\CoreControllerOverride\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/code/override/controllers',
+        ),
         'Hal\\Controller\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/code/core/controllers',
+        ),
+        'Hal\\ControllerOverride\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/override/controllers',
         ),
         'Hal\\Config\\' => 
         array (
@@ -75,6 +112,10 @@ class ComposerStaticInite18e78be8fbbc2073913cce9fc97ba05
         'Hal\\Block\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/code/core/blocks',
+        ),
+        'GeoIp2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/geoip2/geoip2/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -100,6 +141,13 @@ class ComposerStaticInite18e78be8fbbc2073913cce9fc97ba05
             'Pimple' => 
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
+            ),
+        ),
+        'M' => 
+        array (
+            'MaxMind' => 
+            array (
+                0 => __DIR__ . '/..' . '/maxmind-db/reader/src',
             ),
         ),
         'D' => 
@@ -135,6 +183,7 @@ class ComposerStaticInite18e78be8fbbc2073913cce9fc97ba05
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
+        'IP2Location\\Database' => __DIR__ . '/..' . '/ip2location/ip2location-php/IP2Location.php',
         'PHP_Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'PHP_Token' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_TokenWithScope' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',

@@ -4,10 +4,8 @@
 
 # Strict mode by default for scalar type declarations
 declare(strict_types = 1);
-# Get Composer autoloader
-if( !defined( 'BASE_PATH' ) )
-	define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
 
+# Get Composer autoloader
 require_once BASE_PATH . 'vendor/autoload.php';
 require_once 'factory.php';
 
