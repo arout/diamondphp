@@ -9,7 +9,7 @@
                     <li data-transition="fade">
 
                         <!-- MAIN IMAGE -->
-                        <img src="<?=TEMPLATE_URL;?>assets/images/slide-show1.jpg" alt="">
+                        <img src="http://xxxies.com/media/images/bg1.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption mediumlarge_light_white_center domainate customin customout start"
@@ -22,7 +22,7 @@
                         data-speed="1000"
                         data-start="500"
                         data-easing="Back.easeInOut"
-                        data-endspeed="300">DOMINATE </div>
+                        data-endspeed="300">HOOK UP WITH</div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption internet  fade"
@@ -34,7 +34,7 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6; letter-spacing: -3px;">THE INTERNET </div>
+                        style="z-index: 6; letter-spacing: -3px;">LOCAL SINGLES </div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption attract sfl"
@@ -46,19 +46,19 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6; ">Attract, Engage, &amp; Convert </div>
+                        style="z-index: 6; ">Men, Women &amp; Couples </div>
 
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption more skewfromright "
-                        data-x="100"
-                        data-y="425"
+                        data-x="90"
+                        data-y="400"
                         data-speed="800"
                         data-start="1900"
                         data-easing="Elastic.easeOut"
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6; ">more </div>
+                        style="z-index: 6; ">looking </div>
 
                         <!-- LAYER NR. 4 -->
                         <div class="tp-caption qualified skewfromright"
@@ -70,7 +70,7 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6">qualified vehicle shoppers </div>
+                        style="z-index: 6">for a connection tonight </div>
 
 
                     </li>
@@ -79,7 +79,7 @@
                     <li data-transition="fade">
 
                         <!-- MAIN IMAGE -->
-                        <img src="<?=TEMPLATE_URL;?>assets/images/slide-show2.jpg"  alt="">
+                        <img src="http://xxxies.com/media/images/bg1.jpg"  alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption mediumlarge_light_white_center invest start"
@@ -90,7 +90,7 @@
                         data-speed="1000"
                         data-start="500"
                         data-easing="Back.easeInQuart"
-                        data-endspeed="300">Time to invest in a website built to </div>
+                        data-endspeed="300">Adult social networking </div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption move mediumlarge_light_white_center fade"
@@ -102,11 +102,11 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6; letter-spacing: -3px;">MOVE </div>
+                        style="z-index: 6; letter-spacing: -3px;">CREATE </div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption light_brown mediumlarge_light_white_center sfl"
-                        data-x="615"
+                        data-x="670"
                         data-y="230"
                         data-speed="500"
                         data-start="1200"
@@ -118,7 +118,7 @@
 
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption dark_brown mediumlarge_light_white_center skewfromright "
-                        data-x="735"
+                        data-x="810"
                         data-y="230"
                         data-speed="800"
                         data-start="1900"
@@ -126,10 +126,10 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6;">INVENTORY </div>
+                        style="z-index: 6;">FREE </div>
 
                         <!-- LAYER NR. 4 -->
-                        <div class="tp-caption faster mediumlarge_light_white_center skewfromright"
+                        <div class="tp-caption light_brown faster mediumlarge_light_white_center invest start skewfromright"
                         data-x="960"
                         data-y="230"
                         data-speed="800"
@@ -138,7 +138,7 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6">FASTER </div>
+                        style="z-index: 6">PROFILE </div>
 
                         <!-- LAYER NR. 5 -->
                         <div class="tp-caption brown_line skewfromright"
@@ -157,7 +157,7 @@
                     <li data-transition="fade">
 
                         <!-- MAIN IMAGE -->
-                        <img src="<?=TEMPLATE_URL;?>assets/images/slide-show3.jpg" alt="">
+                        <img src="http://xxxies.com/media/images/bg1.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption customin customout start green"
@@ -170,7 +170,7 @@
                         data-speed="1000"
                         data-start="500"
                         data-easing="Back.easeInOut"
-                        data-endspeed="300">Wow Factor?</div>
+                        data-endspeed="300">Looking for a hookup?</div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption big_white fade"
@@ -182,13 +182,13 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6;">STANDARD. </div>
+                        style="z-index: 6;">GET STARTED NOW. </div>
                     </li>
 
                     <!-- SLIDE  -->
                     <li data-transition="fade">
                         <!-- MAIN IMAGE -->
-                        <img src="<?=TEMPLATE_URL;?>assets/images/slide-show4.jpg" alt="">
+                        <img src="http://xxxies.com/media/images/bg1.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption customin customout start big_white"
@@ -201,49 +201,49 @@
                         data-speed="1000"
                         data-start="500"
                         data-easing="Back.easeInOut"
-                        data-endspeed="300">UNLOCK</div>
+                        data-endspeed="300">THOUSANDS OF ADULTS</div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption thin_red fade"
                         data-x="300"
-                        data-y="235"
+                        data-y="300"
                         data-speed="500"
                         data-start="800"
                         data-easing="Power4.easeOut"
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6;">THE POTENTIAL</div>
+                        style="z-index: 6;">ONLINE NOW</div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption thin_white skewfromright"
                         data-x="0"
-                        data-y="510"
+                        data-y="370"
                         data-speed="500"
                         data-start="800"
                         data-easing="Power4.easeOut"
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6;">business from your</div>
+                        style="z-index: 6;">waiting to be found</div>
 
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption cursive skewfromright"
                         data-x="400"
-                        data-y="570"
+                        data-y="450"
                         data-speed="500"
                         data-start="800"
                         data-easing="Power4.easeOut"
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6;">website</div>
+                        style="z-index: 6;">and fucked</div>
                     </li>
 
                     <!-- SLIDE  -->
                     <li data-transition="fade">
                         <!-- MAIN IMAGE -->
-                        <img src="<?=TEMPLATE_URL;?>assets/images/slide-show5.jpg" alt="">
+                        <img src="http://xxxies.com/media/images/bg1.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption mediumlarge_light_white_center domainate customin customout start"
@@ -256,10 +256,10 @@
                         data-speed="1000"
                         data-start="500"
                         data-easing="Back.easeInOut"
-                        data-endspeed="300">REALITY </div>
+                        data-endspeed="300">CREATE </div>
 
                         <!-- LAYER NR. 1 -->
-                        <div class="tp-caption thin_dark_blue fade"
+                        <div class="tp-caption thin_red fade"
                         data-x="270"
                         data-y="210"
                         data-speed="500"
@@ -268,7 +268,7 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6; letter-spacing: 0;">IS JUST</div>
+                        style="z-index: 6; letter-spacing: 0;">YOUR FREE</div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption thinner_white sfl"
@@ -280,7 +280,19 @@
                         data-endspeed="300"
                         data-endeasing="Power1.easeIn"
                         data-captionhidden="off"
-                        style="z-index: 6; ">your perception</div>
+                        style="z-index: 6; ">account now!</div>
+
+                        <!-- LAYER NR. 3 -->
+                        <div class="tp-caption thin_red fade"
+                        data-x="270"
+                        data-y="350"
+                        data-speed="500"
+                        data-start="800"
+                        data-easing="Power4.easeOut"
+                        data-endspeed="300"
+                        data-endeasing="Power1.easeIn"
+                        data-captionhidden="off"
+                        style="z-index: 6; letter-spacing: 0;"><button class="btn btn-lg btn-danger"><a href="<?= BASE_URL; ?>signup" style="color: white !important; text-decoration: none !important;">Get Started >></a></button></div>
                     </li>
                 </ul>
             </div><!-- END REVOLUTION SLIDER -->
@@ -296,7 +308,7 @@
             revapi = jQuery("#rev_slider").revolution({
                 sliderType:"standard",
                 sliderLayout:"fullwidth",
-                delay:9000,
+                delay:5000,
                 navigation: {
                     arrows:{enable:true}
                 },
@@ -315,8 +327,8 @@
 <section class="message-wrap">
     <div class="container">
         <div class="row">
-            <h2 class="col-lg-9 col-md-8 col-sm-12 col-xs-12 xs-padding-left-15">Discover a website for car dealers that converts visitors to <span class="alternate-font">customers</span></h2>
-            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15"> <a href="#" class="default-btn pull-right action_button lg-button">Schedule a Test Drive</a> </div>
+            <h2 class="col-lg-9 col-md-8 col-sm-12 col-xs-12 xs-padding-left-15">Signup today and mingle with sexy singles in your area <span class="alternate-font">* 18+ only</span></h2>
+            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15"> <a href="<?= BASE_URL; ?>signup" class="default-btn pull-right action_button lg-button">Create My Free Account</a> </div>
         </div>
     </div>
     <div class="message-shadow"></div>

@@ -202,6 +202,21 @@ function check_email_availability()
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
+                        <label>About Me <small><em>(limit 500 characters)</em></small></label>
+                        <textarea rows="5" cols="40" name="about_me" id="about_me" 
+                        onKeyDown="textCounter(this,'progressbar1',500)" 
+                        onKeyUp="textCounter(this,'progressbar1',500)" 
+                        onFocus="textCounter(this,'progressbar1',500)" ></textarea><br />
+
+                        <div id="progressbar1" class="progress"></div>
+
+                        <script>textCounter(document.getElementById("about_me"),"progressbar1",500)</script>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
                         <label class="optional">Mobile Phone Number</label>
                         <input type="tel" name="phone" id="phone" class="form-control" value="<?= $data['phone'] ?>" placeholder="Include area code" >
                     </div>
@@ -251,10 +266,10 @@ function check_email_availability()
             <legend>Registration is fast, easy, and free</legend>
             <p>Once you're registered, you can:</p>
             <ul class="list-icon check">
-                <li>Recieve email notifications of updates</li>
-                <li>Learn about our new software products</li>
+                <li>View profiles and rate sexy selfies</li>
+                <li>Chat and send messages to other members</li>
                 <li>Join the community discussion forum</li>
-                <li>Help us keep track of the awesome websites built with Diamond PHP</li>
+                <li>Meet sexy singles near you!</li>
             </ul>
             <hr class="half-margins" />
             <p class="white-row text-center styleBackground"> Already have an account? <a href="<?= BASE_URL; ?>login">Member Login</a> </p>

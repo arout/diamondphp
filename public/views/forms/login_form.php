@@ -58,9 +58,17 @@ if (strpos($_SERVER['REQUEST_URI'], 'login/password_reset_complete')) {
       <legend>Member Login</legend>
       <form class="white-row" method="post" action="<?=BASE_URL . 'login/login_validate';?>">
       <?php
-          if (strpos($_SERVER['REQUEST_URI'], 'login/index/error')) {
-          		// Previous login attempt failed
-          		echo '<div class="alert alert-danger text-center"><button type="button" class="close" data-dismiss="alert">&times;</button>
+          if ( $data['route']->param1 == 'error_math' ) 
+          {
+            // Previous login attempt failed
+            echo '<div class="alert alert-danger text-center"><button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Error: </strong>Math answer is incorrect</div>';
+          }
+
+          if ( $data['route']->param1 == 'error' ) 
+          {
+            // Previous login attempt failed
+            echo '<div class="alert alert-danger text-center"><button type="button" class="close" data-dismiss="alert">&times;</button>
           	<strong>Error: </strong>Email or password incorrect</div>';
 
           		/**
@@ -80,7 +88,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'login/password_reset_complete')) {
           		 * Any more than that starts using up resources, as well as annoying people!
           		 */
           		sleep(2);
-          	}
+          }
       	?>
         <div class="row">
           <div class="form-group">

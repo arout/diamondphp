@@ -68,11 +68,11 @@ class MemberModel extends Hal\Model\System_Model
             return FALSE;
 	}
     
-    public function img_gallery( $username ) 
+    public function img_gallery( $id ) 
     {
         # Get user image gallery
-		$r = $this->db->prepare("SELECT img_name FROM image_gallery WHERE owner = ?");
-		$r->execute( array( $username ) );
+		$r = $this->db->prepare("SELECT img_name FROM images WHERE owner_id = ?");
+		$r->execute( array( $id ) );
 		if( $r->rowCount() >= 1 )
             return $r;
         else
@@ -90,7 +90,6 @@ class MemberModel extends Hal\Model\System_Model
     public function update_profile_data() 
     {
 		# Update profile data for selected user
-		if( $_POST ) {
 		    
 		    $form	= $this->toolbox('sanitize')->xss( $_POST );
 		    $phone	= $this->toolbox('formatter')->PhoneNumber( $form['phone'] );
@@ -101,6 +100,23 @@ class MemberModel extends Hal\Model\System_Model
 				WHERE username = ?
 		    ");
 		    $r->execute( array( $form['username'], $form['first_name'], $form['last_name'], $form['email'], $form['dob'], $form['about_me'], $form['personal_website'], $form['facebook_page'], $phone, $form['city'], $form['state'], $form['zip'], $form['username'] ) );
+		    return $r;
+    }
+
+    public function image_update() 
+    {
+		# Update profile avatar
+		if( $_POST ) 
+		{
+		    $form	= $this->toolbox('sanitize')->xss( $_POST );
+		    
+		    $r = $this->db->prepare("
+				UPDATE users 
+				SET pic = ?
+				WHERE username = ?
+		    ");
+
+		    $r->execute( array( $this->session->get('username'), $form['image']) );
 		    return $r;
 		}
     }
@@ -150,20 +166,20 @@ class MemberModel extends Hal\Model\System_Model
                 $this->session->set('role', $result['role']);
                 $this->session->set('age', $this->toolbox('formatter')->age($result['dob']) );
 				$this->session->set('gender', $result['gender']);
-				$this->session->set('latitude', $result['latitude']);
-				$this->session->set('longitude', $result['longitude']);
+				//$this->session->set('latitude', $result['latitude']);
+				//$this->session->set('longitude', $result['longitude']);
                                     
                 # Update user table
-                $ip 	= $this->toolbox('geoip')->ip();
-                $lat 	= $this->toolbox('geoip')->latitude;
-                $long 	= $this->toolbox('geoip')->longitude;
+                // $ip 	= $this->toolbox('geoip')->ip();
+                // $lat 	= $this->toolbox('geoip')->latitude;
+                // $long 	= $this->toolbox('geoip')->longitude;
                                     
-                $update = $this->db->prepare("
-                	UPDATE users 
-                	SET last_login_ip = ?, latitude = ?, longitude = ?, last_login_time = ? 
-                	WHERE member_id = ?
-                ");
-                $update->execute( array( $ip, $lat, $long, time(), $result['member_id'] ) );
+                // $update = $this->db->prepare("
+                // 	UPDATE users 
+                // 	SET last_login_ip = ?, latitude = ?, longitude = ?, last_login_time = ? 
+                // 	WHERE member_id = ?
+                // ");
+                // $update->execute( array( $ip, $lat, $long, time(), $result['member_id'] ) );
 				return $result;
 			}
 			else {
@@ -182,16 +198,17 @@ class MemberModel extends Hal\Model\System_Model
 			$latitude 			= $this->toolbox('geoip')->latitude;
 			$longitude 			= $this->toolbox('geoip')->longitude;
 			$ip 				= $this->toolbox('geoip')->ip();
-			if( $this->config->setting('signup_email_confirmation') === TRUE )
+			if( $this->toolbox('config')->setting('signup_email_confirmation') === TRUE )
 				$confirmed = (int) 0;
 			else
 				$confirmed = (int) 1;
 			
-			$query = "INSERT INTO users( confirmed, username, password, first_name, last_name, email, dob, phone, city, state, zip, latitude, longitude, registration_ip, registration_date ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			$query = "INSERT INTO users( confirmed, username, password, first_name, last_name, email, dob, phone, about_me, city, state, zip, latitude, longitude, registration_ip, registration_date ) 
+			VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			$create_new_member = $this->db->prepare($query);
 			$create_new_member->execute([ 
 				$confirmed, $form['username'], $form['password'], $form['first_name'], $form['last_name'], $form['email'], 
-				$form['dob'], $form['phone'], $form['city'], $form['state'], $form['zip'], $latitude, $longitude, $ip, time()
+				$form['dob'], $form['phone'], $form['about_me'], $form['city'], $form['state'], $form['zip'], $latitude, $longitude, $ip, time()
 			]);
 
 			if( $this->config->setting('signup_email_confirmation') === TRUE ) {
@@ -204,7 +221,7 @@ class MemberModel extends Hal\Model\System_Model
 			return $create_new_member;
 		}
 		catch( \Exception $e ) {
-			$this->log->save( "Error occured during signup: ". $e->getMessage(), 'signup-errors.log' );
+			$this->toolbox('log')->save( "Error occured during signup: ". $e->getMessage(), 'signup-errors.log' );
 			$this->error['signup'] = 'Username already exists';
 			return FALSE;
 		}

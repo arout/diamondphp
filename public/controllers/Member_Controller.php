@@ -52,13 +52,22 @@ class Member_Controller extends Hal\Controller\Base_Controller
 
 	public function edit() 
 	{
+		$this->toolbox('image')->get_images();
 		# Display edit profile page
-		if ($_POST) 
+		if (! empty($_POST['edit_profile']))
 		{
 			if ($this->model('Member')->update_profile_data())
 				$data['saved'] = '<div class="alert alert-success text-center"><i class="fa fa-check"></i> Profile settings saved</div>';
 			else
 				$data['saved'] = '<div class="alert alert-danger text-center"><i class="fa fa-ban"></i> There was a problem saving your profile information</div>';
+		}
+
+		if (! empty($_POST['edit_avatar']))
+		{
+			$upload = $this->toolbox('image')->upload();
+
+			if ( ! $upload ) 
+				$data['saved'] = '<div class="alert alert-danger text-center"><i class="fa fa-ban"></i> There was a problem saving your profile image</div>';
 		}
 
 		$data['username'] = $this->session->get('username');
@@ -83,11 +92,12 @@ class Member_Controller extends Hal\Controller\Base_Controller
 			$this->view();
 	}
 
-	public function view() {
-
+	public function view() 
+	{
 		$data['username'] = urldecode($this->route->param1);
 		$data['profile'] = $this->model('Member')->profile_data($data['username']);
-		$data['img_gallery'] = $this->model('Member')->img_gallery($data['username']);
+		$data['member_id'] = $this->model('Member')->get_member_id($data['username']);
+		$data['img_gallery'] = $this->model('Member')->img_gallery($data['member_id']);
 
 		if (empty($data['username']) || $data['username'] === $this->session->get('username'))
 			$this->edit();

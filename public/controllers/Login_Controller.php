@@ -10,9 +10,10 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 			$data['a'] = rand(1, 5);
 			$data['b'] = rand(1, 5);
 			$data['answer'] = $data['a'] * $data['b'];
+			$data['route'] = $this->route;
 			$this->load->view('forms/login_form', $data);
 		} else {
-			$this->load->view('forms/login_form');
+			$this->load->view('forms/login_form', $data);
 		}
 		$this->_event_register();
 	}
@@ -24,20 +25,23 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 
 	public function _event_register()
 	{
+		# Create listener
 		$this->event->_register( 'member.login', 'Login_Controller', 'hello' );
 		// $this->dispatcher->dispatch('member.login');
 	}
 
-	public static function hello() 
+	public static function hello( $event ) 
 	{
 		echo "Hello, events!";
+		// var_export( $event );
 		// $this->log->save('login event worked', 'member.log');
 	}
 
 	public function logout() {
 
-		$this->session->flush();
 		$this->redirect('home/index');
+		$this->session->flush();
+		exit;
 	}
 
 	public function login_validate_math($data) {
@@ -47,13 +51,32 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 
 		$response = (int) $data['math'];
 		$answer = (int) $data['math_answer'];
-		if ($response !== $answer) {
+
+		if ($response !== $answer) 
+		{
 			// Did not pass validation -- Show errors
-			echo '<div class="alert alert-danger">';
-			echo '<i class="fa fa-exclamation-triangle"></i> Math answer is incorrect<br>';
-			echo '</div>';
-			$this->load->view('forms/login_form', $data);
-		} else {
+			return false;
+		} 
+		return true;
+	}
+
+	public function login_validate() 
+	{
+		// Begin form validation by sanitizing all $_POST submitted
+		$data = $this->toolbox('sanitize')->xss($_POST);
+
+		if ($this->config->setting['login_math'] === TRUE) {
+			$this->login_validate_math($data);
+			$data['math_error_response'] = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Math answer is incorrect<br></div>';
+		} 
+		
+		if ($this->config->setting['login_math'] === TRUE  && $this->login_validate_math($data) === FALSE)
+		{
+			$this->redirect('login/index/error_math');
+		}
+
+		if ($this->config->setting['login_math'] === FALSE || ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) !== FALSE) ) 
+		{
 			// Now we can check the submitted form to see if it is filled out properly
 			$check_if_valid = $this->toolbox('validate')->form($data, array(
 
@@ -63,31 +86,25 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 
 			if ($check_if_valid === FALSE) {
 
-				// Did not pass validation -- Show errors
+				// Did not pass form validation -- Show errors
 				echo '<div class="alert alert-danger">';
 				foreach ($check_if_valid as $invalid) {
 					echo '<i class="fa fa-exclamation-triangle"></i> ' . $invalid . '<br>';
 				}
-
 				echo '</div>';
 				$this->load->view('forms/login_form');
 
-			} else {
+			} 
+			else 
+			{
 				// Form is valid -- continue to login query
 				$result = $this->model('Member')->check_login($data);
 
 				if ($result == "Account not verified") {
 					$this->redirect('login/index/verify');
-				} elseif ($result && $result != "Account not verified") {
+				} 
+				elseif ($result && $result != "Account not verified") {
 					// Valid login
-					/*
-					You can set session variables either in controller or model
-
-					$this->toolbox('session')->set('username', $result['username']);
-					$this->toolbox('session')->set('email', $result['email']);
-					$this->toolbox('session')->set('first_name', $result['first_name']);
-					$this->toolbox('session')->set('last_name', $result['last_name']);
-					 */
 					$this->redirect('member/home');
 				} else {
 
@@ -96,60 +113,6 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 				}
 			}
 		}
-	}
-
-	public function login_validate() {
-
-		// Begin form validation by sanitizing all $_POST submitted
-		$data = $this->toolbox('sanitize')->xss($_POST);
-
-		if ($this->config->setting['login_math'] === TRUE) {
-			$this->login_validate_math($data);
-		} 
-		
-		// Now we can check the submitted form to see if it is filled out properly
-		$check_if_valid = $this->toolbox('validate')->form($data, array(
-
-			'email' => 'required|valid_email',
-			'password' => 'required|max_len,100|min_len,6',
-		));
-
-		if ($check_if_valid === FALSE) {
-
-			// Did not pass form validation -- Show errors
-			echo '<div class="alert alert-danger">';
-			foreach ($check_if_valid as $invalid) {
-				echo '<i class="fa fa-exclamation-triangle"></i> ' . $invalid . '<br>';
-			}
-			echo '</div>';
-			$this->load->view('forms/login_form');
-
-		} 
-		else {
-			// Form is valid -- continue to login query
-			$result = $this->model('Member')->check_login($data);
-
-			if ($result == "Account not verified") {
-				$this->redirect('login/index/verify');
-			} 
-			elseif ($result && $result != "Account not verified") {
-				// Valid login
-				/*
-				You can set session variables either in controller or model
-
-				$this->toolbox('session')->set('username', $result['username']);
-				$this->toolbox('session')->set('email', $result['email']);
-				$this->toolbox('session')->set('first_name', $result['first_name']);
-				$this->toolbox('session')->set('last_name', $result['last_name']);
-				 */
-				$this->redirect('member/home');
-			} else {
-
-				// Invalid login -- redirect to login error page
-				$this->redirect('login/index/error');
-			}
-		}
-
 		
 	}
 

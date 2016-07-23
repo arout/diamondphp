@@ -1,14 +1,34 @@
 <div class="white-row">
 	
 	<?php foreach( $data['profile'] as $profile): ?>
-	
-        <form id="signup" class="white-row" method="post" action="">
         
             <legend>Editing <?= $profile['username']; ?>'s profile</legend>
             <small>To change your password, <a href="<?= BASE_URL; ?>member/change_password">go here</a></small>
             
+            <form id="avatar_edit" class="white-row" method="post" action="" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-11">
+                            <label>Profile Image</label>
+                            <input type="file" name="image[]" id="image" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" name="edit_avatar" value="Update Image" class="btn btn-block btn-success pull-right push-bottom" data-loading-text="Loading...">
+                    </div>
+                </div>
+            </form>
+            <hr>
+
             <?php if( isset( $data['saved'] ) ) echo $data['saved']; ?>
-            
+
+            <form id="avatar_edit" class="white-row" method="post" action="">
+
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
@@ -62,7 +82,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>About Me</label>
-                        <textarea name="about_me" id="about_me" class="form-control" value="<?= $profile['about_me']; ?>"></textarea>
+                        <textarea name="about_me" id="about_me" class="form-control" placeholder="Maximum 750 characters"><?= $profile['about_me']; ?></textarea>
                     </div>
                 </div>
             </div>
@@ -112,9 +132,10 @@
                     </div>
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-md-12">
-                    <input type="submit" value="Save Changes" class="btn btn-block btn-primary pull-right push-bottom" data-loading-text="Loading...">
+                    <input type="submit" name="edit_profile" value="Save Changes" class="btn btn-block btn-primary pull-right push-bottom" data-loading-text="Loading...">
                 </div>
             </div>
         </form>
@@ -123,43 +144,44 @@
 
 </div>
 <script>
+<?php /* City and state autofill */ ?>
 $(document).ready(function()
+{
+    $("#zip").change(function()
+    {
+        var zip = $(this).val();
+        $.ajax(
         {
-            $("#zip").change(function()
+            url:"<?= BASE_URL; ?>block/get_city/" + zip,
+            type:"post",
+            data:{zip:$(this).val()},
+            success:function(response)
             {
-                var zip = $(this).val();//get select value
-                $.ajax(
-                {
-                    url:'<?= BASE_URL; ?>public/plugins/ajax/get_city.php',
-                    type:"post",
-                    data:{zip:$(this).val()},
-                    success:function(response)
-                    {
-                        $("#city").html(response);
-                    }
-                });
-            });
+                $("#city").html(response);
+            }
         });
-		
+    });
+});
+        
 $(document).ready(function()
+{
+    $("#zip").change(function()
+    {
+        var zip = $(this).val();
+        $.ajax(
         {
-            $("#zip").change(function()
+            url:"<?= BASE_URL; ?>block/get_state/" + zip,
+            type:"post",
+            data:{zip:$(this).val()},
+            success:function(response)
             {
-                var zip = $(this).val();//get select value
-                $.ajax(
-                {
-                    url:"<?= BASE_URL; ?>public/plugins/ajax/get_state.php",
-                    type:"post",
-                    data:{zip:$(this).val()},
-                    success:function(response)
-                    {
-                        $("#state").html(response);
-                    }
-                });
-            });
+                $("#state").html(response);
+            }
         });
+    });
+});
+<?php /* End city and state autofill */ ?>
 </script>
-
 
 <?php # Date picker JS ?>
 <script type="text/javascript" src="<?= TEMPLATE_URL; ?>assets/js/zebra_datepicker.js"></script>

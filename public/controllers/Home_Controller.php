@@ -12,18 +12,19 @@ class Home_Controller extends Hal\Controller\Base_Controller {
 	 * The $app variable must be passed to the construct method,
 	 * and again to the parent::__construct() method call
 	 */
-	public function __construct($app) {
-
+	public function __construct($app) 
+	{
 		parent::__construct($app);
-
 	}
 
-	public function index() {
-
+	public function index() 
+	{
 		//$api = $this->helper->load('config');
 		//echo $api->api_key;
-		$this->load->view('home/index');
-
+		$limit = mt_rand(1, 100);
+		// $data['images'] = $this->model('Member')->get_images();
+		$data['profiles'] = $this->model('Member')->select($limit);
+		$this->load->view('home/index', $data);
 	}
 
 }
