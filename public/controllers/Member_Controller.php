@@ -92,12 +92,11 @@ class Member_Controller extends Hal\Controller\Base_Controller
 			$this->view();
 	}
 
-	public function view() 
-	{
+	public function view() {
+
 		$data['username'] = urldecode($this->route->param1);
 		$data['profile'] = $this->model('Member')->profile_data($data['username']);
-		$data['member_id'] = $this->model('Member')->get_member_id($data['username']);
-		$data['img_gallery'] = $this->model('Member')->img_gallery($data['member_id']);
+		$data['img_gallery'] = $this->model('Member')->img_gallery($data['username']);
 
 		if (empty($data['username']) || $data['username'] === $this->session->get('username'))
 			$this->edit();

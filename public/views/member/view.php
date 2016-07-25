@@ -58,7 +58,7 @@
                     <li class="col-md-2 nomargin-left">
                         <div class="item-box">
                             <figure>
-                                <a class="item-hover" target="_blank" href="<?= USER_PICS_URL.$user['username'].'/'; ?><?= $img['img_name']; ?>">
+                                <a class="item-hover" href="<?= USER_PICS_URL.$user['username'].'/'; ?><?= $img['img_name']; ?>">
                                     <span class="overlay color2"></span>
                                         <span class="inner">
                                             <span class="block fa fa-eye fsize20"></span>

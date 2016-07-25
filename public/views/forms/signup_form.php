@@ -117,9 +117,9 @@ function check_email_availability()
         function(result){  
             //if the result is 0
             if(result == 0){  
-                $('#email_availability_result').removeClass("btn btn-danger btn-sm").addClass("btn btn-success btn-sm").html('Username ' + email + ' is available');  
+                $('#email_availability_result').removeClass("btn btn-danger btn-sm").addClass("btn btn-success btn-sm").html(email + ' is available');  
             }else{  
-                $('#email_availability_result').removeClass("btn btn-success btn-sm").addClass("btn btn-danger btn-sm").html(email + ' is already registered. Please <a class="yellow" href="<?= BASE_URL; ?>login">reset your password</a> if you have forgotten it.');  
+                $('#email_availability_result').removeClass("btn btn-success btn-sm").addClass("btn btn-danger btn-sm").html(email + ' is already registered. <br>Please <a style="color:yellow" href="<?= BASE_URL; ?>login">reset your password</a> if you have forgotten it.');  
             }  
     });  
   
@@ -202,21 +202,6 @@ function check_email_availability()
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label>About Me <small><em>(limit 500 characters)</em></small></label>
-                        <textarea rows="5" cols="40" name="about_me" id="about_me" 
-                        onKeyDown="textCounter(this,'progressbar1',500)" 
-                        onKeyUp="textCounter(this,'progressbar1',500)" 
-                        onFocus="textCounter(this,'progressbar1',500)" ></textarea><br />
-
-                        <div id="progressbar1" class="progress"></div>
-
-                        <script>textCounter(document.getElementById("about_me"),"progressbar1",500)</script>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
                         <label class="optional">Mobile Phone Number</label>
                         <input type="tel" name="phone" id="phone" class="form-control" value="<?= $data['phone'] ?>" placeholder="Include area code" >
                     </div>
@@ -266,10 +251,10 @@ function check_email_availability()
             <legend>Registration is fast, easy, and free</legend>
             <p>Once you're registered, you can:</p>
             <ul class="list-icon check">
-                <li>View profiles and rate sexy selfies</li>
-                <li>Chat and send messages to other members</li>
+                <li>Recieve email notifications of updates</li>
+                <li>Learn about our new software products</li>
                 <li>Join the community discussion forum</li>
-                <li>Meet sexy singles near you!</li>
+                <li>Help us keep track of the awesome websites built with Diamond PHP</li>
             </ul>
             <hr class="half-margins" />
             <p class="white-row text-center styleBackground"> Already have an account? <a href="<?= BASE_URL; ?>login">Member Login</a> </p>
@@ -472,19 +457,3 @@ $(document).ready(function() {
 });
 </script>
 
-
-<?php # Date picker JS ?>
-<script type="text/javascript" src="<?= MODULES_URL; ?>datepicker/public/javascript/zebra_datepicker.js"></script>
-<link rel="stylesheet" href="<?= MODULES_URL; ?>datepicker/public/css/default.css" type="text/css">
-<script type="text/javascript">
-            $(document).ready(function() {
-
-            // assuming the input elements you want to attach the plugin to
-            // have the "datepicker" class set
-            $('input.datepicker').Zebra_DatePicker({
-              view: 'years'
-            });
-
-        });
-</script>
-<?php # END Date picker JS ?>

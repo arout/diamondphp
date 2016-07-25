@@ -33,7 +33,7 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 	public static function hello( $event ) 
 	{
 		echo "Hello, events!";
-		// var_export( $event );
+		var_export( $event );
 		// $this->log->save('login event worked', 'member.log');
 	}
 

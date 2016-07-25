@@ -31,16 +31,18 @@ class Signup_Controller extends Hal\Controller\Base_Controller {
 
 		$response = (int) $data['math'];
 		$answer = (int) $data['math_answer'];
-		if ($response !== $answer) {
+		if ($response !== $answer) 
+		{
 			// Did not pass validation -- Show errors
 			echo '<div class="alert alert-danger">';
 			echo '<i class="fa fa-exclamation-triangle"></i> Math answer is incorrect<br>';
 			echo '</div>';
 			$this->load->view('forms/login_form', $data);
-		} else {
+		} 
+		else 
+		{
 			// Now we can check the submitted form to see if it is filled out properly
 			$check_if_valid = $this->toolbox('validate')->form($data, array(
-
 				'email' => 'required|valid_email',
 				'password' => 'required|max_len,100|min_len,6',
 			));

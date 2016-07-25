@@ -10,12 +10,10 @@
                     <div class="form-group">
                         <div class="col-xs-11">
                             <label>Profile Image</label>
-                            <input type="file" name="image[]" id="image" class="form-control" />
+                            <input type="file" name="image" id="image" class="form-control" />
                         </div>
                     </div>
                 </div>
-                <br>
-                
                 <br>
                 <div class="row">
                     <div class="col-md-12">
@@ -82,7 +80,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>About Me</label>
-                        <textarea name="about_me" id="about_me" class="form-control" placeholder="Maximum 750 characters"><?= $profile['about_me']; ?></textarea>
+                        <textarea name="about_me" id="about_me" class="form-control" value="<?= $profile['about_me']; ?>"></textarea>
                     </div>
                 </div>
             </div>

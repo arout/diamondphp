@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-12 text-center">
         <div class="col-md-2">
-            <img class="img-responsive" height="200px" src="<?= USER_PICS_URL; ?><?= $user['username']; ?>/<?= $user['pic']; ?>" />
+            <img class="img-responsive" height="200px" src="<?= USER_PICS_URL; ?><?= $user['pic']; ?>" />
         </div>
         <div class="col-md-7">
         <h4><strong><?= $user['username']; ?></strong></h4>
