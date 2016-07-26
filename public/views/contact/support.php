@@ -18,7 +18,7 @@
 								<div class="col-md-6">
 									<div class="form-group has-feedback">
 										<label class="control-label">Your Name</label>
-										<input name="name" type="text" class="form-control" required=required>
+										<input name="name" type="text" class="form-control" value="<?= $data['name'] ?>" required=required>
 										<i class="fa fa-user form-control-feedback"></i>
 									</div>
 								</div>
@@ -27,7 +27,7 @@
 								<div class="col-md-6">
 									<div class="form-group has-feedback">
 										<label class="control-label">Your Email</label>
-										<input name="email" type="email" class="form-control" required=required>
+										<input name="email" type="email" class="form-control" value="<?= $data['email'] ?>" required=required>
 										<i class="fa fa-envelope-o form-control-feedback"></i>
 									</div>
 								</div>
@@ -36,7 +36,7 @@
 								<div class="col-md-6">
 									<div class="form-group has-feedback">
 										<label class="control-label">Subject</label>
-										<input name="subject" type="text" class="form-control" required=required>
+										<input name="subject" type="text" class="form-control" value="<?= $data['subject'] ?>" required=required>
 										<i class="fa fa-navicon form-control-feedback"></i>
 									</div>
 								</div>
@@ -45,7 +45,7 @@
 								<div class="col-md-6">
 									<div class="form-group has-feedback">
 										<label class="control-label">Message</label>
-										<textarea name="message" class="form-control" rows="20" required=required></textarea>
+										<textarea name="message" class="form-control" value="<?= $data['message'] ?>" rows="20" required=required></textarea>
 										<i class="fa fa-pencil form-control-feedback"></i>
 									</div>
 								</div>

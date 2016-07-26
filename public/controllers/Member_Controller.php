@@ -92,11 +92,11 @@ class Member_Controller extends Hal\Controller\Base_Controller
 			$this->view();
 	}
 
-	public function view() {
-
+	public function view() 
+	{
 		$data['username'] = urldecode($this->route->param1);
 		$data['profile'] = $this->model('Member')->profile_data($data['username']);
-		$data['img_gallery'] = $this->model('Member')->img_gallery($data['username']);
+		$data['img_gallery'] = $this->model('Member')->img_gallery($data['member_id']);
 
 		if (empty($data['username']) || $data['username'] === $this->session->get('username'))
 			$this->edit();
@@ -108,9 +108,15 @@ class Member_Controller extends Hal\Controller\Base_Controller
 
 	public function all() 
 	{
-		$limit = urldecode($this->route->param1);
+		// $data['avatar'] = $this->model('Member')->get_avatar();
 		// $data['images'] = $this->model('Member')->get_images();
+		$limit = $this->route->param1;
+
+		$query = "SELECT * FROM users WHERE hidden = 0";
+		$data['pager'] = $this->toolbox('pagination');
+		$data['pager']->config( $query, $this->route->param1, 20 );
 		$data['profiles'] = $this->model('Member')->select($limit);
 		$this->load->view('member/all', $data);
 	}
+
 }

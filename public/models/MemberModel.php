@@ -2,19 +2,40 @@
 
 class MemberModel extends Hal\Model\System_Model 
 {
-	public function select($limit="0") 
+	public function select( $limit = 0 ) 
 	{
-		if( $limit != "0" ) {
-			$limit1 = $limit*10;
-			$q = "SELECT * FROM users LIMIT $limit1, 20";
+		# Get all member profiles
+		if( $limit !== 0 ) 
+		{
+			$limit1 = (int) $this->toolbox('sanitize')->xss( $limit * 10 );
+			$query = "SELECT * FROM users WHERE hidden = 0 LIMIT $limit1, 20";
 		}
 		else {
-			$limit = "0, 20";
-			$q = "SELECT * FROM users LIMIT {$limit}";
+			$limit = $this->toolbox('sanitize')->xss( "0, 20" );
+			$query = "SELECT * FROM users WHERE hidden = 0 LIMIT {$limit}";
 		}
 
-		$r = $this->db->prepare($q);
+		$r = $this->db->prepare( $query );
 		$r->execute();
+		
+		return $r;
+	}
+
+	public function select_gender( $limit = 0, $gender = 'all' ) 
+	{
+		# Get all member profiles
+		if( $limit !== 0 ) 
+		{
+			$limit1 = (int) $this->toolbox('sanitize')->xss( $limit * 10 );
+			$query = "SELECT * FROM users WHERE hidden = ? AND gender = ? LIMIT $limit1, 20";
+		}
+		else {
+			$limit = $this->toolbox('sanitize')->xss( "0, 20" );
+			$query = "SELECT * FROM users WHERE hidden = ? AND gender = ? LIMIT {$limit}";
+		}
+
+		$r = $this->db->prepare( $query );
+		$r->execute( [0, "$gender"] );
 		
 		return $r;
 	}
@@ -35,7 +56,7 @@ class MemberModel extends Hal\Model\System_Model
 
 	public function email_exists( $email ) 
     {
-        # Fetch member ID
+        # Check if the submitted email already exists; reurns true/false
         $email = $this->toolbox('sanitize')->xss( $email );
 		$r = $this->db->prepare("SELECT email FROM users WHERE email = ?");
 		$r->execute( array( $email ) );
@@ -50,29 +71,29 @@ class MemberModel extends Hal\Model\System_Model
     public function get_username( $memberid ) 
     {
         # Fetch username
-        $id = $memberid;
+        $id = (int)$this->toolbox('sanitize')->xss( $memberid );
 		$r = $this->db->prepare("SELECT username FROM users WHERE member_id = ?");
 		$r->execute( array( $id ) );
 		foreach( $r as $r )
             return $r['username'];
 	}
 
-	public function get_images() 
-	{
-		# Get user images
-		$r = $this->db->prepare("SELECT * FROM images");
-		$r->execute();
+	public function get_avatar( $id ) 
+    {
+        # Get user avatar
+		$r = $this->db->prepare("SELECT pic FROM users WHERE member_id = ?");
+		$r->execute( array( $id ) );
 		if( $r->rowCount() >= 1 )
             return $r;
         else
             return FALSE;
 	}
     
-    public function img_gallery( $username ) 
+    public function img_gallery( $id ) 
     {
         # Get user image gallery
-		$r = $this->db->prepare("SELECT pic FROM users WHERE username = ?");
-		$r->execute( array( $username ) );
+		$r = $this->db->prepare("SELECT img_name FROM images WHERE owner_id = ?");
+		$r->execute( array( $id ) );
 		if( $r->rowCount() >= 1 )
             return $r;
         else
@@ -82,6 +103,7 @@ class MemberModel extends Hal\Model\System_Model
     public function profile_data( $user ) 
     {
 		# Get profile data for selected user
+		# Used for viewing profiles
 		$r = $this->db->prepare("SELECT * FROM users WHERE username = ?");
 		$r->execute( array( $user ) );
 		return $r;
@@ -90,6 +112,7 @@ class MemberModel extends Hal\Model\System_Model
     public function update_profile_data() 
     {
 		# Update profile data for selected user
+		# Used for editing profiles
 		if( $_POST ) {
 		    
 		    $form	= $this->toolbox('sanitize')->xss( $_POST );
@@ -133,9 +156,9 @@ class MemberModel extends Hal\Model\System_Model
 		return $count = $count['count'];
 	}
 
-	# Check if login is valid
 	public function check_login($form) 
 	{
+		# Check if login is valid	
 		$query = "SELECT * FROM `users` WHERE `email` = ?";
 
 		$row = $this->db->prepare($query);
@@ -190,9 +213,9 @@ class MemberModel extends Hal\Model\System_Model
 		}
 	}
 
-	# Create a new member; i.e. signup form
 	public function create_member($form) 
 	{
+		# Create a new member; i.e. signup form
 		try 
 		{
 			$form['password'] 	= $this->toolbox('hash')->encrypt($form['password']);
