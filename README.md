@@ -27,4 +27,4 @@ to be an indispensible new tool in your web development repertoire.
 * Responsive theme included with framework
 
 ### Documentation
-Full and comprehensive documentation is currently being written, and will be available at https://diamondphp.com/documentation
+Full and comprehensive documentation is currently in development, and will be available at https://diamondphp.com/documentation
