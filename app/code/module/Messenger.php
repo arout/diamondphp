@@ -49,7 +49,7 @@ class Messenger
         ));
         $count = $mail->fetch(\PDO::FETCH_ASSOC);
         if($mail)
-            return $count = $count['count'];
+            echo $count = $count['count'];
         else
             return FALSE;
     }

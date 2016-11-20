@@ -6,17 +6,36 @@
 		<meta charset="utf-8" />
 		<title>Maintenance Mode</title>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/animate.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/superslides.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/essentials.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/layout.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/layout-responsive.css" rel="stylesheet" type="text/css" />
-		<link href="app/design/frontend/default/custom/assets/css/color_scheme/orange.css" rel="stylesheet" type="text/css" /><!-- orange: default style -->
-		<!--<link id="css_dark_skin" href="app/design/frontend/default/custom/assets/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/modernizr.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/nova/media/default/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Font Awesome CSS -->
+	<link href="/nova/media/default/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+	<!-- Fontello CSS -->
+	<link href="/nova/media/default/fonts/fontello/css/fontello.css" rel="stylesheet">
+
+	<!-- Plugins -->
+	<link href="/nova/media/default/plugins/rs-plugin/css/settings.css" media="screen" rel="stylesheet">
+	<link href="/nova/media/default/plugins/rs-plugin/css/extralayers.css" media="screen" rel="stylesheet">
+	<link href="/nova/media/default/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+	<link href="/nova/media/default/css/animations.css" rel="stylesheet">
+	<link href="/nova/media/default/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+
+	<!-- iDea core CSS file -->
+	<link href="/nova/media/default/css/style.css" rel="stylesheet">
+
+	<!-- Color Scheme (In order to change the color scheme, replace the red.css with the color scheme that you prefer)-->
+	<link href="/nova/media/default/css/skins/red.css" rel="stylesheet">
+
+	<!-- Custom css -->
+	<link href="/nova/media/default/css/custom.css" rel="stylesheet">
+		<link href="/nova/media/default/css/color_scheme/orange.css" rel="stylesheet" type="text/css" /><!-- orange: default style -->
+		<!--<link id="css_dark_skin" href="/nova/media/default/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
+		<script type="text/javascript" src="/nova/media/default/plugins/modernizr.min.js"></script>
 	</head>
 	<body><!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
 		<div class="special-page container">
@@ -64,36 +83,36 @@
 			<ul class="slides-container">
 				<li>
 					<span class="overlay"></span>
-					<div style="background-image: url('app/design/frontend/default/custom/assets/images/covers/cover_1.jpg');" class="fullscreen-img"></div>
+					<div style="background-image: url('/nova/media/default/images/covers/cover_1.jpg');" class="fullscreen-img"></div>
 				</li>
 				<li>
 					<span class="overlay"></span>
-					<div style="background-image: url('app/design/frontend/default/custom/assets/images/covers/cover_2.jpg');" class="fullscreen-img"></div>
+					<div style="background-image: url('/nova/media/default/images/covers/cover_2.jpg');" class="fullscreen-img"></div>
 				</li>
 				<li>
 					<span class="overlay"></span>
-					<div style="background-image: url('app/design/frontend/default/custom/assets/images/covers/cover_3.jpg');" class="fullscreen-img"></div>
+					<div style="background-image: url('/nova/media/default/images/covers/cover_3.jpg');" class="fullscreen-img"></div>
 				</li>
 				<li>
 					<span class="overlay"></span>
-					<div style="background-image: url('app/design/frontend/default/custom/assets/images/covers/cover_4.jpg');" class="fullscreen-img"></div>
+					<div style="background-image: url('/nova/media/default/images/covers/cover_4.jpg');" class="fullscreen-img"></div>
 				</li>
 			</ul>
 		</section>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/jquery-2.2.3.min.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/jquery.easing.1.3.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/jquery.cookie.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/jquery.appear.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/jquery.isotope.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/masonry.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/jquery.appear.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/jquery.isotope.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/masonry.js"></script>
 
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/stellar/jquery.stellar.min.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/knob/js/jquery.knob.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/plugins/superslides/dist/jquery.superslides.min.js"></script>
-		<script type="text/javascript" src="app/design/frontend/default/custom/assets/js/scripts.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/owl-carousel/owl.carousel.min.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/stellar/jquery.stellar.min.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/knob/js/jquery.knob.js"></script>
+		<script type="text/javascript" src="/nova/media/default/plugins/superslides/dist/jquery.superslides.min.js"></script>
+		<script type="text/javascript" src="/nova/media/default/js/scripts.js"></script>
 
 	</body>
 </html>

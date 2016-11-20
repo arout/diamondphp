@@ -55,4 +55,4 @@ function php_ver() {
 if (php_ver() <= 6.9)
 	exit('<h3>You must have PHP version 7.0 or higher. Your PHP version: <code>'.php_ver().'</code> System exiting...</h3>');
 
-ob_clean();
+ob_flush();

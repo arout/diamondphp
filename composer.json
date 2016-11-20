@@ -1,15 +1,7 @@
 {
-    "require": {
+	"require": {
         "pimple/pimple": "~3.0",
-        "symfony/event-dispatcher": "^3.1",
-        "doctrine/orm": "*",
-        "phpunit/php-code-coverage": "^4",
-        "phpunit/php-timer": "~1.0",
-        "psr/log": "^1.0",
-        "symfony/routing": "^3.1",
-        "ip2location/ip2location-php": "^8.0",
-        "geoip2/geoip2": "~2.0",
-        "symfony/dependency-injection": "^3.1"
+        "symfony/event-dispatcher": "^3.1"
     },
     "autoload": {
         "psr-4": {

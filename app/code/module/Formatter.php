@@ -17,8 +17,8 @@ namespace Hal\Module;
  * To change the default format, edit lines 35, 44 and 52 below
  * to whatever you wish
  */
-class Formatter {
-
+class Formatter 
+{
 	public function PhoneNumber($phoneNumber) {
 
 		// Strip all non-integers from input
@@ -52,8 +52,8 @@ class Formatter {
 
 	### Convert birth date to age (in years) ###
 
-	public function age($string) {
-
+	public function age($string) 
+	{
 		/**
 		 * For consistency, $string MUST be in the YYYY-MM-DD format
 		 * DateTime is capable of attempting to convert MM-DD-YYYY or DD-MM-YYYY,

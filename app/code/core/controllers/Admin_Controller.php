@@ -6,11 +6,11 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 	{
 		parent::__construct($app);
 
-		// if( $this->session->get('username') == FALSE || $this->session->get('role') != 'admin' )
-		// {
-		// 	$this->redirect('admin/login');
-		// 	exit;
-		// }
+		if( $this->session->get('username') == FALSE || $this->session->get('role') != 'admin' )
+		{
+			$this->redirect('admin/login');
+			exit;
+		}
 		// var_dump($this->toolbox('geoip')); exit;	
 	}
 

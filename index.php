@@ -11,27 +11,25 @@
  * @filesource
  *
  */
-
-if( ! defined( 'BASE_PATH' ) )
-	define('BASE_PATH', getcwd().'/');
-
-# Initiate global settings
-require_once getcwd() . '/app/code/core/system/global.php';
-
-if( $app['config']->setting('system_startup_check') === TRUE ) 
-	require_once getcwd() . '/app/code/core/system/system_startup_check.php';
-
-# Get Composer autoloader
-require_once BASE_PATH . 'vendor/autoload.php';
-
-# Pimple dependency injection
-if ( ! class_exists('Pimple\Container') ) 
+if (!defined('BASE_PATH'))
 {
-	require_once BASE_PATH . 'pimple/pimple/src/Pimple/Container.php';
-	require_once BASE_PATH . 'pimple/pimple/src/Pimple/ServiceProviderInterface.php';
+	$dir = getcwd();
+	$dir = chop($dir);
+	$dir = chop($dir, "/");
+	define('BASE_PATH', $dir . '/');
+}
+define('SMARTY_PATH', BASE_PATH . 'vendor/smarty/');
+
+require_once BASE_PATH . 'vendor/autoload.php';
+require_once BASE_PATH . 'app/code/core/system/factory.php';
+require_once BASE_PATH . 'app/code/core/system/paths.php';
+
+$app['session']->start();
+
+// Import Smarty
+if (!class_exists('Smarty'))
+{
+	require SMARTY_PATH . 'libs/Smarty.php';
 }
 
-require_once BASE_PATH . 'app/code/core/system/run.php';
-
-# Load directory definitions
-require_once BASE_PATH . 'app/code/core/system/paths.php';
+require_once SYSTEM_PATH . 'run.php';

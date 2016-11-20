@@ -51,43 +51,48 @@ namespace Hal\Module;
  *
  */
 
-class Sanitize {
-
+class Sanitize
+{
 	// Used to store key/values for form sanitation
 	public $data = array();
-	public $key = array();
+	public $key  = array();
 	private $toolbox;
 	private $allowable_tags = '';
 
-	public function __construct($toolbox) {
-
+	public function __construct($toolbox)
+	{
 		$this->toolbox = $toolbox;
 		// Get settings from Config.php to determine what users are allowed to send in messages
-		if ($this->toolbox('config')->setting['inbox_allow_formatting'] === TRUE) {
+		if ($this->toolbox('config')->setting['inbox_allow_formatting'] === TRUE)
+		{
 			$this->allowable_tags = '<pre><code><strong><em><u><i><b><s><sub><small><h1><h2><h3><h4><h5><h6><p><div><blockquote><ol><ul><li>';
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_image'] === TRUE) {
+		if ($this->toolbox('config')->setting['inbox_allow_image'] === TRUE)
+		{
 			$this->allowable_tags .= '<img>';
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_link'] === TRUE) {
+		if ($this->toolbox('config')->setting['inbox_allow_link'] === TRUE)
+		{
 			$this->allowable_tags .= '<a>';
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_email'] === FALSE) {
+		if ($this->toolbox('config')->setting['inbox_allow_email'] === FALSE)
+		{
 			$this->allowable_tags .= $this->remove_email();
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_url'] === FALSE) {
+		if ($this->toolbox('config')->setting['inbox_allow_url'] === FALSE)
+		{
 			$this->allowable_tags .= $this->remove_url();
 		}
 
 		// End allowable tags
 	}
 
-	public function file($filename) {
-
+	public function file($filename)
+	{
 		/**
 		 * Sanitizes a filename replacing whitespace with dashes
 		 *
@@ -102,32 +107,37 @@ class Sanitize {
 		 * @param string $filename The filename to be sanitized
 		 * @return string The sanitized filename
 		 */
-		$filename_raw = $filename;
+		$filename_raw  = $filename;
 		$special_chars =
-		array(
+			[
 			"?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"",
 			"&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}",
-		);
+		];
 
 		$special_chars = apply_filters('sanitize_file_name_chars', $special_chars, $filename_raw);
-		$filename = str_replace($special_chars, '', $filename);
-		$filename = preg_replace('/[\s-]+/', '-', $filename);
-		$filename = trim($filename, '.-_');
+		$filename      = str_replace($special_chars, '', $filename);
+		$filename      = preg_replace('/[\s-]+/', '-', $filename);
+		$filename      = trim($filename, '.-_');
 
 		return apply_filters('sanitize_file_name', $filename, $filename_raw);
 	}
 
-	public function xss($input, $allowable_tags = NULL) {
+	public function xss($input, $allowable_tags = NULL)
+	{
+		/*
+			 * This will strip all HTML tags, as well as convert special characters to HTML equivalent,
+			 * except for the tags permitted (if applicable) as set in Config.php
+		*/
+		if (is_null($allowable_tags))
+		{
+			$allowable_tags = $this->allowable_tags;
+		}
 
-		/**
-		 * This will strip all HTML tags, as well as convert special characters to HTML equivalent,
-		 * except for the tags permitted (if applicable) as set in Config.php
-		 */
-		$allowable_tags = $this->allowable_tags;
+		if (is_array($input))
+		{
 
-		if (is_array($input)) {
-
-			foreach ($input as $key => $value) {
+			foreach ($input as $key => $value)
+			{
 
 				// Keep tabs of the keys; used in the validation class
 				$this->key = $key;
@@ -136,33 +146,35 @@ class Sanitize {
 				//turn all characters into their html equivalent
 				$this->data[$key] = htmlentities($value);
 			}
-		} else {
+		}
+		else
+		{
 			$this->data = htmlentities(strip_tags($input, $allowable_tags));
 		}
 
 		return $this->data;
 	}
 
-	public function allow_format($string) {
-
+	public function allow_format($string)
+	{
 		// Allow only text formatting tags to pass through HTML filter
 		return strip_tags($string, '<pre><code><strong><em><u><i><b><s><sub><small><h1><h2><h3><h4><h5><h6><p><div><blockquote><ol><ul><li>');
 	}
 
-	public function allow_img($string) {
-
-		// Allow only links to pass through HTML filter
+	public function allow_img($string)
+	{
+		// Allow only image tags to pass through HTML filter
 		return strip_tags($string, '<img>');
 	}
 
-	public function allow_link($string) {
-
+	public function allow_link($string)
+	{
 		// Allow only links to pass through HTML filter
 		return strip_tags($string, '<a>');
 	}
 
-	public function clean($string, $allowable_tags) {
-
+	public function clean($string, $allowable_tags)
+	{
 		// User specifies what HTML tags are allowed to pass through filter.
 		// The $allowable_tags parameter must be a string, containing the tags
 		// to be allowed to pass through. See allow_format() above for examples.
@@ -171,32 +183,31 @@ class Sanitize {
 		return strip_tags($string, "{$allowable_tags}");
 	}
 
-	public function remove_email($string = NULL) {
-
+	public function remove_email($string = NULL)
+	{
 		// Remove email addresses from string
 		preg_match_all("/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches);
 		$cleaned = str_replace($matches[0], '<< email adress removed >>', $matches[0]);
-		foreach ($cleaned as $clean) {
+		foreach ($cleaned as $clean)
+		{
 			echo $clean;
 		}
 
 		return $string;
 	}
 
-	public function remove_url($string = NULL) {
-
-		/*
-			// Remove URLs from string
-			preg_match_all( "/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches );
-			$cleaned = str_replace( $matches[0], '<< email adress removed >>', $matches[0] );
-			foreach( $cleaned as $clean )
-			echo $clean;
-		*/
-		return $string;
+	public function remove_url($string = NULL)
+	{
+		// Remove URLs from string
+		// preg_match_all( "/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches );
+		// $cleaned = str_replace( $matches[0], '<< email adress removed >>', $matches[0] );
+		// foreach( $cleaned as $clean )
+		// 	echo $clean;
+		// return $string;
 	}
 
-	public function toolbox($helper) {
-
+	public function toolbox($helper)
+	{
 		# Load a Toolbox helper
 		return $this->toolbox["$helper"];
 	}

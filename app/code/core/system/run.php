@@ -5,25 +5,48 @@
 
 require_once 'factory.php';
 
-if( $app['config']->setting('maintenance_mode') === TRUE ) 
+if ($app['config']->setting('maintenance_mode') === TRUE)
 {
-	header('Location: ' . $app['config']->setting('site_url').'maintenance.php');
+	header('Location: ' . $app['config']->setting('site_url') . 'maintenance.php');
+	exit;
+}
+
+if ($app['config']->setting('system_startup_check') === TRUE)
+{
+	require_once 'system_startup_check.php';
 	exit;
 }
 
 # Build system routes
 $app['router']->build();
 
-if( $app['router']->controller != 'Block' ) 
+if ($app['session']->get('username'))
 {
-    $app['template']->header();
-    $app['base_controller']->parse();
-    $app['template']->footer();
-    
+	$nav_menu = 'nav_user.tpl';
 }
-else {
-    $app['base_controller']->parse();
+else
+{
+	$nav_menu = 'nav_visitor.tpl';
 }
+
+$app['template']->setTemplateDir(VIEWS_PATH);
+//$app['template']->setPluginsDir(SMARTY_PATH . 'plugins');
+$app['template']->setCompileDir(VAR_PATH . 'templates_c');
+$app['template']->setCacheDir(CACHE_PATH);
+// $app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
+// $app['template']->setCompileCheck(false);
+$app['template']->setConfigDir(SMARTY_PATH . 'configs');
+
+// Set the page titles in head.tpl
+$app['template']->assign('page_title', $app['title']->get());
+// Get appropriate nav menu
+$app['template']->assign('nav_menu', $nav_menu);
+
+$app['base_controller']->parse();
+
+$app['template']->display('head.tpl');
+$app['template']->display('layout.tpl');
+$app['template']->display('footer.tpl');
 
 // $app['registry']->event_register([
 
@@ -37,4 +60,4 @@ else {
 
 // $app['registry']->event_dispatch('message.send');
 
-$app['dispatcher']->dispatch('member.login');
+// $app['dispatcher']->dispatch('member.login');

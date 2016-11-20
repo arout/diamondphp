@@ -1,20 +1,34 @@
 <?php
 
-class Login_Controller extends Hal\Controller\Base_Controller {
+class Login_Controller extends Hal\Controller\Base_Controller
+{
 
-	public function index() {
+	public function index()
+	{
 
 		// Is two-step login process enabled?
-		if ($this->config->setting['login_math'] === TRUE) 
+		if ($this->config->setting['login_math'] === TRUE)
 		{
-			$data['a'] = rand(1, 5);
-			$data['b'] = rand(1, 5);
+			$data['a']      = rand(1, 5);
+			$data['b']      = rand(1, 5);
 			$data['answer'] = $data['a'] * $data['b'];
-			$data['route'] = $this->route;
-			$this->load->view('forms/login_form', $data);
-		} else {
-			$this->load->view('forms/login_form', $data);
+			$data['route']  = $this->route->param1;
+			$data['uri']    = $_SERVER['REQUEST_URI'];
+			$login_math     = $this->toolbox('config')->setting['login_math'];
+
+			$this->template->assign('a', $data['a']);
+			$this->template->assign('b', $data['b']);
+			$this->template->assign('answer', $data['answer']);
+			$this->template->assign('route', $data['route']);
+			$this->template->assign('login_math', $login_math);
+			$this->template->assign('uri', $data['uri']);
+			$this->template->assign('content', 'forms/login_form.tpl');
 		}
+		else
+		{
+			$this->template->assign('content', 'index.tpl');
+		}
+
 		$this->_event_register();
 	}
 
@@ -26,56 +40,59 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 	public function _event_register()
 	{
 		# Create listener
-		$this->event->_register( 'member.login', 'Login_Controller', 'hello' );
+		$this->event->_register('member.login', 'Login_Controller', 'hello');
 		// $this->dispatcher->dispatch('member.login');
 	}
 
-	public static function hello( $event ) 
+	public static function hello($event)
 	{
 		echo "Hello, events!";
-		var_export( $event );
+		var_export($event);
 		// $this->log->save('login event worked', 'member.log');
 	}
 
-	public function logout() {
+	public function logout()
+	{
 
 		$this->redirect('home/index');
 		$this->session->flush();
 		exit;
 	}
 
-	public function login_validate_math($data) {
+	public function login_validate_math($data)
+	{
 
 		$data['a'] = rand(1, 5);
 		$data['b'] = rand(1, 5);
 
 		$response = (int) $data['math'];
-		$answer = (int) $data['math_answer'];
+		$answer   = (int) $data['math_answer'];
 
-		if ($response !== $answer) 
+		if ($response !== $answer)
 		{
 			// Did not pass validation -- Show errors
 			return false;
-		} 
+		}
 		return true;
 	}
 
-	public function login_validate() 
+	public function login_validate()
 	{
 		// Begin form validation by sanitizing all $_POST submitted
 		$data = $this->toolbox('sanitize')->xss($_POST);
 
-		if ($this->config->setting['login_math'] === TRUE) {
+		if ($this->config->setting['login_math'] === TRUE)
+		{
 			$this->login_validate_math($data);
 			$data['math_error_response'] = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Math answer is incorrect<br></div>';
-		} 
-		
-		if ($this->config->setting['login_math'] === TRUE  && $this->login_validate_math($data) === FALSE)
+		}
+
+		if ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) === FALSE)
 		{
 			$this->redirect('login/index/error_math');
 		}
 
-		if ($this->config->setting['login_math'] === FALSE || ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) !== FALSE) ) 
+		if ($this->config->setting['login_math'] === FALSE || ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) !== FALSE))
 		{
 			// Now we can check the submitted form to see if it is filled out properly
 			$check_if_valid = $this->toolbox('validate')->form($data, array(
@@ -84,65 +101,74 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 				'password' => 'required|max_len,100|min_len,6',
 			));
 
-			if ($check_if_valid === FALSE) {
+			if ($check_if_valid === FALSE)
+			{
 
 				// Did not pass form validation -- Show errors
 				echo '<div class="alert alert-danger">';
-				foreach ($check_if_valid as $invalid) {
+				foreach ($check_if_valid as $invalid)
+				{
 					echo '<i class="fa fa-exclamation-triangle"></i> ' . $invalid . '<br>';
 				}
 				echo '</div>';
 				$this->load->view('forms/login_form');
 
-			} 
-			else 
+			}
+			else
 			{
 				// Form is valid -- continue to login query
 				$result = $this->model('Member')->check_login($data);
 
-				if ($result == "Account not verified") {
+				if ($result == "Account not verified")
+				{
 					$this->redirect('login/index/verify');
-				} 
-				elseif ($result && $result != "Account not verified") {
+				}
+				elseif ($result && $result != "Account not verified")
+				{
 					// Valid login
 					$this->redirect('member/home');
-				} else {
+				}
+				else
+				{
 
 					// Invalid login -- redirect to login error page
 					$this->redirect('login/index/error');
 				}
 			}
 		}
-		
+
 	}
 
-	function forgot_password() {
+	function forgot_password()
+	{
 
 		/*
-		 *
-		 * === Program workflow ===
-		 *
-		 * When password reset form is submitted, the email address is recorded
-		 * into the password_reset table. A sha1 token is then generated and stored
-		 * along with it, as well as a Unix timestamp of when the request was made.
-		 * The timestamp is necessary as a security precaution -- the user has 24 hours
-		 * to reset the password.
-		 * An email is then dispatched, providing a link to update their password. The
-		 * link simply fetches the email, using the the hash (which is a URL parameter)
-		 * as the lookup index.
-		 *
-		 */
+			 *
+			 * === Program workflow ===
+			 *
+			 * When password reset form is submitted, the email address is recorded
+			 * into the password_reset table. A sha1 token is then generated and stored
+			 * along with it, as well as a Unix timestamp of when the request was made.
+			 * The timestamp is necessary as a security precaution -- the user has 24 hours
+			 * to reset the password.
+			 * An email is then dispatched, providing a link to update their password. The
+			 * link simply fetches the email, using the the hash (which is a URL parameter)
+			 * as the lookup index.
+			 *
+		*/
 		$form = $this->toolbox('sanitize')->xss($_POST);
 
-		$q = "SELECT username, email, password FROM users WHERE email = ?";
+		$q      = "SELECT username, email, password FROM users WHERE email = ?";
 		$result = $this->db->prepare($q);
 		$result->execute(array($form['email']));
 
-		if (!empty($result)) {
+		if (!empty($result))
+		{
 
-			foreach ($result as $row) {
+			foreach ($result as $row)
+			{
 				$data['username'] = $row['username'];
-				$data['email'] = $row['email'];
+				$data['email']    = $row['email'];
 
 				$data['create_token'] = sha1($row['username'] . $row['email'] . time() . '#$!&^*(');
 				$data['create_token'] = str_replace('3', '-', $data['create_token']);
@@ -150,12 +176,12 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 				$data['create_token'] = urlencode($data['create_token']);
 
 				$q2 = "INSERT INTO password_reset(email, hash, timestamp) VALUES(?, ?, ?)";
-				$r = $this->db->prepare($q2);
+				$r  = $this->db->prepare($q2);
 				$r->execute(array($row['email'], $data['create_token'], time()));
 
-				$to = $data['email'];
+				$to      = $data['email'];
 				$subject = "Did You Forget Your Password?";
-				$from = $this->config->setting('site_name');
+				$from    = $this->config->setting('site_name');
 				$message = "You (or someone claiming to be you) has requested to reset your profile password on " . $this->config->setting('site_name') . ".<br>
 				If you requested your password to be reset, please do so here: " . BASE_URL . 'member/password_reset/' . $data['create_token'] . ".<br>
 				If you did not request a password reset, or otherwise feel this is in error, there is no need to do anything. Your password and other information
@@ -169,11 +195,12 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 		$this->load->view('static/forgot_password', $data);
 	}
 
-	public function password_reset() {
+	public function password_reset()
+	{
 
 		$data['token'] = $this->route->param1;
 
-		$q = "SELECT email, hash, timestamp FROM password_reset WHERE hash = ?";
+		$q      = "SELECT email, hash, timestamp FROM password_reset WHERE hash = ?";
 		$result = $this->db->prepare($q);
 		$result->execute(array($data['token']));
 
@@ -182,8 +209,10 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 		// so just redirect them to the original password reset form
 		$rows_found = $result->rowCount();
 
-		if ($rows_found == 1) {
-			foreach ($result as $row) {
+		if ($rows_found == 1)
+		{
+			foreach ($result as $row)
+			{
 
 				// 86400 seconds = 24 hours
 				// Password must be reset within 24 hours, else must send a new request
@@ -191,18 +220,23 @@ class Login_Controller extends Hal\Controller\Base_Controller {
 				// More than 24 hours has passed; send new request
 				{
 					$this->redirect('member/forgot_password/expired');
-				} else {
+				}
+				else
+				{
 
 					$this->view('forms/password_reset', $data);
 				}
 			}
 			// End foreach
-		} else {
+		}
+		else
+		{
 			$this->redirect('member/forgot_password');
 			exit;
 		} // End if/else
 
-		if ($_POST) {
+		if ($_POST)
+		{
 			// New password submitted
 			$form = $this->input->sanitize->form($_POST);
 			$this->model('Member')->update_password($_POST['password'], $row['email']);

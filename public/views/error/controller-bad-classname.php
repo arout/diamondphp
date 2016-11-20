@@ -1,1 +1,0 @@
-<h1>Invalid controller class name specified</h1>

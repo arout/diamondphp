@@ -1,7 +1,7 @@
 <?php
 namespace Hal\Module;
 	
-	/**
+	/*
 	 * 		=====  Methods available  =====
 	 * form(array $data, array $rules) // Shorthand validation
 	 * validation_rules(array $rules); // Get or set the validation rules
@@ -43,7 +43,8 @@ namespace Hal\Module;
 	 *
 	 */
 
-class Validate{
+class Validate
+{
 	// Validation rules for execution
 	protected $validation_rules = array();
 
@@ -62,8 +63,8 @@ class Validate{
 	// ** ------------------------- Validation Data ------------------------------- ** //
 	
 	// These tags are whitelisted from the sanitizing html function since they are generally safe
-	// public static $basic_tags     = "<br><p><a><strong><b><i><em><img><blockquote><code><dd><dl><hr><h1><h2><h3><h4><h5><h6><label><ul><li><span><sub><sup>";
-	public static $basic_tags     = "";
+	public static $basic_tags     = "<br><p><a><strong><b><i><em><img><blockquote><code><dd><dl><hr><h1><h2><h3><h4><h5><h6><label><ul><li><span><sub><sup>";
+	//public static $basic_tags     = "";
 	
 	// ** ------------------------- "Noise words"; Words to be removed from a string (typically for search queries) ------------------------------- ** //
 	public static $en_noise_words = "about,after,all,also,an,and,another,any,are,as,at,be,because,been,before,

@@ -9,150 +9,184 @@
 
 $app = new \Pimple\Container();
 
-$app['router'] = function ($c) {
+$app['router'] = function ($c)
+{
 	return new \Hal\Core\Router('Home', $c['config']);
 	// return $r->build( $rout_name, $url, $controller );
 };
 
-$app['config'] = function ($c) {
+$app['config'] = function ($c)
+{
 	return new \Hal\Config\Config;
 };
 
-$app['cron'] = function ($c) {
+$app['cron'] = function ($c)
+{
 	return new \Hal\Core\Cron;
 };
 
-require_once BASE_PATH . 'app/code/core/system/paths.php';
+// include_once BASE_PATH . 'app/code/core/system/paths.php';
 
 $app['dispatcher'] = new Hal\Core\Dispatch;
 
-$app['registry'] = function ($c) {
+$app['registry'] = function ($c)
+{
 	return new \Hal\Core\Registry($c);
 };
 
-$app['event'] = function ($c) {
-	return new \Hal\Core\Event( $c );
+$app['event'] = function ($c)
+{
+	return new \Hal\Core\Event($c);
 };
 
-$app['system_block'] = function ($c) {
+$app['system_block'] = function ($c)
+{
 	return new \Hal\Block\System_Block($c);
 };
 
-$app['parse'] = function ($c) {
+$app['parse'] = function ($c)
+{
 	return new \Hal\Core\Parse($c);
 };
 
-$app['database'] = function ($c) {
+$app['database'] = function ($c)
+{
 	return new \Hal\Core\Database($c['config']);
 };
 
-$app['view'] = function ($c) {
+$app['view'] = function ($c)
+{
 	return new \Hal\Core\SystemView;
 };
 
-$app['cache'] = function ($c) {
+$app['cache'] = function ($c)
+{
 	return new \Hal\Core\Cache;
 };
 
-$app['load'] = function ($c) {
+$app['load'] = function ($c)
+{
 	return new \Hal\Core\Loader($c);
 };
 
-$app['system_model'] = function ($c) {
+$app['system_model'] = function ($c)
+{
 	return new \Hal\Model\System_Model($c['database'], $c['toolbox'], $c['config']);
 };
 
-$app['template'] = function ($c) {
-	return new \Hal\Core\Template($c, $data = NULL);
+$app['template'] = function ($c)
+{
+	return new \Hal\Core\Template($c);
 };
 
-$app['log'] = function ($c) {
+$app['log'] = function ($c)
+{
 	return new \Hal\Core\Logger();
 };
 
-$app['base_controller'] = function ($c) {
+$app['base_controller'] = function ($c)
+{
 	return new \Hal\Controller\Base_Controller($c);
 };
 
 /*********************
  *   Toolbox helpers
  *********************/
-$app['breadcrumbs'] = function ($c) {
+$app['breadcrumbs'] = function ($c)
+{
 	$bc = new \Hal\Module\Breadcrumbs($c['router'], $c['config']);
 	$bc->show();
 	return $bc;
 };
 
-$app['cookie'] = function ($c) {
+$app['cookie'] = function ($c)
+{
 	return new \Hal\Core\Cookie;
 };
 
-$app['email'] = function ($c) {
+$app['email'] = function ($c)
+{
 	return new \Hal\Module\Email($c);
 };
 
-$app['formatter'] = function ($c) {
+$app['formatter'] = function ($c)
+{
 	return new \Hal\Module\Formatter;
 };
 
-$app['friends'] = function ($c) {
+$app['friends'] = function ($c)
+{
 	return new \Hal\Module\Friends($c['database'], $c['toolbox'], $c['system_model']);
 };
 
-$app['geoip'] = function ($c) {
+$app['geoip'] = function ($c)
+{
 	return new \Hal\Module\Geo($c['database']);
 };
 
-$app['hash'] = function ($c) {
+$app['hash'] = function ($c)
+{
 	return new \Hal\Module\Hash;
 };
 
-$app['image'] = function ($c) {
+$app['image'] = function ($c)
+{
 	return new \Hal\Module\Image($c['config'], $c['toolbox']);
 };
 
-$app['input'] = function ($c) {
+$app['input'] = function ($c)
+{
 	return new \Hal\Module\Input($c['sanitize'], $c['validate']);
 };
 
-$app['memcached'] = function ($c) {
+$app['memcached'] = function ($c)
+{
 	return new Mcached;
 	// return $_s->connect();
 };
 
-$app['messenger'] = function ($c) {
+$app['messenger'] = function ($c)
+{
 	return new \Hal\Module\Messenger($c['database'], $c['toolbox']);
 };
 
-$app['opcache'] = function ($c) {
+$app['opcache'] = function ($c)
+{
 	return new \Hal\Core\Opcache;
 };
 
-$app['pagination'] = function ($c) {
+$app['pagination'] = function ($c)
+{
 	return new \Hal\Module\Pagination($c);
 };
 
-$app['performance'] = function ($c) {
+$app['performance'] = function ($c)
+{
 	return new \Hal\Module\Performance;
 };
 
-$app['sanitize'] = function ($c) {
- 	return new \Hal\Module\Sanitize($c['toolbox']);
+$app['sanitize'] = function ($c)
+{
+	return new \Hal\Module\Sanitize($c['toolbox']);
 };
 
-$app['search'] = function ($c) {
+$app['search'] = function ($c)
+{
 	return new \Hal\Module\Search($c['database']);
 };
 
-$app['session'] = function ($c) {
+$app['session'] = function ($c)
+{
 	return new \Hal\Core\Session();
 };
 
-$app['slider'] = function ($c) {
+$app['slider'] = function ($c)
+{
 	return new \Hal\Module\Slider($c);
 };
 
-$app['title'] = function ($c) {
+$app['title'] = function ($c)
+{
 
 	$title = new \Hal\Module\Title($c['toolbox']);
 	require_once MODULES_PATH . 'Titlesettings.php';
@@ -161,15 +195,18 @@ $app['title'] = function ($c) {
 	return $title;
 };
 
-$app['validate'] = function ($c) {
+$app['validate'] = function ($c)
+{
 	return new \Hal\Module\Validation;
 };
 
-$app['toolbox'] = function ($app) {
+$app['toolbox'] = function ($app)
+{
 	// Used to pass the toolbox as a function parameter to other objects
 	return $app;
 };
 
-$app['whitelist'] = function ($c) {
+$app['whitelist'] = function ($c)
+{
 	return new \Hal\Module\Whitelist;
 };

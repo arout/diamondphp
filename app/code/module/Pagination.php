@@ -14,13 +14,14 @@ class Pagination {
    # SQL query offset
    public $startpoint;
 
-   public function __construct( $c ) {
+   public function __construct( $c ) 
+   {
         $this->db = $c['database'];
         $this->route = $c['router'];
    }
 
-   public function config( $sql, $url_segment = NULL, $per_page ) {
-               
+   public function config( $sql, $url_segment = NULL, $per_page = 20 ) 
+   {
         if( is_null($url_segment) )
             $this->url_segment = $this->route->request[2];
         else
@@ -36,7 +37,8 @@ class Pagination {
         $this->total = $query->rowCount();
    }
    
-   public function paginate( $adjacents = 5 ) {
+   public function paginate( $adjacents = 5 ) 
+   {
         $page = 1;
     	$page = $this->url_segment;  
     	$start = ($page - 1) * $this->per_page;								
@@ -56,7 +58,7 @@ class Pagination {
     			for ($counter = 1; $counter <= $lastpage; $counter++)
     			{
     				if ($counter == $page)
-    					$pagination.= "<li><a class='current'>$counter</a></li>";
+    					$pagination.= "<li><a class='btn-default'>$counter</a></li>";
     				else
     					$pagination.= "<li><a href=$counter>$counter</a></li>";					
     			}
@@ -68,7 +70,7 @@ class Pagination {
     				for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
     				{
     					if ($counter == $page)
-    						$pagination.= "<li><a class='current'>$counter</a></li>";
+    						$pagination.= "<li><a class='btn-default'>$counter</a></li>";
     					else
     						$pagination.= "<li><a href=$counter>$counter</a></li>";					
     				}
@@ -84,7 +86,7 @@ class Pagination {
     				for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
     				{
     					if ($counter == $page)
-    						$pagination.= "<li><a class='current'>$counter</a></li>";
+    						$pagination.= "<li><a class='btn-default'>$counter</a></li>";
     					else
     						$pagination.= "<li><a href=$counter>$counter</a></li>";					
     				}
@@ -99,7 +101,7 @@ class Pagination {
     				for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
     				{
     					if ($counter == $page)
-    						$pagination.= "<li><a class='current'>$counter</a></li>";
+    						$pagination.= "<li><a class='btn-default'>$counter</a></li>";
     					else
     						$pagination.= "<li><a href=$counter>$counter</a></li>";					
     				}
@@ -114,8 +116,8 @@ class Pagination {
                 $pagination.= "<li><a href=1>Back to First</a></li>";
             }
 
+            $pagination .= "<li><a class='btn-default'>Page $page of $lastpage</a></li>";
     		$pagination.= "</ul>";
-            $pagination .= "<br><span style='padding: 6px;' class='terminal text-center'>Page $page of $lastpage</span>";
     	}
         
         return $pagination;

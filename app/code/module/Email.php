@@ -14,7 +14,7 @@ class Email {
 
 	public function send($to, $recipient_name, $from, $reply_to, $subject, $message) {
 
-		/**
+		/*
 		 * $to is the email address of recipient; can be an array
 		 * $recipient_name is the name of recipient
 		 * $from is the company / website name
@@ -73,7 +73,7 @@ class Email {
 												<tr><!-- logo -->
 													<td width="100%" style="font-family: helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 0px; text-align: center;">
 														<a href="'.BASE_URL.'" style="text-decoration: none;">
-															<img src="' . BASE_URL . 'media/logo.png." alt="" border="0" width="166" height="auto" style="with: 166px; height: auto; border: 5px solid #ffffff;">
+															<img src="' . BASE_URL . 'media/logo.png" alt="" border="0" width="166" height="auto" style="with: 166px; height: auto; border: 5px solid #ffffff;">
 														</a>
 													</td>
 												</tr>

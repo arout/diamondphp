@@ -6,12 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
-    'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
-    'Symfony\\Component\\DependencyInjection\\' => array($vendorDir . '/symfony/dependency-injection'),
-    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'MaxMind\\' => array($vendorDir . '/maxmind/web-service-common/src'),
     'Hal\\Module\\' => array($baseDir . '/app/code/module'),
     'Hal\\Model\\' => array($baseDir . '/app/code/core/models'),
     'Hal\\ModelOverride\\' => array($baseDir . '/public/override/models'),
@@ -22,8 +17,4 @@ return array(
     'Hal\\ControllerOverride\\' => array($baseDir . '/public/override/controllers'),
     'Hal\\Config\\' => array($baseDir . '/app/code/core/config'),
     'Hal\\Block\\' => array($baseDir . '/app/code/core/blocks'),
-    'GeoIp2\\' => array($vendorDir . '/geoip2/geoip2/src'),
-    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
-    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
-    'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common'),
 );

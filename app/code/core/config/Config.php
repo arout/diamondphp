@@ -1,20 +1,21 @@
 <?php
 namespace Hal\Config;
 
-class Config {
+class Config
+{
 
 	public $setting = [];
 	private $db;
 
-	public function __construct() 
+	public function __construct()
 	{
 		//** Global website settings **//
 
 		# Database Connection
 		$this->setting['db_host'] = "localhost"; # Localhost is fine for most; change if necessary
-		$this->setting['db_name'] = "name_of_database";
-		$this->setting['db_user'] = "db_user";
-		$this->setting['db_pass'] = "db_password";
+		$this->setting['db_name'] = "";
+		$this->setting['db_user'] = "";
+		$this->setting['db_pass'] = "";
 
 		# Define default controller
 		# Enter the name of you controller, without the '_Controller' or .php extension
@@ -28,7 +29,7 @@ class Config {
 		$this->setting['site_slogan'] = 'MVC Framework for PHP 7';
 
 		# Customer service or support email address
-		$this->setting['site_email'] = 'your_email';
+		$this->setting['site_email'] = '';
 
 		# Site admin name
 		$this->setting['site_admin'] = 'Customer Care';
@@ -41,13 +42,13 @@ class Config {
 		$this->setting['admin_controller'] = 'Admin';
 
 		# Address
-		$this->setting['street_address'] = 'street_address';
-		$this->setting['city'] = 'city';
-		$this->setting['state'] = 'two_letter_state_abbreviation';
-		$this->setting['zipcode'] = 'zipcode';
+		$this->setting['street_address'] = '';
+		$this->setting['city']           = '';
+		$this->setting['state']          = '';
+		$this->setting['zipcode']        = '';
 
 		# Phone
-		$this->setting['telephone'] = 'phone_number';
+		$this->setting['telephone'] = '';
 
 		# Time Zone
 		$this->setting['time_zone'] = 'America/New_York';
@@ -58,11 +59,24 @@ class Config {
 		# TURN THIS SETTING OFF IN A LIVE ENVIRONMENT
 		$this->setting['error_reports'] = 'on';
 
+		# Debug mode ( 'on' / 'off' )
+		# Enabling debug mode returns detailed reports in the browser
+		# when many common exceptions occur.
+		# It is intended for development purposes only --
+		# TURN THIS SETTING OFF IN A LIVE ENVIRONMENT
+		$this->setting['debug_mode'] = 'on';
+
 		# Log run time errors to file ( /var/logs/system.log )
 		# Note -- turning this off will disable error logging;
 		# however, you can still manually log errors using the
 		# Logger toolbox helper ( i.e., $this->log->save() )
 		$this->setting['log_errors'] = TRUE;
+
+		# Controllers directory
+		$this->setting['controllers_path'] = BASE_PATH . 'public/controllers/';
+
+		# Models directory
+		$this->setting['models_path'] = BASE_PATH . 'public/models/';
 
 		# Maximum file size allowed for log files
 		# Once this size is reached, the log file will be archived, and new log file created
@@ -76,41 +90,41 @@ class Config {
 		$this->setting['admin_template_name'] = 'default';
 
 		# Enable / disable breadcrumb links
-		$this->setting['breadcrumbs'] = TRUE;
+		$this->setting['breadcrumbs'] = FALSE;
 
 		# Put site in maintenance mode
 		$this->setting['maintenance_mode'] = FALSE;
 
 		# Check for common issues preventing system from running
-		$this->setting['system_startup_check'] = TRUE;
+		$this->setting['system_startup_check'] = FALSE;
 
 		# Upon registration, should new users be sent an email to confirm
 		# their account before it becomes active? Set to TRUE if yes, FALSE if no
 		$this->setting['signup_email_confirmation'] = TRUE;
 
 		/*
-		 * Gzip compression
-		 * Set to true to enable compression, false to disable
-		 *
-		 * If you get a blank page when compression is enabled,
-		 * it means that you are putting out content before the page
-		 * has begun loading.
-		 *
-		 * Nothing can be sent to the browser before compression begins,
-		 * even blank spaces.
-		 */
-		$this->setting['compression'] = TRUE;
+			 * Gzip compression
+			 * Set to true to enable compression, false to disable
+			 *
+			 * If you get a blank page when compression is enabled,
+			 * it means that you are putting out content before the page
+			 * has begun loading.
+			 *
+			 * Nothing can be sent to the browser before compression begins,
+			 * even blank spaces.
+		*/
+		$this->setting['compression'] = FALSE;
 
 		/*
-		 * Two step login process (i.e., should simple math problem be solved
-		 * in addition to username / password?)
-		 */
+			 * Two step login process (i.e., should simple math problem be solved
+			 * in addition to username / password?)
+		*/
 		$this->setting['login_math'] = TRUE;
 
 		# Image gallery settings
 		$this->setting['total_img_allowed'] = 10;
-		# Maximum allowed image file size in kb ( 1024kb is equal to 1MB )
-		$this->setting['img_file_size'] = 2048;
+		# Maximum allowed image file size in bytes ( 1000 is equal to 1kb; 1000000 is equal to 1 MB )
+		$this->setting['img_file_size'] = 4000000;
 		# Maximum image height in pixels. Set to zero for unlimited
 		$this->setting['img_height'] = 0;
 		# Maximum image width in pixels. Set to zero for unlimited
@@ -119,8 +133,8 @@ class Config {
 		$this->setting['img_type'] = ['jpg', 'jpeg', 'gif', 'png'];
 
 		/*----------------------------------------
-		 * Global messenger inbox settings
-		 */
+			 * Global messenger inbox settings
+		*/
 		# Enable the messenger system by setting this to true
 		$this->setting['inbox_enabled'] = TRUE;
 
@@ -143,32 +157,36 @@ class Config {
 		$this->setting['inbox_allow_formatting'] = TRUE;
 
 		$protocol = '';
-		if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' )
-            $protocol = 'https://';
-		elseif( ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' )
-            $protocol = 'https://';
-        else
-        	# Fall back to relative url if protocol can't be determined
-        	$protocol = '//';
-
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+		{
+			$protocol = 'https://';
+		}
+		elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+		{
+			$protocol = 'https://';
+		}
+		else
+		# Fall back to relative url if protocol can't be determined
+		{
+			$protocol = '//';
+		}
 
 		$uri[] = explode('/', $_SERVER["REQUEST_URI"]);
 		/*
-		 * Define site url here if default settings are not correct.
-		 * Set $this->setting['site_url'] to a string (e.g., $this->setting['site_url'] = 'http://example.com')
-		 *
-		 * === IF YOUR SITE IS INSTALLED IN A SUBDIRECTORY ===
-		 * 1. Change $uri[0][0] to $uri[0][1] below
-		 * 2. Include a trailing slash '/' at the end of the URL
-		 *
-		 * NO TRAILING SLASHES AT THE END OF THE URL UNLESS INSTALLED IN SUBDIRECTORY
-		 */
+			 * Define site url here if default settings are not correct.
+			 * Set $this->setting['site_url'] to a string (e.g., $this->setting['site_url'] = 'http://example.com')
+			 *
+			 * === IF YOUR SITE IS INSTALLED IN A SUBDIRECTORY ===
+			 * 1. Change $uri[0][0] to $uri[0][1] below
+			 * 2. Include a trailing slash '/' at the end of the URL
+			 *
+			 * NO TRAILING SLASHES AT THE END OF THE URL UNLESS INSTALLED IN SUBDIRECTORY
+		*/
 		$this->setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][0];
 
 		################################################################
 		# END OF USER EDITABLE SETTINGS -- DO NOT EDIT BELOW THIS LINE #
 		################################################################
-
 
 		#== Global system settings ==#
 
@@ -194,16 +212,20 @@ class Config {
 		$this->setting['admin_template_url'] = $this->setting['site_url'] . 'app/design/admin/' . $this->setting['admin_template_name'] . '/';
 
 		# Convert image file size setting to kb
-		$this->setting['img_size'] = $this->setting['img_file_size'] * 1024;
-		$size = $this->setting['img_size'];
-		$unit = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
+		$this->setting['img_size']        = $this->setting['img_file_size'] * 1024;
+		$size                             = $this->setting['img_size'];
+		$unit                             = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
 		$this->setting['notify_img_size'] = number_format(round($size / pow(1024, ($i = floor(log($size, 1024)))), 2)) . ' ' . $unit[$i];
 
 		# Enable / disable Memcached helper
 		if (extension_loaded('memcached'))
+		{
 			$this->setting['memcached'] = TRUE;
+		}
 		else
+		{
 			$this->setting['memcached'] = FALSE;
+		}
 
 		# Measure script execution time
 		$this->setting['execution_time'] = (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]);
@@ -212,22 +234,26 @@ class Config {
 		$this->setting['software_version'] = '1.0.0';
 	}
 
-	public final function setting($setting = null) 
+	public final function setting($setting = null)
 	{
 		return $this->setting["$setting"];
 	}
 
-    /**
-     * Private clone method to prevent cloning of the instance
-     *
-     * @return void
-     */
-    private function __clone() {}
+	/**
+	 * Private clone method to prevent cloning of the instance
+	 *
+	 * @return void
+	 */
+	private function __clone()
+	{
+	}
 
-    /**
-     * Private unserialize method to prevent unserializing
-     *
-     * @return void
-     */
-    private function __wakeup() {}
+	/**
+	 * Private unserialize method to prevent unserializing
+	 *
+	 * @return void
+	 */
+	private function __wakeup()
+	{
+	}
 }
