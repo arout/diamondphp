@@ -25,6 +25,8 @@ to be an indispensable new tool in your web development repertoire.
 * Large collection of custom developer tools (Geolocation, cronjob management, IP white & black listing, text/date/time formatting, and much more)
 * Basic administration panel to build upon and customize
 * Builtin login system & session management
+* Profile create/edit
+* View other member profiles
 * Builtin messaging system
 * Builtin friend management system
 * Responsive theme included with framework
