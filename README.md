@@ -31,3 +31,27 @@ to be an indispensable new tool in your web development repertoire.
 
 ### Documentation
 Full and comprehensive documentation is currently in development, and will be available at https://diamondphp.com/documentation
+
+### Installation
+1. Create an empty database. Using a tool of your choice (phpMyAdmin, SSH, etc), import the diamondphp.sql file located in the **/var/install** folder.
+
+2. Open the configuration file: /app/code/core/config/Config.php
+3. Enter your database connection settings on lines 15-18
+4. Enter your site or business name on line 26     `( $this->setting['site_name'] = '' )`
+5.  Enter your site admin / customer care email address on line 32 `( $this->setting['site_email'] = ''  )`
+
+That's it! If you are installing the framework into a subdirectory, you'll have one more step to complete:
+
+##### IF YOU ARE INSTALLING IN A SUBDIRECTORY
+Find the following line in Config.php, on or near line 185:
+
+    $this->setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][0];
+
+Change the `$uri[0][0]` array to `$uri[0][1]` and then append a forward slash. Example:
+
+    $this->setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][1] . '/';
+
+To complete installation in subdirectory, you will need to also update the RewriteBase rule in the provided .htaccess file in the root directory.  Change `RewriteBase /` to `RewriteBase /name-of-your-subdirectory/`
+
+
+The remaining settings are optional to complete, but is highly recommended to go through them and add/edit as necessary.
