@@ -24,6 +24,9 @@ to be an indispensable new tool in your web development repertoire.
 * Smarty 3 template engine
 * Large collection of custom developer tools
 * Basic administration panel to build upon and customize
+* Builtin login system & session management
+* Builtin messaging system
+* Builtin friend management system
 * Responsive theme included with framework
 
 ### Documentation
