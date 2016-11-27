@@ -43,14 +43,14 @@ class Member_Controller extends Hal\Controller\Base_Controller
 			{
 				return FALSE;
 			}
-
 			$this->model('Member')->update_password($password, $this->toolbox('session')->get('email'));
-			$data['status'] = '<div class="alert alert-success text-center">Password successfully updated</div>';
-			$this->load->view('forms/change_password', $data);
+			$this->template->assign('content', 'forms/change_password.tpl');
 		}
 		else
 		{
-			$this->load->view('forms/change_password');
+			$status = '<div class="alert alert-success text-center">Password successfully updated</div>';
+			$this->template->assign('status', $status);
+			$this->template->assign('content', 'forms/change_password.tpl');
 		}
 	}
 

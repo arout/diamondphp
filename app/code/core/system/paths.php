@@ -2,6 +2,7 @@
 namespace Hal\Core;
 
 define('BASE_URL', $app['config']->setting('site_url'));
+define('ADMIN_URL', BASE_URL . $app['config']->setting('admin_controller') . '/');
 
 # Define the path to vendors
 define('VENDOR_PATH', BASE_PATH . 'vendor/');
@@ -39,6 +40,7 @@ define('PUBLIC_OVERRIDE_PATH', PUBLIC_PATH . 'override/');
 define('CONTROLLERS_PATH', $app['config']->setting('controllers_path'));
 define('MODELS_PATH', $app['config']->setting('models_path'));
 define('VIEWS_PATH', BASE_PATH . 'app/design/frontend/' . $app['config']->setting('template_name') . '/views');
+define('ADMIN_VIEWS_PATH', BASE_PATH . 'app/design/admin/' . $app['config']->setting('template_name') . '/views');
 define('BLOCKS_DIR', PUBLIC_PATH . 'blocks/');
 
 # Maxmind GeoIP directory
@@ -51,6 +53,9 @@ define('MEDIA_URL', BASE_URL . 'media/');
 # Images folder
 define('IMAGES_DIR', MEDIA_DIR . 'images/');
 define('IMAGES_URL', MEDIA_URL . 'images/');
+# Admin images folder
+define('ADMIN_IMAGES_DIR', MEDIA_DIR . 'admin/' . $app['config']->setting('admin_template_name') . '/images/');
+define('ADMIN_IMAGES_URL', MEDIA_URL . 'admin/' . $app['config']->setting('admin_template_name') . '/images/');
 
 # User created documents / text files
 define('DOCS_DIR', MEDIA_DIR . 'documents/');

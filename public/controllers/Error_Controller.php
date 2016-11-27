@@ -1,6 +1,8 @@
 <?php
+namespace Web\Controller;
+use Hal\Controller\Base_Controller;
 
-class Error_Controller extends Hal\Controller\Base_Controller
+class Error_Controller extends Base_Controller
 {
 
 	// public function __construct($app) {
@@ -12,6 +14,11 @@ class Error_Controller extends Hal\Controller\Base_Controller
 	public function index()
 	{
 		$this->load->view('error/index');
+	}
+
+	public function controller()
+	{
+		$this->template->assign('content', 'error/controller.tpl');
 	}
 
 	public function _403()

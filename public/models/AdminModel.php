@@ -1,18 +1,19 @@
 <?php
+use Hal\Model\System_Model;
 
-class AdminModel extends Hal\Core\SystemModel {
+class AdminModel extends System_Model
+{
 
-	public function select() {
-
+	public function select()
+	{
 		$q = "SELECT * FROM users";
 		$r = $this->db->prepare($q);
 		$r->execute();
-
 		return $r;
 	}
 
-	public function count($table) {
-
+	public function count($table)
+	{
 		//get the number of rows from our query
 		$query = $this->db->prepare("SELECT COUNT(*) as count FROM $table");
 		$query->execute();
@@ -20,37 +21,62 @@ class AdminModel extends Hal\Core\SystemModel {
 		return $count = $count['count'];
 	}
 
+	public function count_where($table, $col, $clause, $val)
+	{
+		//get the number of rows from our query
+		$query = $this->db->prepare("SELECT COUNT(*) as count FROM $table WHERE $col {$clause} ?");
+		$query->execute([$val]);
+		$count        = $query->fetch(PDO::FETCH_ASSOC);
+		return $count = $count['count'];
+	}
+
 	/**
 	 * Check if login is valid
 	 */
-	public function check_login($form) {
+	public function check_login($form)
+	{
 
 		$query = "
-		SELECT username, password
-		FROM admin_users
-		WHERE username = ?";
+		SELECT member_id, username, password, role, confirmed, email, first_name, last_name
+		FROM users
+		WHERE username = ?
+		AND role = ?
+		AND confirmed = ?";
 		$row = $this->db->prepare($query);
-		$row->execute(array($form['username']));
+		$row->execute(array($form['username'], 'admin', 1));
 
-		foreach ($row as $result) {
+		foreach ($row as $result)
+		{
 
-			if (empty($result)) {
+			if (empty($result))
+			{
 				// Username not found
+				$attempts = $this->session->get('login_attempts');
+				$this->session->set('login_attempts', $attempts + 1);
 				return FALSE;
-			} elseif (Toolbox::helper('Hash')->verify($form['password'], $result['password']) == FALSE) {
+			}
+			elseif ($this->verify($form['password'], $result['password']) == FALSE)
+			{
 				// Username found, wrong password
+				$attempts = $this->session->get('login_attempts');
+				$this->session->set('login_attempts', $attempts + 1);
 				return FALSE;
-			} elseif (Toolbox::helper('Hash')->verify($form['password'], $result['password']) == TRUE) {
+			}
+			else
+			{
+				$attempts = $this->session->get('login_attempts');
+				$this->session->set('login_attempts', $attempts + 1);
 
+				$avatar = USER_PICS_URL . $result['username'] . '/' . $result['member_id'] . '_0.jpg';
 				// Email and password are both correct -- valid login
-				$this->cache()->set('admin_username', $result['username']);
-				$this->cache()->set('admin_email', $result['email']);
-				$this->cache()->set('admin_first_name', $result['first_name']);
-				$this->cache()->set('admin_last_name', $result['last_name']);
+				$this->session->set('admin_username', $result['first_name'] . ' ' . $result['last_name']);
+				$this->session->set('admin_email', $result['email']);
+				$this->session->set('admin_first_name', $result['first_name']);
+				$this->session->set('admin_last_name', $result['last_name']);
+				$this->session->set('role', $result['role']);
+				$this->session->set('admin_img', $avatar);
 
 				return TRUE;
-			} else {
-				return FALSE;
 			}
 		}
 
@@ -59,12 +85,13 @@ class AdminModel extends Hal\Core\SystemModel {
 	/**
 	 * Create a new member; i.e. signup form
 	 */
-	public function create_member($form) {
+	public function create_member($form)
+	{
 
-		$form['password'] = Toolbox::helper('Hash')->encrypt($form['password']);
-		$form['phone']    = Toolbox::helper('Formatter')->PhoneNumber($form['phone']);
-		$latitude         = Toolbox::helper('Geoip')->latitude;
-		$longitude        = Toolbox::helper('Geoip')->longitude;
+		$form['password'] = $this->encrypt($form['password']);
+		$form['phone']    = $this->toolbox('Formatter')->PhoneNumber($form['phone']);
+		$latitude         = $this->toolbox('Geoip')->latitude;
+		$longitude        = $this->toolbox('Geoip')->longitude;
 
 		$query = "INSERT INTO users( username, password, first_name, last_name, email, dob, gender, phone, city, state, zip, latitude, longitude )
 				  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -74,9 +101,10 @@ class AdminModel extends Hal\Core\SystemModel {
 
 	}
 
-	public function update_password($password, $email) {
+	public function update_password($password, $email)
+	{
 
-		$password = Toolbox::helper('Hash')->encrypt($password);
+		$password = $this->encrypt($password);
 		$q        = "UPDATE users SET password = ? WHERE email = ?";
 		$r        = $this->db->prepare($q);
 		$r->execute(array($password, $email));

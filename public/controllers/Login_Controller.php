@@ -1,10 +1,23 @@
 <?php
+namespace Web\Controller;
+use Hal\Controller\Base_Controller;
+use \R as R;
 
-class Login_Controller extends Hal\Controller\Base_Controller
+class Login_Controller extends Base_Controller
 {
 
 	public function index()
 	{
+
+		// Listen for the 'add' and 'list' commands
+		$opts['add'] = 'And Yet Another Brand Name';
+		if (isset($opts['add']))
+		{
+			$w       = R::dispense('whisky');
+			$w->name = $opts['add'];
+			$id      = R::store($w);
+			die("OK.\n");
+		}
 
 		// Is two-step login process enabled?
 		if ($this->config->setting['login_math'] === TRUE)

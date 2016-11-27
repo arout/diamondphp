@@ -11,8 +11,7 @@ $app = new \Pimple\Container();
 
 $app['router'] = function ($c)
 {
-	return new \Hal\Core\Router('Home', $c['config']);
-	// return $r->build( $rout_name, $url, $controller );
+	return new \Hal\Core\Router($c['config']->setting('default_controller'), $c['config']);
 };
 
 $app['config'] = function ($c)
@@ -24,8 +23,6 @@ $app['cron'] = function ($c)
 {
 	return new \Hal\Core\Cron;
 };
-
-// include_once BASE_PATH . 'app/code/core/system/paths.php';
 
 $app['dispatcher'] = new Hal\Core\Dispatch;
 
@@ -52,6 +49,13 @@ $app['parse'] = function ($c)
 $app['database'] = function ($c)
 {
 	return new \Hal\Core\Database($c['config']);
+};
+
+$app['orm'] = function ($c)
+{
+	// Create instance of redbean orm
+	require_once VENDOR_PATH . 'redbean/rb.php';
+	return \R::setup("mysql:host=" . $c['config']->setting('db_host') . ";dbname=" . $c['config']->setting('db_name') . "", $c['config']->setting('db_user'), $c['config']->setting('db_pass'));
 };
 
 $app['view'] = function ($c)
@@ -148,6 +152,11 @@ $app['memcached'] = function ($c)
 $app['messenger'] = function ($c)
 {
 	return new \Hal\Module\Messenger($c['database'], $c['toolbox']);
+};
+
+$app['mysql'] = function ($c)
+{
+	return new \Hal\Module\Mysql($c);
 };
 
 $app['opcache'] = function ($c)

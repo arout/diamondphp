@@ -53,11 +53,11 @@ class Config
 		# Time Zone
 		$this->setting['time_zone'] = 'America/New_York';
 
-		# Error reporting ( 'on' / 'off' )
+		# Error reporting ( E_ALL / NONE )
 		# This setting determines whether to display errors in browser.
 		# It is intended for development purposes only --
 		# TURN THIS SETTING OFF IN A LIVE ENVIRONMENT
-		$this->setting['error_reports'] = 'on';
+		$this->setting['error_reports'] = E_ALL;
 
 		# Debug mode ( 'on' / 'off' )
 		# Enabling debug mode returns detailed reports in the browser
@@ -90,7 +90,7 @@ class Config
 		$this->setting['admin_template_name'] = 'default';
 
 		# Enable / disable breadcrumb links
-		$this->setting['breadcrumbs'] = FALSE;
+		$this->setting['breadcrumbs'] = TRUE;
 
 		# Put site in maintenance mode
 		$this->setting['maintenance_mode'] = FALSE;
@@ -113,7 +113,7 @@ class Config
 			 * Nothing can be sent to the browser before compression begins,
 			 * even blank spaces.
 		*/
-		$this->setting['compression'] = FALSE;
+		$this->setting['compression'] = TRUE;
 
 		/*
 			 * Two step login process (i.e., should simple math problem be solved

@@ -1,11 +1,12 @@
 <?php
+namespace Web\Controller;
+use Hal\Controller\Base_Controller;
 
-class Home_Controller extends Hal\Controller\Base_Controller
+class Home_Controller extends Base_Controller
 {
-
 	/**
 	 * [__construct description]
-	 * @param [object] $container [Instance of Pimple]
+	 * @param [object] $app [Instance of Pimple]
 	 *
 	 * Often, an individual controller will need a constructor.
 	 * Below is an example of creating the __construct() for a
@@ -16,6 +17,11 @@ class Home_Controller extends Hal\Controller\Base_Controller
 	public function __construct($app)
 	{
 		parent::__construct($app);
+	}
+
+	public function __toString()
+	{
+		return "Home_Controller";
 	}
 
 	public function index()
