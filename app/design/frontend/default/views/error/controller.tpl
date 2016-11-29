@@ -22,7 +22,11 @@
 >  Also ensure that the class name matches the file name -- {$controller}_Controller, 
 >  as well as extends the core controller class:
 >
->  <strong>&lt?php class {$controller}_Controller extends Hal\Controller\Base_Controller ?></strong>
+   <strong><span style="color: #ff6666">&lt?php 
+       namespace Web\Controller;
+       use Hal\Controller\Base_Controller;
+ 
+       class {$controller}_Controller extends Base_Controller{}</span></strong>
 >
 >  Finally, ensure that the index() method exists within the {$controller} class. Each controller falls back
 >  on the index() method as the default action.

@@ -1,3 +1,5 @@
+{include file=$sidebar}
+
 <div class="white-row">
 	<h1>Working with Models</h1>
 	<p class="lead">

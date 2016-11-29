@@ -1,3 +1,4 @@
+{include file=$sidebar}
 <div class="white-row">
 
 	<h1>Event Listeners</h1>

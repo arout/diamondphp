@@ -1,3 +1,5 @@
+{include file=$sidebar}
+
 <legend style="width: auto;">What is cron?</legend>
 <p>
 	Cron is a daemon, which means that it only needs to be started once, and will 

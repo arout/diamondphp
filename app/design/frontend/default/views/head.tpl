@@ -1,4 +1,3 @@
-{extends file="layout.tpl"}
 
 {block name=title}{$page_title}{/block}
 
@@ -47,20 +46,4 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-{/block}
-
-{block name=body}
-{include file="$nav_menu"}
-<!-- ================ -->
-		<div class="scrollToTop"><i class="icon-up-open-big"></i></div>
-
-		<!-- page wrapper start -->
-		<!-- ================ -->
-		<div class="page-wrapper">
-		
-		<!-- page-top start-->
-			<!-- ================ -->
-			<div class="page-top">
-				<div class="container">
-					<div class="row">
 {/block}

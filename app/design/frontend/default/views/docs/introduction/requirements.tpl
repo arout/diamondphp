@@ -1,3 +1,4 @@
+{include file=$sidebar}
 <div>
 
     <legend style="width: auto;">System Requirements</legend>

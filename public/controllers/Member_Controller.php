@@ -1,6 +1,8 @@
 <?php
+namespace Web\Controller;
+use Hal\Controller\Base_Controller;
 
-class Member_Controller extends Hal\Controller\Base_Controller
+class Member_Controller extends Base_Controller
 {
 
 	public function __construct($container)

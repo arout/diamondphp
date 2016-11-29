@@ -1,10 +1,9 @@
 <div class="white-row">
-
-<?php if( isset( $data['status'] ) ) echo $data['status']; ?>
+{$status}
 
 <legend>Change password</legend>
         
-        <form method="post" id="cpass" class="white-row styleBackground" action="<?= BASE_URL; ?>member/change_password">
+        <form method="post" id="cpass" class="white-row styleBackground" action="{$smarty.const.BASE_URL}member/change_password">
 			
 			<div>
                 <div class="form-group">
@@ -28,7 +27,7 @@
         </form>
 </div>
 
-
+{literal}
 <script type="text/javascript">
 $(document).ready(function() {
     $('#cpass').bootstrapValidator({
@@ -65,3 +64,4 @@ $(document).ready(function() {
     });
 });
 </script>
+{/literal}

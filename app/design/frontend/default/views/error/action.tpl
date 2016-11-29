@@ -11,9 +11,9 @@
 {/literal}
 
 <pre>
-<h3>DEBUG CONSOLE</h3>
+<h3 class="animated object-visible fadeInUp">DEB<i class="fa fa-bug fa-sm"></i>G CONSOLE</h3>
 >  <strong>MESSAGE: INVALID ACTION / METHOD DOES NOT EXIST</strong>
->  <small>file:   {$smarty.const.CONTROLLERS_PATH}{$controller}_Controller.php</small>
+>  <small>file:   {$controller_path}</small>
 >  <small>action: {$action}</small>
 >
 >  The controller file {$controller}_Controller.php was found and loaded,
@@ -23,16 +23,10 @@
 >  and create a method with the name <span class="btn-danger">{$action}</span>:
 >
 >  <strong>
->  &lt?php 
->  class {$controller}_Controller extends Hal\Controller\Base_Controller {ldelim}
->  
->      public function {$action}() {ldelim}
->          // Your code
->      {rdelim}
->
->  {rdelim}</strong>
->
->  ?> 
+>   public function {$action}() {ldelim}
+>   	// Your code
+>   {rdelim}
+>   </strong>
 >
 >  View <a href="https://diamondphp.com/documentation/mvc/controllers">the Controllers documentation</a> for more information.
 </pre>

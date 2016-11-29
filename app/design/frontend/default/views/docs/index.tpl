@@ -1,7 +1,15 @@
-<?php $data['load']->view('docs/toc'); ?>
+<style>
+h4, h5 { text-decoration: underline;  }
+legend {
+    padding: 0px 20px;
+    margin: 20px 0 25px;
+    border-left: 7px solid #c7081b !important;
+    font-size: 24px !important;
+}
+</style>
+{include file=$sidebar}
 
-<div>
-
+<div class="col-xs-12 col-md-9">
     <legend style="width: auto;">Overview</legend>
     <p>
         Thank you for choosing Diamond PHP! Now that installation and configuration is complete, you are ready to code.

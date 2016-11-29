@@ -1,3 +1,4 @@
+				
 				</div>
 			</div>
 		</div>
@@ -10,7 +11,7 @@
 
 		<!-- .footer start -->
 		<!-- ================ -->
-		<div class="footer">
+		<!-- <div class="footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
@@ -136,7 +137,7 @@
 				</div>
 				<div class="space-bottom hidden-lg hidden-xs"></div>
 			</div>
-		</div>
+		</div> -->
 		<!-- .footer end -->
 
 		<!-- .subfooter start -->
@@ -145,7 +146,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Copyright © 2016 iDea by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>. All Rights Reserved</p>
+						<p>Page generated in <span style="color: green">{$script_exec_time*10|truncate:7:""}</span> secs 
+						<span style="color: green">| {$milsec = $script_exec_time * 10000}{$milsec|truncate:3:""} milliseconds</span></p>
 					</div>
 					<div class="col-md-6">
 						<nav class="navbar navbar-default" role="navigation">
@@ -160,11 +162,12 @@
 							</div>   
 							<div class="collapse navbar-collapse" id="navbar-collapse-2">
 								<ul class="nav navbar-nav">
-									<li><a href=""{$smarty.const.BASE_URL}">Home</a></li>
-									<li><a href="page-about.html">About</a></li>
-									<li><a href="blog-right-sidebar.html">Blog</a></li>
-									<li><a href="portfolio-3col.html">Portfolio</a></li>
-									<li><a href="page-contact.html">Contact</a></li>
+									<li><a href="{$smarty.const.BASE_URL}">Home</a></li>
+									<li><a href="https://github.com/arout/diamondphp">View on GitHub</a></li>
+                                    <li><a href="{$smarty.const.BASE_URL}documentation/license">License</a></li>
+                                    <li><a href="{$smarty.const.BASE_URL}documentation/faq">FAQ</a></li>
+                                    <li><a href="{$smarty.const.BASE_URL}contact/support">Support</a></li>
+                                    <li><a href="{$smarty.const.BASE_URL}contact/bugs">Report a Bug</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -224,5 +227,76 @@
 <!-- Custom Scripts -->
 <script type="text/javascript" src="{$smarty.const.BASE_URL}media/default/js/custom.js"></script>
 
-	</body>
-</html>
+
+{literal}
+<!-- Check for new messages -->
+<script>
+function request() {
+
+    setTimeout( function(){
+
+        $.ajax({
+{/literal}
+            url: "{$smarty.const.BASE_URL}block/check_new_messages",
+{literal}
+            type:"post",
+            data:"rid=<?=$this->session->get('member_id');?>",
+            success:function(data)
+            {
+                if(data) {
+
+                    $("#new_message_alert").html(data);
+
+                    // new PNotify({
+                    //     title: 'New Message',
+                    //     text: data
+                    // });
+
+                    $.gritter.add({
+                    // (string | mandatory) the heading of the notification
+                    title: 'New Message',
+                    // (string | mandatory) the text inside the notification
+                    text: data,
+                    sticky: true,
+                    before_open: function(){
+                            if($('.gritter-item-wrapper').length == 1) // Only allow one popup to be displayed at a time
+                            {
+                                // Returning false prevents a new gritter from opening
+                                return false;
+                            }
+                        }
+                    });
+                }
+
+            },
+            // Restart the function after response sent
+            complete: request()
+
+        });
+    }, 5000); // Check for new messages every 5 seconds
+}
+// Initiate the request() function
+request();
+
+</script>
+
+
+
+<!-- Update unread message badges -->
+<script>
+function update_unread_total( elemid ) {
+$.ajax(
+    {
+{/literal}
+        url: "{$smarty.const.MODULES_URL}ajax/messenger/update_unread_count.php",
+{literal}
+        type: "post",
+        data: {rid:"<?php echo $this->toolbox('session')->get('member_id'); ?>"},
+        success:function(response)
+        {
+            $( "#" + elemid ).html(response);
+        }
+   });
+}
+</script>
+{/literal}

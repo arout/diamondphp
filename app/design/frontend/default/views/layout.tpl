@@ -10,9 +10,22 @@
 	</head>
 
 	<body class="front no-trans">
+	{include file="$nav_menu"}
 
-		{block name=body}
-			{* 
+	<!-- ================ -->
+		<div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+		<!-- page wrapper start -->
+		<!-- ================ -->
+		<div class="page-wrapper">
+		
+		<!-- page-top start-->
+			<!-- ================ -->
+			<div class="page-top">
+				<div class="container">
+					<div class="row">
+
+		{* 
 				---------------------------------------------------------------------
 				Fetch the requested view file; display Views error page if not found.
 				Functionality provided by plugin; unavailable in Smarty3 core?? 
@@ -32,7 +45,7 @@
 			{foreach $content as $page_content}
 				{include_if_exists file=$page_content else="error/smarty_tpl.tpl"}
 			{/foreach}
-		{/block}
 
+		{include_if_exists file="footer.tpl" else="error/smarty_tpl.tpl"}
 	</body>
 </html>
