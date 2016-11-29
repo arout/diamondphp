@@ -3,8 +3,14 @@
 // $listener 	= new Hal\Config\Config();
 // $dispatcher->addListener('config.initialize', array($listener, 'onFooAction'));
 error_reporting($app['config']->setting('error_reports'));
+date_default_timezone_set($app['config']->setting('time_zone'));
 
-require_once 'factory.php';
+if ($app['config']->setting('compression') === TRUE)
+{
+	ini_set("zlib.output_compression", 4096);
+}
+
+require_once SYSTEM_PATH . 'factory.php';
 
 if ($app['config']->setting('maintenance_mode') === TRUE)
 {
@@ -14,7 +20,7 @@ if ($app['config']->setting('maintenance_mode') === TRUE)
 
 if ($app['config']->setting('system_startup_check') === TRUE)
 {
-	require_once 'system_startup_check.php';
+	require_once SYSTEM_PATH . 'system_startup_check.php';
 	exit;
 }
 
@@ -65,14 +71,15 @@ if ($app['router']->controller_class === $app['config']->setting['admin_controll
 else
 {
 	$app['template']->setTemplateDir(VIEWS_PATH);
-	//$app['template']->setPluginsDir(SMARTY_PATH . 'plugins');
+	// $app['template']->setPluginsDir(SMARTY_PATH . 'plugins');
 	$app['template']->setCompileDir(VAR_PATH . 'templates_c');
-	$app['template']->setCacheDir(CACHE_PATH);
-	// $app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
-	// $app['template']->setCompileCheck(false);
+	//$app['template']->setCacheDir(CACHE_PATH);
+	//$app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
+	$app['template']->setCompileCheck(true);
 	$app['template']->setConfigDir(SMARTY_PATH . 'configs');
 	// Script exec time in footer
-	$app['template']->assign('script_exec_time', $app['config']->setting['execution_time']);
+	$extime = round($app['config']->setting['execution_time'], 4, PHP_ROUND_HALF_DOWN);
+	$app['template']->assign('script_exec_time', $extime);
 	// Set the page titles in head.tpl
 	$app['template']->assign('page_title', $app['title']->get());
 	// Get appropriate nav menu
