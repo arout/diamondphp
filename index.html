@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Diamondphp by arout</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Diamondphp</h1>
+        <h2>Diamond PHP is a fully featured framework built for PHP 7 and offers extreme performance, a modular architecture, elegant syntax and an easy to use philosophy.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/arout/diamondphp/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/arout/diamondphp/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/arout/diamondphp" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="diamondphp" class="anchor" href="#diamondphp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DIAMONDPHP</h1>
+
+<p>Diamond PHP is a fully featured web development framework built for PHP 7 and offers extreme performance, a modular architecture, elegant syntax and an easy to use philosophy.</p>
+
+<h3>
+<a id="project-status" class="anchor" href="#project-status" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PROJECT STATUS</h3>
+
+<p>Diamond PHP is currently in <strong>ALPHA</strong> stages of development. As such, it is not recommended to use the framework in a production environment yet.
+A beta version is scheduled for on December 1, 2016, and a production-ready version 1.0.0 is scheduled for public release on January 15, 2017.</p>
+
+<h3>
+<a id="philosophy--goals" class="anchor" href="#philosophy--goals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PHILOSOPHY &amp; GOALS</h3>
+
+<p>Like all frameworks, Diamond PHP strives to simplify and speed up the web development process. Where Diamond PHP deviates from most frameworks
+is in its emphasis on the <em>developer</em>, by creating an extraordinarily easy to learn and easy to use environment -- without sacrificing performance,
+features or extensibility. A framework should help a developer by completing common tasks for the developer and providing options for other tasks,
+but still being perfectly capable of "getting out of the way" when needed. A framework cannot be all things to all people, so it is important to be
+able to <em>safely</em> work outside the box with minimal fuss when needed.
+We think that you'll find the blazing fast performance, the ultra-light footprint, the comprehensive feature set and the emphasis on ease of use 
+to be an indispensable new tool in your web development repertoire.</p>
+
+<h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FEATURES</h3>
+
+<ul>
+<li>PHP 7.0 compliant</li>
+<li>MVC architecture</li>
+<li>Pimple Dependency Injection</li>
+<li>Composer package management</li>
+<li>Symfony observer/event dispatching</li>
+<li>Smarty 3 template engine</li>
+<li>Large collection of custom developer tools (Geolocation, cronjob management, IP white &amp; black listing, text/date/time formatting, and much more)</li>
+<li>Basic administration panel to build upon and customize</li>
+<li>Built-in login system &amp; session management</li>
+<li>Profile create/edit</li>
+<li>View other member profiles</li>
+<li>Built-in messaging system</li>
+<li>Built-in friend management system</li>
+<li>Responsive theme included with framework</li>
+</ul>
+
+<h3>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h3>
+
+<p>Full and comprehensive documentation is currently in development, and will be available at <a href="https://diamondphp.com/documentation">https://diamondphp.com/documentation</a></p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+
+<ol>
+<li><p>Create an empty database. Using a tool of your choice (phpMyAdmin, SSH, etc), import the diamondphp.sql file located in the <strong>/var/install</strong> folder.</p></li>
+<li><p>Open the configuration file: /app/code/core/config/Config.php</p></li>
+<li>Enter your database connection settings on lines 15-18</li>
+<li>Enter your site or business name on line 26     <code>( $this-&gt;setting['site_name'] = '' )</code>
+</li>
+<li> Enter your site admin / customer care email address on line 32 <code>( $this-&gt;setting['site_email'] = ''  )</code>
+</li>
+</ol>
+
+<p>That's it! If you are installing the framework into a subdirectory, you'll have one more step to complete:</p>
+
+<h5>
+<a id="if-you-are-installing-in-a-subdirectory" class="anchor" href="#if-you-are-installing-in-a-subdirectory" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IF YOU ARE INSTALLING IN A SUBDIRECTORY</h5>
+
+<p>Find the following line in Config.php, on or near line 185:</p>
+
+<pre><code>$this-&gt;setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][0];
+</code></pre>
+
+<p>Change the <code>$uri[0][0]</code> array to <code>$uri[0][1]</code> and then append a forward slash. Example:</p>
+
+<pre><code>$this-&gt;setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][1] . '/';
+</code></pre>
+
+<p>To complete installation in subdirectory, you will need to also update the RewriteBase rule in the provided .htaccess file in the root directory.  Change <code>RewriteBase /</code> to <code>RewriteBase /name-of-your-subdirectory/</code></p>
+
+<p>The remaining settings are optional to complete, but is highly recommended to go through them and add/edit as necessary.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
