@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Web\\Model\\' => array($baseDir . '/public/models'),
+    'Web\\Controller\\' => array($baseDir . '/public/controllers'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'Hal\\Module\\' => array($baseDir . '/app/code/module'),
     'Hal\\Model\\' => array($baseDir . '/app/code/core/models'),
@@ -17,4 +19,5 @@ return array(
     'Hal\\ControllerOverride\\' => array($baseDir . '/public/override/controllers'),
     'Hal\\Config\\' => array($baseDir . '/app/code/core/config'),
     'Hal\\Block\\' => array($baseDir . '/app/code/core/blocks'),
+    'Database\\Orm\\R\\' => array($vendorDir . '/redbean'),
 );

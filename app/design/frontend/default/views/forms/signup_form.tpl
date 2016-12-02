@@ -1,5 +1,6 @@
+{* City and state autofill *}
+{literal}
 <script>
-<?php /* City and state autofill */ ?>
 $(document).ready(function()
 {
     $("#zip").change(function()
@@ -35,9 +36,11 @@ $(document).ready(function()
         });
     });
 });
-<?php /* End city and state autofill */ ?>
+{/literal}
+{* End city and state autofill *}
 
-<?php /* Username availability check */ ?>
+{* Username availability check *}
+{literal}
 $(document).ready(function() 
 {
     //the min chars for username  
@@ -80,9 +83,10 @@ function check_availability()
     });  
   
 }
-<?php /* End username availability check */ ?>
+{/literal}
+{* End username availability check *}
 
-<?php /* email availability check */ ?>
+{* email availability check *}
 $(document).ready(function() 
 {
     var min_chars = 6;  
@@ -124,8 +128,9 @@ function check_email_availability()
     });  
   
 }
-<?php /* End email availability check */ ?>
 </script>
+{/literal}
+{* End email availability check *}
 
 <div class="row"> 
     

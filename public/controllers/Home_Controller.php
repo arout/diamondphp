@@ -26,6 +26,8 @@ class Home_Controller extends Base_Controller
 
 	public function index()
 	{
+		// $load = $this->toolbox('performance')->check_latency( $this->config->setting('site_url') );
+		// $this->template->assign('page_load', $load);
 		$this->template->assign('content', 'index.tpl');
 	}
 

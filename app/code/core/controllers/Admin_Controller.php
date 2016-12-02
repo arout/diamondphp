@@ -32,16 +32,6 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 
 	public function home()
 	{
-		// Listen for the 'add' and 'list' commands
-		$opts['add'] = 'Brand Name';
-		if (isset($opts['add']))
-		{
-			$w       = R::dispense('whisky');
-			$w->name = $opts['add'];
-			$id      = R::store($w);
-			die("OK.\n");
-		}
-
 		$format     = $this->toolbox('formatter');
 		$past_month = time() - 2592000;
 		$this->template->assign('female_members', $format->int_format($this->model('Admin')->count_where('users', 'gender', '=', 'female')));

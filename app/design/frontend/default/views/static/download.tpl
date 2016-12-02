@@ -71,7 +71,7 @@
                         </form>
                         {else}
                         <div id="modal" class="alert alert-success"> 
-                            <i class="fa fa-check-circle"></i> An email will be sent to you at {$email} as soon downloads become available. 
+                            <i class="fa fa-check-circle"></i> An email will be sent to you at <strong>{$email}</strong> as soon downloads become available. 
                         </div>
                         {/if}
                     </div>

@@ -12,7 +12,7 @@ class Config
 		//** Global website settings **//
 
 		# Database Connection
-		$this->setting['db_host'] = "localhost"; # Localhost is fine for most; change if necessary
+		$this->setting['db_host'] = ""; # Localhost is fine for most; change if necessary
 		$this->setting['db_name'] = "";
 		$this->setting['db_user'] = "";
 		$this->setting['db_pass'] = "";

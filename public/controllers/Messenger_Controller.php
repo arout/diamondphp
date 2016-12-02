@@ -1,6 +1,8 @@
 <?php
+namespace Web\Controller;
+use Hal\Controller\Base_Controller;
 
-class Messenger_Controller extends Hal\Controller\Base_Controller
+class Messenger_Controller extends Base_Controller
 {
 	# for the check_new() method
 	public $new_message = [];
@@ -14,6 +16,11 @@ class Messenger_Controller extends Hal\Controller\Base_Controller
 			return $this->redirect('login');
 		}
 
+		$this->template->assign('inbox_limit', $this->config->setting('inbox_limit'));
+		$this->template->assign('count_all', $this->toolbox('messenger')->count_all());
+		$this->template->assign('count_unread', $this->toolbox('messenger')->count_unread());
+		$this->template->assign('all_messages', $this->toolbox('messenger')->view_all());
+		$this->template->assign('format', $this->toolbox('formatter'));
 	}
 
 	public function __toString()
@@ -29,11 +36,11 @@ class Messenger_Controller extends Hal\Controller\Base_Controller
 
 		if ($data['all_messages'] !== FALSE)
 		{
-			$this->load->view('messenger/view_all_messages', $data);
+			$this->template->assign('content', 'messenger/view_all_messages.tpl');
 		}
 		else
 		{
-			$this->load->view('messenger/inbox', $data);
+			$this->template->assign('content', 'messenger/inbox.tpl');
 		}
 
 	}

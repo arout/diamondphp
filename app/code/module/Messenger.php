@@ -55,7 +55,7 @@ class Messenger
 		$count = $mail->fetch(\PDO::FETCH_ASSOC);
 		if ($mail)
 		{
-			echo $count = $count['count'];
+			return $count['count'];
 		}
 		else
 		{

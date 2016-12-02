@@ -1,6 +1,5 @@
 <?php
 namespace Hal\Model;
-ob_start();
 
 class System_Model
 {
@@ -56,5 +55,3 @@ class System_Model
 	}
 
 }
-ob_clean();
-ob_flush();

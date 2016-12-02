@@ -61,38 +61,18 @@
 										</ul>
 									</div>
 									<div class="btn-group dropdown">
-										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Login</button>
+										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-life-saver"></i> Support</button>
 										<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
 											<li>
-												<form class="login-form" method="post" action="{$smarty.const.BASE_URL}login/login_validate">
-													<div class="form-group has-feedback">
-														<label class="control-label">Username</label>
-														<input type="text" name="email" class="form-control" placeholder="Email">
-														<i class="fa fa-user form-control-feedback"></i>
-													</div>
-													<div class="form-group has-feedback">
-														<label class="control-label">Password</label>
-														<input type="password" name="password" class="form-control" placeholder="Password">
-														<i class="fa fa-lock form-control-feedback"></i>
-													</div>
-													<button type="submit" class="btn btn-group btn-dark btn-sm">Log In</button>
-													<span>or</span>
-													<button type="submit" class="btn btn-group btn-default btn-sm">Sign Up</button>
-
-													<ul>
-														<li><a href="#">Forgot your password?</a></li>
-													</ul>
-													<div class="divider"></div>
-													<span class="text-center">Login with</span>
-													<ul class="social-links clearfix">
-														<li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-														<li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-														<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-													</ul>
-												</form>
+												<div class="object-non-visible animated object-visible fadeInUpSmall">
+													<i class="fa fa-wechat"></i> &nbsp;<a class="white" href="https://diamondphp.com/forum/">Community Support Forums</a>
+												</div>
+												<div class="object-non-visible animated object-visible fadeInUpSmall">
+													<i class="fa fa-pencil"></i> &nbsp;<a class="white" href="https://diamondphp.com/forum/">Contact Tech Support</a>
+												</div>
 											</li>
 										</ul>
-									</div>
+									</div> 
 									<!-- <div class="btn-group dropdown">
 										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart (8)</button>
 										<ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
@@ -166,7 +146,7 @@
 								</div>
 
 								<!-- name-and-slogan -->
-								<div class="site-slogan text-center">
+								<div class="slogan text-center">
 									MVC Framework for PHP 7
 								</div>
 
@@ -222,7 +202,7 @@
                                       <div class="col-sm-4">
                                         <div class="divider"></div>
                                         <ul class="menu">
-                                          <li><a href="{$smarty.const.BASE_URL}forums"><i class="icon-right-open"></i>Forums</a></li>
+                                          <li><a href="{$smarty.const.BASE_URL}forum/"><i class="icon-right-open"></i>Forums</a></li>
                                           <li><a href="{$smarty.const.BASE_URL}documentation/faq"><i class="icon-right-open"></i>FAQ</a></li>
                                         </ul>
                                       </div>

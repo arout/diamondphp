@@ -14,7 +14,10 @@
             "Hal\\Model\\": "app/code/core/models",
             "Hal\\ModelOverride\\": "public/override/models",
             "Hal\\CoreModelOverride\\": "app/code/override/models",
-            "Hal\\Module\\": "app/code/module"
+            "Hal\\Module\\": "app/code/module",
+            "Web\\Controller\\": "public/controllers",
+            "Web\\Model\\": "public/models",
+            "Database\\Orm\\R\\": "vendor/redbean"
         }
     }
 }

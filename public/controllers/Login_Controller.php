@@ -8,15 +8,37 @@ class Login_Controller extends Base_Controller
 
 	public function index()
 	{
+		// $book          = R::dispense('book');
+		// $book->title   = 'Learn to Program';
+		// $book->rating  = 10;
+		// $book['price'] = 29.99; //you can use array notation as well
+		// $id            = R::store($book);
 
-		// Listen for the 'add' and 'list' commands
-		$opts['add'] = 'And Yet Another Brand Name';
-		if (isset($opts['add']))
+		// $post = R::find('zips', ' code = ?', [17331]);
+
+		// foreach ($post as $post)
+		// {
+		// 	echo $post->citycode . '<br>';
+		// }
+		// $user        = R::dispense('user');
+		// $user->name  = 'Joe Bloggs';
+		// $user->email = 'joe.bloggs@example.com';
+		// $id          = R::store($user);
+		// print $id;
+
+		// $user->password = 'secret';
+		// R::store($user);
+
+		// $user->age = 30;
+		// R::store($user);
+
+		// $users = R::batch('user', array(1, 2, 3));
+		$users = R::find('user', 'age = ?',
+			array('NULL')
+		);
+		foreach ($users as $user)
 		{
-			$w       = R::dispense('whisky');
-			$w->name = $opts['add'];
-			$id      = R::store($w);
-			die("OK.\n");
+			R::wipe($user);
 		}
 
 		// Is two-step login process enabled?

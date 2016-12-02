@@ -17,7 +17,7 @@ Options +FollowSymlinks
 Options -Indexes
 
 RewriteEngine on
-RewriteBase /
+RewriteBase /nova/
 
 # Convert index.php?request=controller/action/params to controller/action/params
 RewriteRule ^([a-zA-Z0-9_/-]+)$ index.php?request=$1

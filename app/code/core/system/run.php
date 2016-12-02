@@ -3,7 +3,9 @@
 // $listener 	= new Hal\Config\Config();
 // $dispatcher->addListener('config.initialize', array($listener, 'onFooAction'));
 error_reporting($app['config']->setting('error_reports'));
+date_default_timezone_set($app['config']->setting('time_zone')); 
 
+$_page_exec_timer_start = microtime(true);
 require_once 'factory.php';
 
 if ($app['config']->setting('maintenance_mode') === TRUE)
@@ -17,6 +19,7 @@ if ($app['config']->setting('system_startup_check') === TRUE)
 	require_once 'system_startup_check.php';
 	exit;
 }
+
 
 # Build system routes
 $app['router']->build();
@@ -39,8 +42,6 @@ if ($app['router']->controller_class === $app['config']->setting['admin_controll
 	// $app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
 	// $app['template']->setCompileCheck(false);
 	$app['template']->setConfigDir(SMARTY_PATH . 'configs');
-	// Script exec time in footer
-	$app['template']->assign('script_exec_time', $app['config']->setting['execution_time']);
 	// Set the page titles in head.tpl
 	$app['template']->assign('page_title', $app['title']->get());
 	// Get appropriate nav menu
@@ -50,7 +51,9 @@ if ($app['router']->controller_class === $app['config']->setting['admin_controll
 
 	$app['base_controller']->parse();
 
-	// $app['template']->display('head.tpl');
+	$_page_exec_timer_stop = ( microtime(true) - $_page_exec_timer_start );
+	$app['template']->assign('script_exec_time',$_page_exec_timer_stop);
+
 	$app['template']->display('layout.tpl');
 	if ($app['router']->action !== 'login')
 	{
@@ -72,7 +75,7 @@ else
 	// $app['template']->setCompileCheck(false);
 	$app['template']->setConfigDir(SMARTY_PATH . 'configs');
 	// Script exec time in footer
-	$app['template']->assign('script_exec_time', $app['config']->setting['execution_time']);
+	// $app['template']->assign('script_exec_time', $app['config']->setting['execution_time']);
 	// Set the page titles in head.tpl
 	$app['template']->assign('page_title', $app['title']->get());
 	// Get appropriate nav menu
@@ -81,9 +84,18 @@ else
 	$app['template']->assign('action', $app['router']->action);
 
 	$app['base_controller']->parse();
+	
+	$_page_exec_timer_stop = ( microtime(true) - $_page_exec_timer_start );
+	$app['template']->assign('script_exec_time',$_page_exec_timer_stop);
 
-	$app['template']->display('extends:layout.tpl|head.tpl');
+	if ($app['router']->controller_class !== 'Block_Controller')
+	{
+		$app['template']->display('extends:layout.tpl|head.tpl');
+	}
+
 }
+
+// Script exec time in footer
 
 // $app['registry']->event_register([
 

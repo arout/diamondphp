@@ -7,6 +7,11 @@ namespace Composer\Autoload;
 class ComposerStaticInitaaf8852b45586afc136c65eaa43bc9f4
 {
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'Web\\Model\\' => 10,
+            'Web\\Controller\\' => 15,
+        ),
         'S' => 
         array (
             'Symfony\\Component\\EventDispatcher\\' => 34,
@@ -24,9 +29,21 @@ class ComposerStaticInitaaf8852b45586afc136c65eaa43bc9f4
             'Hal\\Config\\' => 11,
             'Hal\\Block\\' => 10,
         ),
+        'D' => 
+        array (
+            'Database\\Orm\\R\\' => 15,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Web\\Model\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/models',
+        ),
+        'Web\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/controllers',
+        ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
@@ -70,6 +87,10 @@ class ComposerStaticInitaaf8852b45586afc136c65eaa43bc9f4
         'Hal\\Block\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/code/core/blocks',
+        ),
+        'Database\\Orm\\R\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/redbean',
         ),
     );
 
