@@ -2,11 +2,17 @@
 // $dispatcher = new Hal\Core\Dispatch();
 // $listener 	= new Hal\Config\Config();
 // $dispatcher->addListener('config.initialize', array($listener, 'onFooAction'));
+
+# Strict mode by default for scalar type declarations
+# declare(strict_types = 1);
+# Set error reporting level [via Config.php]
 error_reporting($app['config']->setting('error_reports'));
+# Set time zone [via Config.php]
 date_default_timezone_set($app['config']->setting('time_zone')); 
 
 $_page_exec_timer_start = microtime(true);
-require_once 'factory.php';
+
+require_once SYSTEM_PATH.'factory.php';
 
 if ($app['config']->setting('maintenance_mode') === TRUE)
 {
@@ -32,16 +38,16 @@ else
 {
 	$nav_menu = 'nav_visitor.tpl';
 }
+$app['template']->setTemplateDir(VIEWS_PATH);
+$app['template']->setCompileDir(VAR_PATH . 'templates_c');
+$app['template']->setCacheDir(CACHE_PATH.'/'.$app['router']->controller_class.'/'.$app['router']->action .'/'. $app['router']->param1);
+$app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
+$app['template']->setCompileCheck(false);
+$app['template']->setConfigDir(SMARTY_PATH . 'configs');
 
 if ($app['router']->controller_class === $app['config']->setting['admin_controller'] . '_Controller')
 {
 	$app['template']->setTemplateDir(ADMIN_VIEWS_PATH);
-	//$app['template']->setPluginsDir(SMARTY_PATH . 'plugins');
-	$app['template']->setCompileDir(VAR_PATH . 'templates_c');
-	$app['template']->setCacheDir(CACHE_PATH);
-	// $app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
-	// $app['template']->setCompileCheck(false);
-	$app['template']->setConfigDir(SMARTY_PATH . 'configs');
 	// Set the page titles in head.tpl
 	$app['template']->assign('page_title', $app['title']->get());
 	// Get appropriate nav menu
@@ -51,6 +57,7 @@ if ($app['router']->controller_class === $app['config']->setting['admin_controll
 
 	$app['base_controller']->parse();
 
+	# Stop timer for page execution
 	$_page_exec_timer_stop = ( microtime(true) - $_page_exec_timer_start );
 	$app['template']->assign('script_exec_time',$_page_exec_timer_stop);
 
@@ -67,15 +74,6 @@ if ($app['router']->controller_class === $app['config']->setting['admin_controll
 }
 else
 {
-	$app['template']->setTemplateDir(VIEWS_PATH);
-	//$app['template']->setPluginsDir(SMARTY_PATH . 'plugins');
-	$app['template']->setCompileDir(VAR_PATH . 'templates_c');
-	$app['template']->setCacheDir(CACHE_PATH);
-	// $app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
-	// $app['template']->setCompileCheck(false);
-	$app['template']->setConfigDir(SMARTY_PATH . 'configs');
-	// Script exec time in footer
-	// $app['template']->assign('script_exec_time', $app['config']->setting['execution_time']);
 	// Set the page titles in head.tpl
 	$app['template']->assign('page_title', $app['title']->get());
 	// Get appropriate nav menu
@@ -85,6 +83,7 @@ else
 
 	$app['base_controller']->parse();
 	
+	# Stop timer for page execution	
 	$_page_exec_timer_stop = ( microtime(true) - $_page_exec_timer_start );
 	$app['template']->assign('script_exec_time',$_page_exec_timer_stop);
 

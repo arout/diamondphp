@@ -13,7 +13,7 @@
 	  </div>
 	  <div class="profile_info">
 	    <span>Welcome,</span>
-	    <h2>Faggot</h2>
+	    <h2>Admin</h2>
 	  </div>
 	</div>
 	<!-- /menu profile quick info -->
