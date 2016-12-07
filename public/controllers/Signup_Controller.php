@@ -6,24 +6,20 @@ class Signup_Controller extends Base_Controller
 {
 	public function index()
 	{
+		$data = [];
+
 		if ($_POST)
 		{
-			$data = $_POST;
+			$data = $this->toolbox('sanitize')->xss($_POST);
 		}
-		else
+		$this->template->assign('data', $data);
+
+		if ($this->route->action != 'complete') 
 		{
-			$data = NULL;
+			return $this->template->assign('content', 'forms/signup_form.tpl');
 		}
 
-		if ($this->route->action != 'complete')
-		{
-			$this->template->assign('content', 'forms/signup_form.tpl');
-		}
-		else
-		{
-			$this->template->assign('content', 'static/signup_complete.tpl');
-		}
-
+		return $this->template->assign('content', 'static/signup_complete.tpl');
 	}
 
 	public function logout()

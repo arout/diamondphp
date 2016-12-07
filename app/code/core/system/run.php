@@ -10,7 +10,17 @@ error_reporting($app['config']->setting('error_reports'));
 # Set time zone [via Config.php]
 date_default_timezone_set($app['config']->setting('time_zone')); 
 
+# Page exec time
 $_page_exec_timer_start = microtime(true);
+# Actual memory used
+// $_ram = memory_get_usage ( false );
+# Format memory use to kb or mb
+function convert($_ram)
+{
+    $unit = ['b','kb','mb','gb','tb','pb'];
+    return round( $_ram / pow( 1024, ( $i = floor( log( $_ram,1024 ) ) ) ), 2).' '.$unit[$i];
+}
+$actual_ram = convert(memory_get_usage(false));
 
 require_once SYSTEM_PATH.'factory.php';
 
@@ -38,12 +48,17 @@ else
 {
 	$nav_menu = 'nav_visitor.tpl';
 }
+
+# Core Smarty settings
 $app['template']->setTemplateDir(VIEWS_PATH);
 $app['template']->setCompileDir(VAR_PATH . 'templates_c');
-$app['template']->setCacheDir(CACHE_PATH.'/'.$app['router']->controller_class.'/'.$app['router']->action .'/'. $app['router']->param1);
-$app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
-$app['template']->setCompileCheck(false);
+#$app['template']->setCacheDir(CACHE_PATH.'/'.$app['router']->controller_class.'/'.$app['router']->action .'/'. $app['router']->param1);
+#$app['template']->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
+#$app['template']->setCompileCheck(false);
 $app['template']->setConfigDir(SMARTY_PATH . 'configs');
+
+# Memory usage
+$app['template']->assign('actual_ram', $actual_ram);
 
 if ($app['router']->controller_class === $app['config']->setting['admin_controller'] . '_Controller')
 {
@@ -93,19 +108,3 @@ else
 	}
 
 }
-
-// Script exec time in footer
-
-// $app['registry']->event_register([
-
-// 	'name' 		=> [ 'member.login', 'message.send' ],
-// 	'class' 	=> [ 'Login_Controller', 'Messenger_Controller' ],
-// 	'callback' 	=> [ 'hello', 'notify_new_message' ]
-
-// ]);
-
-// $app['registry']->event_register('message.send', 'Messenger_Controller', 'all');
-
-// $app['registry']->event_dispatch('message.send');
-
-// $app['dispatcher']->dispatch('member.login');
