@@ -7,26 +7,21 @@ class System_Model
 	protected $db;
 	protected $config;
 	public $session;
-	public $cache;
 	// Data accessed by views / controllers
 	public $data;
 	public $hash;
-	public $load;
+	public $log;
 	protected $toolbox;
+	protected $load;
 
 	public function __construct($db, $toolbox, $config)
 	{
 		$this->db      = $db;
-		$this->config  = $config;
+		$this->config  = $config['config'];
 		$this->toolbox = $toolbox;
+		$this->log     = $config['log'];
 		$this->session = self::session();
 		//$this->hash         = self::hash();
-		$this->cache = self::cache();
-	}
-
-	public function cache()
-	{
-		// return \Application::run('Cache');
 	}
 
 	public function encrypt($string)

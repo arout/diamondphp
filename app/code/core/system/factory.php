@@ -15,7 +15,7 @@ $app['router'] = function ($c)
 	return new \Hal\Core\Router($c['config']->setting('default_controller'), $c['config']);
 };
 
-$app['config'] = function ($c)
+$app['config'] = function ()
 {
 	return new \Hal\Config\Config;
 };
@@ -49,7 +49,7 @@ $app['parse'] = function ($c)
 
 $app['database'] = function ($c)
 {
-	return new \Hal\Core\Database($c['config']);
+	return new \Hal\Core\Database($c);
 };
 
 $app['orm'] = function ($c)
@@ -79,7 +79,7 @@ $app['load'] = function ($c)
 
 $app['system_model'] = function ($c)
 {
-	return new \Hal\Model\System_Model($c['database'], $c['toolbox'], $c['config']);
+	return new \Hal\Model\System_Model($c['database'], $c['toolbox'], $c);
 };
 
 $app['template'] = function ($c)
