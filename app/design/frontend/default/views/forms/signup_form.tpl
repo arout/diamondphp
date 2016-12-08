@@ -1,128 +1,124 @@
 {* City and state autofill *}
+<div class="main object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+    <div class="form-block center-block">
+        <h2 class="title">Create Account</h2>
+        <hr>
+        <form class="form-horizontal" role="form" method="post" action="{$smarty.const.BASE_URL}signup/signup_validate">
+            <div class="form-group has-feedback">
+                <label for="first_name" class="col-sm-3 control-label">First Name <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" name="first_name" id="first_name" class="form-control" value="{$data['first_name']}" placeholder="First Name" required>
+                    <i class="fa fa-pencil form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="last_name" class="col-sm-3 control-label">Last Name <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" name="last_name" id="last_name" class="form-control" value="{$data['last_name']}" placeholder="Last Name" required>
+                    <i class="fa fa-pencil form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="username" class="col-sm-3 control-label">Username <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" name="username" id="username" class="form-control col-xs-12 pull-left" value="{$data['username']}" placeholder="Username" required>
+                    <i class="fa fa-user form-control-feedback"></i><br>
+                    <span style='margin-top: 5px;' id="username_availability_result"></span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="email" class="col-sm-3 control-label">Email <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="email" name="email" id="email" class="form-control" value="{$data['email']}" placeholder="Email address" >
+                    <i class="fa fa-envelope form-control-feedback"></i><br>
+                    <span style='margin-top: 5px;' id="email_availability_result"></span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="password" class="col-sm-3 control-label">Password <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="password" name="password" id="password" class="form-control" value="{$data['password']}" placeholder="Password" >
+                    <i class="fa fa-lock form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="confirm_password" class="col-sm-3 control-label"><span class="text-danger small">Confirm Password</span></label>
+                <div class="col-sm-8">
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" value="{$data['confirm_password']}" placeholder="Confirm Password" >
+                    <i class="fa fa-lock form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="dob" class="col-sm-3 control-label">Date of Birth <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="date" name="dob" id="dob" class="form-control datepicker" value="{$data['dob']}" placeholder="Enter DOB YYYY-MM-DD" >
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="gender" class="col-sm-3 control-label">Gender <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <select name="gender" id="gender" class="form-control">
+                        <option>-- Gender --</option>
+                        <option value="male">Man</option>
+                        <option value="female">Woman</option>
+                        <option value="couple">Couple</option>
+                    </select>
+                    <i class="fa fa-user form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="phone" class="col-sm-3 control-label">Phone # <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="tel" name="phone" id="phone" class="form-control" value="{$data['phone']}" placeholder="Include area code">
+                    <i class="fa fa-phone form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="zip" class="col-sm-3 control-label">Zip Code <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <input type="number" name="zip" id="zip" class="form-control" maxlength="5" value="{$data['zip']}" placeholder="Zip Code" >
+                    <i class="fa fa-location-arrow form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="city" class="col-sm-3 control-label">City <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <select name="city" id="city" class="form-control">
+                        <option>-- Zip code needed --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="state" class="col-sm-3 control-label">State <span class="text-danger small">*</span></label>
+                <div class="col-sm-8">
+                    <select name="state" id="state" class="form-control">
+                        <option>-- Zip Code Needed --</option>
+                    </select>
+                </div>
+            </div>
 
-<div class="row"> 
-    
-    <div class="col-md-6">
-        <form id="signup" class="white-row" method="post" action=" {$smarty.const.BASE_URL}signup/signup_validate">
-        
-            <legend>Create Account</legend>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control" value="{$data['first_name']}" placeholder="First Name" >
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-8">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" required> Accept our <a href="#">privacy policy</a> and <a href="#">customer agreement</a>
+                        </label>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control" value="{$data['last_name']}" placeholder="Last Name" >
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Username</label>
-                        <input type="text" name="username" id="username" class="form-control col-xs-12 pull-left" value="{$data['username']}" placeholder="Username" ><br>
-                        <span style='margin-top: 5px;' id="username_availability_result"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Password</label>
-                        <input type="password" name="password" id="password" class="form-control" value="{$data['password']}" placeholder="Password" >
-                    </div>
-                    <div class="col-md-6">
-                        <label>Re-enter Password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" value="{$data['confirm_password']}" placeholder="Confirm Password" >
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{$data['email']}" placeholder="Email address" ><br>
-                        <span style='margin-top: 5px;' id="email_availability_result"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Date of birth</label>
-                        <input type="date" name="dob" id="dob" class="form-control datepicker" value="{$data['dob']}" placeholder="Enter DOB YYYY-MM-DD" >
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Gender</label>
-                        <select name="gender" id="gender" class="form-control">
-                            <option>-- Gender --</option>
-                            <option value="male">Man</option>
-                            <option value="female">Woman</option>
-                            <option value="couple">Couple</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label class="optional">Mobile Phone Number</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" value="{$data['phone']}" placeholder="Include area code" >
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Zip Code</label>
-                        <input type="number" name="zip" id="zip" class="form-control" maxlength="5" value="{$data['zip']}" placeholder="Zip Code" >
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>City</label>
-                        <br>
-                        <select name="city" id="city" class="form-control">
-                            <option>-- Zip code needed --</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>State</label>
-                        <br>
-                        <select name="state" id="state" class="form-control">
-                            <option>-- Zip Code Needed --</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <p><br></p>
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="submit" value="Sign Up" class="btn btn-block btn-primary pull-right push-bottom" data-loading-text="Loading...">
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-8">
+                    <button type="submit" class="btn btn-default">Sign Up</button>
                 </div>
             </div>
         </form>
     </div>
+</div>
+
     
-    <div class="col-md-6">
-        <div class="white-row">
-            <legend>Registration is fast, easy, and free</legend>
+<div class="main object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+    <div class="form-block center-block">
+        <h2 class="title">Registration is fast, easy, and free</h2>
             <p>Once you're registered, you can:</p>
             <ul class="list-icon check">
                 <li>Recieve email notifications of updates</li>
@@ -132,10 +128,9 @@
             </ul>
             <hr class="half-margins" />
             <p class="white-row text-center styleBackground"> Already have an account? <a href=" {$smarty.const.BASE_URL}login">Member Login</a> </p>
-        </div>
     </div>
-    
 </div>
+    
 
 <script type="text/javascript">
 $(document).ready(function()  { 
