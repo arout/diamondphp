@@ -7,6 +7,8 @@
 # declare(strict_types = 1);
 # Set error reporting level [via Config.php]
 error_reporting($app['config']->setting('error_reports'));
+# Set log file
+if($app['config']->setting('log_errors') === TRUE) ini_set('error_log', LOG_PATH.'system.log');
 # Set time zone [via Config.php]
 date_default_timezone_set($app['config']->setting('time_zone')); 
 
