@@ -1,15 +1,16 @@
 <div class="white-row">
-    <?php foreach( $data['mail'] as $mail ): ?>
+    {foreach $view_mail as $mail}
     <div class="row">
-        <div class="col-sm-2"> <img class="img-responsive" src="<?= USER_PICS_URL.$mail['username'].'/'; ?><?= $mail['pic']; ?>" /> </div>
+        <div class="col-sm-2"> <img class="img-responsive" src="{$smarty.const.USER_PICS_URL}{$mail['username']}/{$mail['pic']}" /> 
+        </div>
         <div class="col-sm-10 text-right">
-            <h3> <small>Message from <a href="<?= BASE_URL; ?>member/view/<?= urlencode( $mail['sender'] ); ?>" />
-                <?= $mail['sender']; ?>
+            <h3> <small>Message from <a href="{$smarty.const.BASE_URL}member/view/{$mail['sender']}" />
+                {$mail['sender']}
                 </a> &bull; <strong>
-                <?= $this->toolbox('formatter')->datetime( $mail['date'] ); ?>
+                {$format->datetime( $mail['date'] )}
                 </strong></small> <br />
                 <em>"
-                <?= $mail['subject']; ?>
+                {$mail['subject']}
                 "</em> </h3>
         </div>
     </div>
@@ -17,11 +18,11 @@
 
     <div>
         <p>
-            <?= $mail['message']; ?>
+            {$mail['message']}
         </p>
     </div>
     
-    <?php endforeach; ?>
+    {/foreach}
     <br>
     <br>
     <div class="toogle">
@@ -29,11 +30,11 @@
             <label>Reply</label>
             <div class="toggle-content">
                 <p> 
-                    <script src="<?= PLUGINS_URL; ?>ckeditor/ckeditor.js"></script>
-                <form action="<?= BASE_URL; ?>documents/process" method="post" role="form">
+                    <script src="{$smarty.const.MODULES_URL}ckeditor/ckeditor.js"></script>
+                <form action="{$smarty.const.BASE_URL}documents/process" method="post" role="form">
                     <div class="input-group"> 
                     <span class="input-group-addon"><span style="font-size: 21px; font-weight: bold; letter-spacing: 1px;">Subject </span></span>
-                        <input type="text" class="form-control" id="document_title" name="document_title" placeholder="Give this message a subject">
+                        <input type="text" class="form-control" id="document_title" name="document_title" placeholder="RE: {$mail['subject']}">
                     </div>
                     <br>
                     <textarea name="document" id="document" rows="10" cols="80"></textarea>

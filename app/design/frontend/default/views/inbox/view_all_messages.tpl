@@ -68,7 +68,7 @@
     </div>
 </div>
 
-{literal}
+
 <script>
 /** 
  *  Delete and hide selected message
@@ -79,13 +79,13 @@
  */
 
 $(document).ready(function() 
-{
+{ 
     $(".delete").click(function()
-    {
+    { 
         var del_id = $(this).attr('id');
         $.ajax(
-        {
-            url:'{$smarty.const.BASE_URL}public/plugins/ajax/messenger/del_message.php',
+        { 
+            url:'{$smarty.const.MODULES_URL}ajax/messenger/del_message.php',
             type:"post",
             data:'mid='+del_id,
             success:function(data)
@@ -97,84 +97,83 @@ $(document).ready(function()
                     document.getElementById(del_id).style.display = 'none'
                 }
             }
-        });
-    });
-});
+        } ); 
+    } ); 
+} ); 
 </script> 
 <script>
 
 {* Mark selected message as read *}
 
 $(document).ready(function() 
-{
+{ 
     $(".read").click(function()
-    {
+    { 
         var read_id = $(this).attr('id');
         var read_name = $(this).attr('name');
 
         $.ajax(
-        {
+        {  
             url:'{$smarty.const.BASE_URL}messenger/flag_read',
             type:"post",
             data:'mid='+read_id,
             success:function(data)
-            {
-                if(data) {
+            { 
+                if(data) { 
                     $("#" + read_id).toggleClass('fa fa-envelope-o').toggleClass('fa fa-envelope');
-                    <?php # Refresh total unread messages in top table ?>
-                    $.ajax(
+                    {* Refresh total unread messages in top table *}
+                    $.ajax( 
                     {
-                        url: "{$smarty.const.BASE_URL}public/plugins/ajax/messenger/update_unread_count.php",
+                        url: "{$smarty.const.MODULES_URL}ajax/messenger/update_unread_count.php",
                         type: "post",
-                        data: {rid:"<?php echo $rid; ?>"},
-                        success:function(response)
-                        {
+                        data: { rid:"{$rid}" } ,
+                        success:function(response) 
+                        { 
                             $("#total_unread_messages").html(response);
-                            <?php # Refresh total unread messages nav menu badge; the below function is located in footer.php ?>
+                            {* Refresh total unread messages nav menu badge; the below function is located in footer.php *}
                             update_unread_total( 'unread_messages_badge' );
-                        }
-                    });
+                        } 
+                    } ); 
                 }
             }
-        });
-    });
-});
+        } ); 
+    } ); 
+} ); 
 </script> 
 <script>
-{* # Mark selected message as important *}
+{* Mark selected message as important *}
 $(document).ready(function() 
-{
+{ 
     $(".important").click(function()
-    {
+    { 
         var star_id = $(this).attr('id');
         var star_name = $(this).attr('name');
         $.ajax(
-        {
+        { 
             url:'{$smarty.const.BASE_URL}messenger/flag_important',
             type:"post",
             data:'mid='+star_id,
             success:function(data)
             {
-                if(data) {
+                if(data) { 
                     $("#" + star_id).toggleClass('fa-star').toggleClass('fa-star-o');
-                }
-            }
-        });
-    });
-});
+                } 
+            } 
+        } ); 
+    } ); 
+} ); 
 </script>
-<?php # Add gritter notification when message deleted ?>
+{* Add gritter notification when message deleted *}
 <script>
 $(document).ready(function() 
-{
-    $.gritter.add({
+{ 
+    $.gritter.add({ 
                 // (string | mandatory) the heading of the notification
                 title: 'Demo popup on page load',
                 // (string | mandatory) the text inside the notification
                 text: 'Review the <code>view_all_messages.php</code> view file in the messenger folder for more information and code sample on how it\'s done.'
-            });
+            } ); 
 
     return false;
-});
-</script> 
-{/literal}
+} ); 
+</script>

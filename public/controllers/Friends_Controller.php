@@ -1,8 +1,10 @@
 <?php
+namespace Web\Controller;
+use Hal\Controller\Base_Controller;
+use \R as R;
 
-class Friends_Controller extends Hal\Controller\Base_Controller
+class Friends_Controller extends Base_Controller
 {
-
 	public function __construct($container)
 	{
 		parent::__construct($container);

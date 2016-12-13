@@ -26,9 +26,15 @@ class Home_Controller extends Base_Controller
 
 	public function index()
 	{
-		// $load = $this->toolbox('performance')->check_latency( $this->config->setting('site_url') );
-		// $this->template->assign('page_load', $load);
-		$this->template->assign('content', 'index.tpl');
+		$limit = rand(2, 1250);
+
+		$query = "SELECT * FROM users WHERE hidden = 0";
+		$data['pager'] = $this->toolbox('pagination');
+		$data['pager']->config( $query, $this->route->param1, 20 );
+		$data['pagination_links'] = $data['pager']->paginate(3);
+		$data['profiles'] = $this->model('Member')->select($limit);
+		$this->template->assign('data', $data);
+		$this->template->assign('content', 'home/index.tpl');
 	}
 
 }

@@ -2,7 +2,7 @@
 namespace Web\Controller;
 use Hal\Controller\Base_Controller;
 
-class Messenger_Controller extends Base_Controller
+class Inbox_Controller extends Base_Controller
 {
 	# for the check_new() method
 	public $new_message = [];
@@ -11,7 +11,7 @@ class Messenger_Controller extends Base_Controller
 	{
 		parent::__construct($app);
 
-		if ($this->session->get('email') == FALSE)
+		if ($this->session->verify('email') === FALSE)
 		{
 			return $this->redirect('login');
 		}
@@ -25,7 +25,7 @@ class Messenger_Controller extends Base_Controller
 
 	public function __toString()
 	{
-		return 'Messenger_Controller';
+		return 'Inbox_Controller';
 	}
 
 	public function index()
@@ -36,22 +36,22 @@ class Messenger_Controller extends Base_Controller
 
 		if ($data['all_messages'] !== FALSE)
 		{
-			$this->template->assign('content', 'messenger/view_all_messages.tpl');
+			$this->template->assign('content', 'inbox/view_all_messages.tpl');
 		}
 		else
 		{
-			$this->template->assign('content', 'messenger/inbox.tpl');
+			$this->template->assign('content', 'inbox/inbox.tpl');
 		}
 
 	}
 
 	/*-----------------------------------------------------------
-		     *  Check for new messages
-		     *  Do not access directly; this is for AJAX notifications
-	*/
+	 *  Check for new messages
+	 *  Do not access directly; this is for AJAX notifications
+	 */
 	public function check_new()
 	{
-		$this->load->view('messenger/index');
+		$this->load->view('inbox/index');
 	}
 
 	public function send()
@@ -68,37 +68,28 @@ class Messenger_Controller extends Base_Controller
 		$this->template->assign('recipient_info', $data['recipient_info']);
 		$this->template->assign('history', $data['history']);
 		$this->template->assign('history', $date);
-		$this->template->assign('content', 'messenger/send.tpl');
+		$this->template->assign('content', 'inbox/send.tpl');
 	}
 
 	public function unread()
 	{
-		# Display unread messages
-		$data['mail'] = $this->toolbox('messenger')->view_unread();
-
-		if ($data['mail'])
-		{
-			$this->load->view('messenger/unread', $data);
-		}
-		else
-		{
-			$this->load->view('messenger/notfound', $data);
-		}
-
+		$this->template->assign('unread_messages', $this->toolbox('messenger')->view_unread());
+		$this->template->assign('content', 'inbox/unread.tpl');
 	}
 
 	public function view()
 	{
 		# Display selected message
-		$data['mail'] = $this->toolbox('messenger')->view();
+		$data = $this->toolbox('messenger')->view();
 
-		if ($data['mail'])
+		if ($data)
 		{
-			$this->load->view('messenger/view', $data);
+			$this->template->assign('view_mail', $data);
+			$this->template->assign('content', 'inbox/view.tpl');
 		}
 		else
 		{
-			$this->load->view('messenger/notfound', $data);
+			$this->template->assign('content', 'inbox/notfound.tpl');
 		}
 
 	}
@@ -126,8 +117,9 @@ class Messenger_Controller extends Base_Controller
 		return $this->toolbox('messenger')->count_unread();
 	}
 
-	public static function all()
+	public function all()
 	{
+		$this->template->assign('content', 'inbox/view_all_messages.tpl');
 		return $this->toolbox('messenger')->count_all();
 	}
 
