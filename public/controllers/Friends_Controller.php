@@ -14,25 +14,43 @@ class Friends_Controller extends Base_Controller
 			$this->redirect('login');
 			exit;
 		}
+		$this->template->assign('format', $this->toolbox('formatter'));
 	}
 
 	public function index()
 	{
-		$this->template->assign('friends', $this->toolbox('friends')->view_friends());
+		$this->template->assign('friends', $this->toolbox('friends')->view_friends($this->session->get('username')));
 		$this->template->assign('content', 'friends/index.tpl');
 	}
 
 	public function accept()
 	{
-		if ($this->session->get('email') == FALSE)
-		{
-			$this->redirect('login');
-			exit;
+		$requests = $this->toolbox('friends')->view_requests( $this->session->get('member_id') );
+		$this->template->assign('requests', $requests);
+		$this->template->assign('content', 'friends/accept.tpl');
+	}
+
+	public function add()
+	{
+		if($_POST['accept']) {
+			$accept = $_POST['accept'];
+			foreach( $accept as $friend_name ) 
+			{
+				$friend_id = $this->model('Member')->get_member_id($friend_name);
+				$this->toolbox('friends')->add($friend_name, $friend_id);
+			}
+		} else {
+			$accept = 0;
 		}
 
-		$data['add'] = $this->route->param1;
-		$this->template->assign('add', $this->route->param1);
-		$this->template->assign('content', 'friends/accept.tpl');
+		if(isset($_POST['deny'])) {
+			$deny = $_POST['deny'];
+		} else {
+			$deny = 0;
+		}
+		$this->template->assign('added', $accept);
+		$this->template->assign('denied', $deny);
+		$this->template->assign('content', 'friends/add.tpl');
 	}
 
 	public function request($request = NULL)
