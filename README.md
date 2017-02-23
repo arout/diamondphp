@@ -4,7 +4,7 @@ Diamond PHP is a fully featured web development framework built for PHP 7 and of
 
 ### PROJECT STATUS
 Diamond PHP is currently in **ALPHA** stages of development. As such, it is not recommended to use the framework in a production environment yet.
-A beta version is scheduled for on December 1, 2016, and a production-ready version 1.0.0 is scheduled for public release on January 15, 2017.
+A beta version is scheduled for on March 15, 2017, and a production-ready version 1.0.0 is scheduled for public release on May 15, 2017.
 
 ### PHILOSOPHY & GOALS
 Like all frameworks, Diamond PHP strives to simplify and speed up the web development process. Where Diamond PHP deviates from most frameworks
