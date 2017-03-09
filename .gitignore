@@ -1,0 +1,3 @@
+# Ignore vendor directory
+# Issue identified by rjd22 (https://github.com/arout/diamondphp/issues/2)
+vendor/

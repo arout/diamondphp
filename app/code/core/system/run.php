@@ -3,14 +3,16 @@
 // $listener 	= new Hal\Config\Config();
 // $dispatcher->addListener('config.initialize', array($listener, 'onFooAction'));
 
-# Strict mode by default for scalar type declarations
-# declare(strict_types = 1);
 # Set error reporting level [via Config.php]
 error_reporting($app['config']->setting('error_reports'));
 # Set log file
-if($app['config']->setting('log_errors') === TRUE) ini_set('error_log', LOG_PATH.'system.log');
+if ($app['config']->setting('log_errors') === TRUE)
+{
+	ini_set('error_log', LOG_PATH . 'system.log');
+}
+
 # Set time zone [via Config.php]
-date_default_timezone_set($app['config']->setting('time_zone')); 
+date_default_timezone_set($app['config']->setting('time_zone'));
 
 # Page exec time
 $_page_exec_timer_start = microtime(true);
@@ -19,12 +21,12 @@ $_page_exec_timer_start = microtime(true);
 # Format memory use to kb or mb
 function convert($_ram)
 {
-    $unit = ['b','kb','mb','gb','tb','pb'];
-    return round( $_ram / pow( 1024, ( $i = floor( log( $_ram,1024 ) ) ) ), 2).' '.$unit[$i];
+	$unit = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
+	return round($_ram / pow(1024, ($i = floor(log($_ram, 1024)))), 2) . ' ' . $unit[$i];
 }
 $actual_ram = convert(memory_get_usage(false));
 
-require_once SYSTEM_PATH.'factory.php';
+require_once SYSTEM_PATH . 'factory.php';
 
 if ($app['config']->setting('maintenance_mode') === TRUE)
 {
@@ -37,7 +39,6 @@ if ($app['config']->setting('system_startup_check') === TRUE)
 	require_once 'system_startup_check.php';
 	exit;
 }
-
 
 # Build system routes
 $app['router']->build();
@@ -75,8 +76,8 @@ if ($app['router']->controller_class === $app['config']->setting['admin_controll
 	$app['base_controller']->parse();
 
 	# Stop timer for page execution
-	$_page_exec_timer_stop = ( microtime(true) - $_page_exec_timer_start );
-	$app['template']->assign('script_exec_time',$_page_exec_timer_stop);
+	$_page_exec_timer_stop = (microtime(true) - $_page_exec_timer_start);
+	$app['template']->assign('script_exec_time', $_page_exec_timer_stop);
 
 	$app['template']->display('layout.tpl');
 	if ($app['router']->action !== 'login')
@@ -99,10 +100,10 @@ else
 	$app['template']->assign('action', $app['router']->action);
 
 	$app['base_controller']->parse();
-	
-	# Stop timer for page execution	
-	$_page_exec_timer_stop = ( microtime(true) - $_page_exec_timer_start );
-	$app['template']->assign('script_exec_time',$_page_exec_timer_stop);
+
+	# Stop timer for page execution
+	$_page_exec_timer_stop = (microtime(true) - $_page_exec_timer_start);
+	$app['template']->assign('script_exec_time', $_page_exec_timer_stop);
 
 	if ($app['router']->controller_class !== 'Block_Controller')
 	{
