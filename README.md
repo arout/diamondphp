@@ -36,11 +36,11 @@ Full and comprehensive documentation is currently in development, and will be av
 
 ### Installation
 1. Create an empty database. Using a tool of your choice (phpMyAdmin, SSH, etc), import the diamondphp.sql file located in the **/var/install** folder.
-
-2. Open the configuration file: /app/code/core/config/Config.php
-3. Enter your database connection settings on lines 15-18
-4. Enter your site or business name on line 26     `( $this->setting['site_name'] = '' )`
-5.  Enter your site admin / customer care email address on line 32 `( $this->setting['site_email'] = ''  )`
+2. Go to the root directory, where you unpacked the framework. Using Composer, run the command 'composer update'. Get Composer here if you do not already have Composer installed (Composer is required in order to use the framework, and to keep everything up to date): https://getcomposer.org/download/
+3. Open the configuration file: /app/code/core/config/Config.php
+4. Enter your database connection settings on lines 15-18
+5. Enter your site or business name on line 26     `( $this->setting['site_name'] = '' )`
+6. Enter your site admin / customer care email address on line 32 `( $this->setting['site_email'] = ''  )`
 
 That's it! If you are installing the framework into a subdirectory, you'll have one more step to complete:
 
