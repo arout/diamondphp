@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 class MemberModel extends Hal\Model\System_Model
 {

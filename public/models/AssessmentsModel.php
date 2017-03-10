@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 class AssessmentsModel extends Hal\Core\SystemModel {
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 class WelcomeModel extends Hal\Core\SystemModel {
 

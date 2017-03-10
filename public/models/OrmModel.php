@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 use Hal\Model\System_Model;
 
 class OrmModel extends System_Model

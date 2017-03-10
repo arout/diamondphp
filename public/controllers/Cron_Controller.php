@@ -1,4 +1,5 @@
 <?php 
+declare(strict_types=1);
 
 class Cron_Controller extends Hal\Controller\Base_Controller {
     
