@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 // Copyright 2009 Maxmind LLC All Rights Reserved
 $GEOIP_REGION_NAME = array(
 "AD" => array(

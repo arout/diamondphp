@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 class Geo_Controller extends Hal\Controller\Base_Controller {
 
