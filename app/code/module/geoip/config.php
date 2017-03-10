@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 class Distance{
 
 		function get_distance_point_to_point($latitude1, $longitude1, $latitude2, $longitude2) {
