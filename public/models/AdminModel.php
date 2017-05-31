@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 use Hal\Model\System_Model;
 
 class AdminModel extends System_Model

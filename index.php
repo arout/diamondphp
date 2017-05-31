@@ -11,6 +11,7 @@
  * @filesource
  *
  */
+
 if (!defined('BASE_PATH'))
 {
 	$dir = getcwd();
@@ -18,18 +19,13 @@ if (!defined('BASE_PATH'))
 	$dir = chop($dir, "/");
 	define('BASE_PATH', $dir . '/');
 }
-define('SMARTY_PATH', BASE_PATH . 'vendor/smarty/');
-
-require_once BASE_PATH . 'vendor/autoload.php';
-require_once BASE_PATH . 'app/code/core/system/factory.php';
-require_once BASE_PATH . 'app/code/core/system/paths.php';
+require_once BASE_PATH . 'app/code/core/system/init.php';
 
 $app['session']->start();
-
 // Import Smarty
 if (!class_exists('Smarty'))
 {
-	require SMARTY_PATH . 'libs/Smarty.php';
+	require_once SMARTY_PATH . 'libs/Smarty.php';
 }
 
 require_once SYSTEM_PATH . 'run.php';

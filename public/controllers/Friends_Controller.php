@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 namespace Web\Controller;
 use Hal\Controller\Base_Controller;
 use \R as R;

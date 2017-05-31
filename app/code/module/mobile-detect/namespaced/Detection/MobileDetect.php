@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 /**
  * Little piece of PHP to make Mobile_Detect auto-loadable in PSR-0 compatible PHP autoloaders like
  * the Symfony Universal ClassLoader by Fabien Potencier. Since PSR-0 handles an underscore in

@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 class MessengerModel extends Hal\Core\SystemModel {
 

@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 if(!isset($_SERVER['HTTP_REFERER']))
 {
 	# Direct access to this script is not allowed. Fire off a 404

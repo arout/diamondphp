@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 /*==========================================================================
 |   Uncomment this function to set the page titles in the Breadcrumbs bar  |
 |   See the documentation for more information on setting titles           |

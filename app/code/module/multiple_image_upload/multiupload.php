@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-declare(strict_types=1);
 <html>
     <head>
 		<title>Upload Multiple Images Using jquery and PHP</title>

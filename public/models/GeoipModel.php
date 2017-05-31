@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 class GeoipModel extends Hal\Model\System_Model {
 
