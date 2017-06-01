@@ -42,7 +42,7 @@ class Login_Controller extends Base_Controller
 		}
 
 		// Is two-step login process enabled?
-		if ($this->config->setting['login_math'] === TRUE)
+		if ($this->config->setting['login_math'] === "TRUE")
 		{
 			$data['a']      = rand(1, 5);
 			$data['b']      = rand(1, 5);
@@ -61,7 +61,7 @@ class Login_Controller extends Base_Controller
 		}
 		else
 		{
-			$this->template->assign('content', 'index.tpl');
+			$this->template->assign('content', 'forms/login_form.tpl');
 		}
 
 		$this->_event_register();
@@ -114,20 +114,20 @@ class Login_Controller extends Base_Controller
 	public function login_validate()
 	{
 		// Begin form validation by sanitizing all $_POST submitted
-		$data = $this->toolbox('sanitize')->xss($_POST);
-
-		if ($this->config->setting['login_math'] === TRUE)
+		$data = $this->toolbox('validate')->xss_clean($_POST);
+		
+		if ($this->config->setting['login_math'] === "TRUE")
 		{
 			$this->login_validate_math($data);
 			$data['math_error_response'] = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Math answer is incorrect<br></div>';
 		}
 
-		if ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) === FALSE)
+		if ($this->config->setting['login_math'] === "TRUE" && $this->login_validate_math($data) === FALSE)
 		{
 			$this->redirect('login/index/error_math');
 		}
 
-		if ($this->config->setting['login_math'] === FALSE || ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) !== FALSE))
+		if ($this->config->setting['login_math'] === "FALSE" || ($this->config->setting['login_math'] === "TRUE" && $this->login_validate_math($data) !== FALSE))
 		{
 			// Now we can check the submitted form to see if it is filled out properly
 			$check_if_valid = $this->toolbox('validate')->form($data, array(
@@ -165,7 +165,6 @@ class Login_Controller extends Base_Controller
 				}
 				else
 				{
-
 					// Invalid login -- redirect to login error page
 					$this->redirect('login/index/error');
 				}
