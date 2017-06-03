@@ -183,7 +183,7 @@ $app['search'] = function ($c) {
 };
 
 $app['session'] = function ($c) {
-	return new \Hal\Core\Session();
+	return new \Hal\Core\Session($c['config']);
 };
 
 $app['slider'] = function ($c) {

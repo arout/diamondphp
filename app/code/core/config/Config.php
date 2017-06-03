@@ -79,13 +79,13 @@ class Config {
 
 		# Image gallery settings
 		$this->setting['total_img_allowed'] = $env->get_global_configuration('total_img_allowed');
-		# Maximum allowed image file size in bytes ( 1000 is equal to 1kb; 1000000 is equal to 1 MB )
+
 		$this->setting['img_file_size'] = $env->get_global_configuration('img_file_size');
-		# Maximum image height in pixels. Set to zero for unlimited
+
 		$this->setting['img_height'] = $env->get_global_configuration('img_height');
 		# Maximum image width in pixels. Set to zero for unlimited
 		$this->setting['img_width'] = $env->get_global_configuration('img_width');
-		# Allowed image types
+
 		$this->setting['img_type'] = $env->get_global_configuration('img_type');
 
 		/*----------------------------------------
@@ -152,6 +152,25 @@ class Config {
 
 		# Measure script execution time
 		$this->setting['execution_time'] = (microtime(true)-$_SERVER["REQUEST_TIME_FLOAT"]);
+
+		# Session settings
+		# Session cookie name
+		# Give this a unique name
+		$this->setting['session.name'] = $env->get_global_configuration('session.name');
+		# Recommended to leave this enabled for session security. 0 = disabled 1 = enabled
+		$this->setting['session.use_strict_mode'] = $env->get_global_configuration('session.use_strict_mode');
+		# Default setting is zero; i.e. until browser is closed
+		# Set this value in seconds if you wish to change the default behavior
+		$this->setting['session.cookie_lifetime'] = $env->get_global_configuration('session.cookie_lifetime');
+		# Leave blank for default settings; otherwise you can specify the host name of your server here
+		$this->setting['session.cookie_domain'] = $env->get_global_configuration('session.cookie_domain');
+		# Marks the cookie as accessible only through the HTTP protocol.
+		# This means that the cookie won't be accessible by scripting languages, such as JavaScript.
+		# This setting can effectively help to reduce identity theft through XSS attacks (although it is not supported by all browsers).
+		$this->setting['session.cookie_httponly'] = $env->get_global_configuration('session.cookie_httponly');
+		# Default is nocache. [nocache, private, private_no_expire, public]
+		# See http://php.net/manual/en/function.session-cache-limiter.php for more information about each setting.
+		$this->setting['session.cache_limiter'] = $env->get_global_configuration('session.cache_limiter');
 
 		# Release version
 		$this->setting['software_version'] = '1.0.0';

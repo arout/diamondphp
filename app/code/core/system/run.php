@@ -16,12 +16,12 @@ $actual_ram = convert(memory_get_usage(false));
 
 require_once SYSTEM_PATH.'factory.php';
 
-if ($app['config']->setting('maintenance_mode') === TRUE) {
+if ($app['config']->setting('maintenance_mode') === "TRUE") {
 	header('Location: '.$app['config']->setting('site_url').'maintenance.php');
 	exit;
 }
 
-if ($app['config']->setting('system_startup_check') === TRUE) {
+if ($app['config']->setting('system_startup_check') === "TRUE") {
 	require_once 'system_startup_check.php';
 	exit;
 }
@@ -31,10 +31,12 @@ $app['router']->build();
 
 if ($app['session']->get('admin_username')) {
 	$nav_menu = 'nav_user.tpl';
+} elseif ($app['session']->get('username')) {
+	$nav_menu = 'nav_user.tpl';
 } else {
 	$nav_menu = 'nav_visitor.tpl';
 }
-
+$app['template']->assign('slogan', $app['config']->setting('site_slogan'));
 # Core Smarty settings
 $app['template']->setTemplateDir(VIEWS_PATH);
 $app['template']->setCompileDir(VAR_PATH.'templates_c');
