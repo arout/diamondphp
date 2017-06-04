@@ -1,9 +1,23 @@
 {* City and state autofill *}
-<div class="main object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+<link rel="stylesheet" href="{$smarty.const.MODULES_URL}datepicker/public/css/default.css" type="text/css">
+<script src="{$smarty.const.MODULES_URL}datepicker/public/javascript/zebra_datepicker.js"></script>
+<script>
+    $(document).ready(function() { 
+
+    {* assuming the input elements you want to attach the plugin to have the "datepicker" class set *}
+    $('input.datepicker').Zebra_DatePicker( { 
+      view: 'years'
+     } );
+
+ } );
+</script>
+<link rel="stylesheet" href="{$smarty.const.MODULES_URL}form-validation/dist/css/bootstrapValidator.css"/>
+<script type="text/javascript" src="{$smarty.const.MODULES_URL}form-validation/dist/js/bootstrapValidator.js"></script>
+<div class="main" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
     <div class="form-block center-block">
         <h2 class="title">Create Account</h2>
         <hr>
-        <form class="form-horizontal" role="form" method="post" action="{$smarty.const.BASE_URL}signup/signup_validate">
+        <form class="form-horizontal" id="signup" name="signup" role="form" method="post" action="{$smarty.const.BASE_URL}signup/signup_validate">
             <div class="form-group has-feedback">
                 <label for="first_name" class="col-sm-3 control-label">First Name <span class="text-danger small">*</span></label>
                 <div class="col-sm-8">
@@ -116,7 +130,7 @@
 </div>
 
     
-<div class="main object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+<div class="main" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
     <div class="form-block center-block">
         <h2 class="title">Registration is fast, easy, and free</h2>
             <p>Once you're registered, you can:</p>
@@ -363,9 +377,6 @@ $(document).ready(function()
     } );
 } );
 
- {* End city and state autofill *}
-
- {* Username availability check *}
 
 $(document).ready(function() 
  {  
@@ -410,9 +421,6 @@ function check_availability()
   
 }
 
- {* End username availability check *}
-
- {* email availability check *}
 
 $(document).ready(function() 
  {  
@@ -456,5 +464,3 @@ function check_email_availability()
   
 }
 </script>
-
- {* End email availability check *}
