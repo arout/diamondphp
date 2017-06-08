@@ -37,22 +37,16 @@ Full and comprehensive documentation is currently in development, and will be av
 ### Installation
 1. Create an empty database. Using a tool of your choice (phpMyAdmin, SSH, etc), import the diamondphp.sql file located in the **/var/install** folder.
 2. Go to the root directory, where you unpacked the framework. Using Composer, run the command 'composer update'. Get Composer here if you do not already have Composer installed (Composer is required in order to use the framework, and to keep everything up to date): https://getcomposer.org/download/
-3. Open the configuration file: /app/code/core/config/Config.php
-4. Enter your database connection settings on lines 15-18
-5. Enter your site or business name on line 26     `( $this->setting['site_name'] = '' )`
-6. Enter your site admin / customer care email address on line 32 `( $this->setting['site_email'] = ''  )`
+3. Open the configuration file: [root directory] .env (rename the included .env.example file to .env)
+4. Enter your database connection settings on lines 4 - 7
+5. Enter your full site URL, including protocol (http / https), and a append trailing slash at the end
+   *http://www.example.com/*
+6. Enter your site or business name on line 23 **site_name = ""**
+7. Enter your site admin / customer care email address on line 25 **site_email = ""**
 
 That's it! If you are installing the framework into a subdirectory, you'll have one more step to complete:
 
 ##### IF YOU ARE INSTALLING IN A SUBDIRECTORY
-Find the following line in Config.php, on or near line 185:
-
-    $this->setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][0];
-
-Change the `$uri[0][0]` array to `$uri[0][1]` and then append a forward slash. Example:
-
-    $this->setting['site_url'] = $protocol . $_SERVER["SERVER_NAME"] . '/' . $uri[0][1] . '/';
-
 To complete installation in subdirectory, you will need to also update the RewriteBase rule in the provided .htaccess file in the root directory.  Change `RewriteBase /` to `RewriteBase /name-of-your-subdirectory/`
 
 
