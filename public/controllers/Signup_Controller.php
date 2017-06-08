@@ -19,6 +19,10 @@ class Signup_Controller extends Base_Controller
 			return $this->template->assign('content', 'forms/signup_form.tpl');
 		}
 
+		if ($this->route->action == 'complete') 
+		{
+			$this->template->assign('email_confirm', $this->config->setting('signup_email_confirmation'));
+		}
 		return $this->template->assign('content', 'static/signup_complete.tpl');
 	}
 
@@ -36,7 +40,6 @@ class Signup_Controller extends Base_Controller
 
 	public function login_validate_math($data)
 	{
-
 		$data['a'] = rand(1, 5);
 		$data['b'] = rand(1, 5);
 
