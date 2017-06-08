@@ -7,11 +7,11 @@
 			<div class="main_pricing">
 				<div class="inside">
 					<br>
-					<?php if( $this->config->setting('signup_email_confirmation') === TRUE ): ?>
+					{if $email_confirm}
 						<p>Please check your email for a confirmation notification in order to activate your account.</p>
-					<?php else: ?>
+					{else}					
 						<p>You may now <a href="<?= $this->config->setting('site_url'); ?>login">login to your account</a>
-					<?php endif;?></p>
+					{/if}</p>
 				</div>
 			</div>
 		</div>
