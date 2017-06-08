@@ -39,10 +39,10 @@ Full and comprehensive documentation is currently in development, and will be av
 2. Go to the root directory, where you unpacked the framework. Using Composer, run the command 'composer update'. Get Composer here if you do not already have Composer installed (Composer is required in order to use the framework, and to keep everything up to date): https://getcomposer.org/download/
 3. Open the configuration file: [root directory] .env (rename the included .env.example file to .env)
 4. Enter your database connection settings on lines 4 - 7
-5. Enter your full site URL, including protocol (http / https), and a append trailing slash at the end
+5. Enter your full site URL on line 22 [site_url=""], including protocol (http / https), and a append trailing slash at the end
    *http://www.example.com/*
-6. Enter your site or business name on line 23 **site_name = ""**
-7. Enter your site admin / customer care email address on line 25 **site_email = ""**
+6. Enter your site or business name on line 23 **[site_name = ""]**
+7. Enter your site admin / customer care email address on line 25 **[site_email = ""]**
 
 That's it! If you are installing the framework into a subdirectory, you'll have one more step to complete:
 
