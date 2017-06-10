@@ -12,9 +12,9 @@ legend {
 <div class="col-xs-12 col-md-9">
     <legend style="width: auto;">Overview</legend>
     <p>
-        Thank you for choosing Diamond PHP! Now that installation and configuration is complete, you are ready to code.
+        Thank you for choosing DiamondPHP! Now that installation and configuration is complete, you are ready to code.
     </p>
-    <strong>About Diamond PHP</strong>
+    <strong>About DiamondPHP</strong>
     <p>
         These documentations assume that you have at least a basic familiarity with the MVC architectural pattern. 
         If you are new to MVC frameworks, there are plenty of high quality articles available online to read up on. 
@@ -29,24 +29,25 @@ legend {
     </p>
     <br>
     
-    <strong>Using Diamond PHP</strong>
+    <strong>Using DiamondPHP</strong>
     <p>
-        We have went to great lengths to ensure that Diamond PHP has an extremely simple and consistent syntax, as well as being painless 
+        We have went to great lengths to ensure that DiamondPHP has an extremely simple and consistent syntax, as well as being painless 
         to modify and/or extend, and getting out of your way when importing third party libraries. We have even built in some common 
         functionality, such as a login and registration area, a messaging application, a responsive default template, etc.
     </p>
     
     <p>
         You will find that much of your coding will involve the use of the 
-        <a href="<?= BASE_URL; ?>documentation/modules/overview">Developer Toolbox</a>, as it comes with the ability to handle many different 
+        <a href="{$smarty.const.BASE_URL}documentation/modules/overview">Developer Toolbox</a>, as it comes with the ability to handle many different 
         scenarios that are common to most websites.
     </p>
     <p>
-    	Database transactions are handled using PDO directly. A service locator is provided that eliminates the need to import the database each time you need to use it, and initiates the connection for you. View the <a href="<?= BASE_URL; ?>documentation/functions/database">database documentation</a> for more information.<br>We may port the Doctrine ORM in the near future to replace this functionality, if user feedback indicates that is what the users want.
+    	Database transactions are handled using PDO directly. A service locator is provided that eliminates the need to import the database each time you need to use it, and initiates the connection for you. View the <a href="{$smarty.const.BASE_URL}documentation/functions/database">database documentation</a> for more information.<br>We may port the Doctrine ORM in the near future to replace this functionality, if user feedback indicates that is what the users want.<br>
+        <em>UPDATE: Redbean has been included with the framework. You can use it, or the built in service locator for PDO, or both.</em>
     </p>
     
     <p>
-        For those of you who are familiar with MVC, a minor note -- while Diamond PHP is labeled as an MVC framework, like 
+        For those of you who are familiar with MVC, a minor note -- while DiamondPHP is labeled as an MVC framework, like 
         nearly every other PHP framework available, it does not always follow "true" MVC patterns in the strictest sense of the word. 
         At times, it is much closer to the MVP (Model-View-Presenter) or PAC architectural patterns than MVC.<br>
         Do these differences in philosophy matter? Yes, and no...like many things tech related, it comes down to a matter of 
