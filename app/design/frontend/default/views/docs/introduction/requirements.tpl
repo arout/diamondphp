@@ -9,10 +9,11 @@
         fail if any of the below are not met.
     </p>
     <p style="padding-left: 20px">
-        <li>Apache Server, version 2.4 or newer (Nginx support coming soon)</li>
+        <li>Apache Server, version 2.2 or newer (Nginx support coming soon)</li>
         <li>Apache mod_rewrite module enabled</li>
         <li>PHP, version 7.0 or newer</li>
         <li>PDO extension enabled</li>
+        <li>Composer package manager (<a href="https://getcomposer.org/download/" target="_blank">Composer</a>)</li>
     </p>
 
     <strong>2. Optional System Components</strong>
@@ -24,6 +25,7 @@
         <li>APC Caching</li>
         <li>Memcached or Redis</li>
         <li>SSH / Shell access to server</li>
+        <li>Cron tasks</li>
     </p>
 
 </div>

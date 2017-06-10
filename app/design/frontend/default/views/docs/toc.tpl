@@ -25,10 +25,10 @@ legend {
             <div class="main_pricing padding-bottom-20">
                 <div class="inside">
                     <ul>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/introduction/index">Overview</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/introduction/requirements">Requirements</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/introduction/install">Installation</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/introduction/configuration">Configuration</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/introduction/index">Overview</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,21 +73,22 @@ legend {
                     <ul>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/overview">Overview</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/breadcrumbs">Breadcrumbs</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/useragent">Browser Data</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/ckeditor">CKEditor</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/formatter">Formatter</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/friends">Friends List</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/formatter">Data Formatter</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/sanitize">Data Sanitization</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/validation">Form Validation</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/friends">Friends</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/geoip">GeoIP</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/gritter">Gritter Notifications</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/hash">Hash</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/images">Image Uploader</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/messenger">Messenger</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/mobile">Mobile Detection</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/title">Page Title</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/title">Page Titles</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/pagination">Pagination</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/sanitize">Sanitize</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/user-agent">User Agent</a></li>
-                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/validation">Validation</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/modules/hash">Password / Data Encryption</a></li>
                         <li><a href="{$smarty.const.BASE_URL}documentation/modules/phpword">PHPWord</a></li>
+                        <li><a href="{$smarty.const.BASE_URL}documentation/core/sessions">User authentication / Login</a></li>
                     </ul>
                 </div>
             </div>

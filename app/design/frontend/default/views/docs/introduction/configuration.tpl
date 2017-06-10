@@ -8,8 +8,10 @@
         works out of the box!
     </p>
     <p>
-        Once installation is complete, there is only one more step to take before using the framework. Open the Config.php file, 
-        located at <code>app/code/core/config/Config.php</code>, with your favorite text editor.
+        Once installation is complete, there is only one more step to take before using the framework. Rename the file <code>.env.example</code> to <code>.env</code>. This file is located in the root directory, alongside the <var>.htaccess</var> file.
+    </p>
+    <p>
+        This .env file is the main configuration file that will contain many site-wide settings. Throughout the documentation, we may refer to the "configuration file". When we do so, we are talking about this .env file.
     </p>
 
     <p>
@@ -50,85 +52,79 @@
     <br>
      <hr>
     <p>
-        <blockquote id="site_url"><strong>Site URL</strong> <small><code>$this->setting['site_url']</code> (line 185)</small></blockquote>
-        This setting <u>should</u> automatically detect your correct url and http protocol (HTTP / HTTPS); however, if you wish, 
-        or are experiencing any problems with the auto detection, you may simply hard code your website URL into this setting 
-        (taking care that there are NO trailing slashes at the end of the URL, unless the framework is installed in a subdirectory).<br>
-        <h5>Installing in subdirectory</h5>
-        There are a couple considerations for installation in subdirectories. If installing a subdirectory (e.g., example.com/subdirectory),
-        you must edit a portion of the site url variable. Make the following change from <code>$uri[0][0]</code>  to: <code>$uri[0][1].'/'</code><br><br>
-        If you are installing into a subdirectory two or more levels deep, you must manually set the site url:<br><br>
-        <code>$this->setting['site_url'] = 'example.com/subdir1/subdir2/';</code><br>
-        <em>Be sure to include the trailing slash at the end of the url.</em>
+        <blockquote id="site_url"><strong>Site URL</strong> <small><code>site_url = ""</code> (line 22)</small></blockquote>
+        This is the URL of your website. Enter the protocol (http or https), as well as the name of the sub-directory (if applicable).<br>For example:<br><br>http://www.example.com/<br>https://example.com/mysite/<br>
+        <strong><em>Be sure to include the trailing slash at the end of the url.</em></strong>
     </p>
     <hr>
     <p>
-        <blockquote id="db"><strong>Database Settings</strong> <small>(lines 15 - 18)<br>
-        <code>$this->setting['db_host']</code><br>
-        <code>$this->setting['db_name']</code><br>
-        <code>$this->setting['db_user']</code><br>
-        <code>$this->setting['db_pass']</code><br></small></blockquote>
+        <blockquote id="db"><strong>Database Settings</strong> <small>(lines 4 - 7)<br>
+        <code>db_host = ""</code><br>
+        <code>db_name = ""</code><br>
+        <code>db_user = ""</code><br>
+        <code>db_pass = ""</code><br></small></blockquote>
         Enter your database host, database name and user / password here. If you are unsure of these settings, contact your web host.
     </p>
     <hr>
     <p>
-        <blockquote id="defcontroller"><strong>Default Controller</strong> <small><code>$this->setting['default_controller']</code> (line 23)</small></blockquote>
+        <blockquote id="defcontroller"><strong>Default Controller</strong> <small><code>default_controller = "Home"</code> (line 12)</small></blockquote>
         The default controller (e.g., the controller that is triggered when a visitor goes to your site homepage) is set to 'Home' upon installation. Change this setting if you wish to use a different default controller. In effect, going to http://yoursite.com and http://yoursite.com/home will display the same thing.
     </p>
     <hr>
     <p>
-        <blockquote id="name"><strong>Company Name</strong> <small><code>$this->setting['site_name']</code> (line 26)</small></blockquote>
+        <blockquote id="name"><strong>Company Name</strong> <small><code>site_name = ""</code> (line 23)</small></blockquote>
         Enter your company or website name on line 29; this is what will appear in various areas of the framework (such as the 
         "From" field in emails).
     </p>
     <hr>
     <p>
-        <blockquote id="slogan"><strong>Company Slogan</strong> <small><code>$this->setting['site_slogan']</code> (line 29)</small></blockquote>
+        <blockquote id="slogan"><strong>Company Slogan</strong> <small><code>site_slogan = ""</code> (line 24)</small></blockquote>
         If your company has a slogan, enter it on line 34; otherwise leave it blank.
     </p>
     <hr>
     <p>
-        <blockquote id="email"><strong>Email Address</strong> <small><code>$this->setting['site_email']</code> (line 32)</small></blockquote>
+        <blockquote id="email"><strong>Email Address</strong> <small><code>site_email = ""</code> (line 25)</small></blockquote>
         Enter your company's customer service, admin, contact or support email address on line 39.
     </p>
     <hr>
     <p>
-        <blockquote id="email"><strong>Admin Controller</strong> <small><code>$this->setting['admin_controller']</code> (line 42)</small></blockquote>
+        <blockquote id="email"><strong>Admin Controller</strong> <small><code>admin_controller = "Admin"</code> (line 19)</small></blockquote>
         By default, the admin area is located at: http://yoursite.com/admin. If you wish to change the url of the admin area, simply edit this setting.
          Be sure to capitalize the first letter of the controller name.<br>
          <strong>* The name of the admin controller must be unique -- a controller of the same name <u>cannot</u> exist in either the public/controllers/ or the  public/override/controllers directories.</strong>
     </p>
     <hr>
     <p>
-        <blockquote id="phone"><strong>Telephone</strong> <small><code>$this->setting['telephone']</code> (line 51)</small></blockquote>
+        <blockquote id="phone"><strong>Telephone</strong> <small><code>telephone = ""</code> (line 31)</small></blockquote>
         Enter your company's telephone number on line 50.
     </p>
     <hr>
     <p>
-        <blockquote id="tz"><strong>Timezone</strong> <small><code>$this->setting['time_zone']</code> (line 54)</small></blockquote>
+        <blockquote id="tz"><strong>Timezone</strong> <small><code>time_zone = "America/New_York"</code> (line 54)</small></blockquote>
         Enter your server timezone here. Default value is <code>'America/New_York'</code>.<br>
         Visit the <a href="http://php.net/manual/en/timezones.php" target="_blank">PHP timezone</a> documentation for a complete list of supported timezones.
     </p>
     <hr>
     <p>
-        <blockquote id="reporting"><strong>Error Reporting</strong> <small><code>$this->setting['error_reports']</code> (line 60)</small></blockquote>
-        You may control error reporting output to the browser by using any valid PHP error level; i.e. E_ALL, E_STRICT, E_NOTICE, E_NONE etc. <strong>Do not use quotes!</strong><br>
+        <blockquote id="reporting"><strong>Error Reporting</strong> <small><code>error_reports = "TRUE"</code> (line 38)</small></blockquote>
+        You may control error reporting output to the browser by using a TRUE or FALSE setting.<br>
         <h6>* It is highly recommended to turn error reporting off (E_NONE) on a production server</h6>
     </p>
     <hr>
     <p>
-        <blockquote id="debug"><strong>Debug Mode</strong> <small><code>$this->setting['debug_mode']</code> (line 67)</small></blockquote>
+        <blockquote id="debug"><strong>Debug Mode</strong> <small><code>debug_mode = "on"</code> (line 45)</small></blockquote>
         Debug mode is meant to supplement PHP error reporting by giving the developer more precise error messages, specific to issues of the framework, and often will recommend a solution to fix the error. <br>
         While this is a powerful feature, it will reveal sensitive data about your environment. <strong>Be certain to turn debug mode off on a production server.</strong>
     </p>
     <hr>
     <p>
-        <blockquote id="logging"><strong>Error Logging</strong> <small><code>$this->setting['log_errors']</code> (line 73)</small></blockquote>
+        <blockquote id="logging"><strong>Error Logging</strong> <small><code>log_errors = "TRUE"</code> (line 51)</small></blockquote>
         You can log all server and PHP errors by setting this variable to <code>TRUE</code>. All logs are stored in <code>/var/logs</code>.<br><strong>It is recommended to have error logging enabled on production servers.</strong>
     </p>
     <hr>
     <p>
-        <blockquote id="path"><strong>Controllers / Models Path</strong> <small><code>$this->setting['controllers_path'] $this->setting['models_path']</code> (line 76 & 79)</small></blockquote>
+        <blockquote id="path"><strong>Controllers / Models Path</strong> <small>
+        <code>controllers_path = "public/controllers/"</code> <code>models_path = "public/models/"</code>(line 58 & 59)</small></blockquote>
         By default, controllers and models are stored inside the <code>public/</code> folder. Ideally, for security and server maintenance-related reasons, you should store everything except the front controller (index.php file in webroot directory) and template/media files (CSS, JS, images, videos) <strong>outside of your webroot</strong>. There are two options to doing this:
     </p>
     <hr>
