@@ -1,6 +1,5 @@
 <?php
 namespace Hal\Controller;
-echo 'base_controller';
 /*
  * File:    /app/code/core/system/base_controller.php
  * Purpose: Base class from which all controllers extend
