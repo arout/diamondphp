@@ -1,3 +1,4 @@
+{nocache}
 <legend>Manage system crontabs</legend>
 <p>
 	Cron is a daemon, which means that it only needs to be started once, and will 
@@ -10,3 +11,4 @@
 </p>
 
 <p><code>ps aux | grep crond</code></p>
+{/nocache}
