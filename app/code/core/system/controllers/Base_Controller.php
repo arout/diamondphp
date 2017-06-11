@@ -122,7 +122,7 @@ class Base_Controller {
 			if (!is_readable($this->config->setting('controllers_path').$this->controller_filename)) {
 				# Controller file does not exist, or
 				# does not have read permissions
-				if ($this->config->setting('debug_mode') === 'off' || $this->config->setting('debug_mode') === 'OFF') {
+				if ($this->config->setting('debug_mode') === 'OFF' {
 					return $this->redirect('error/_404');
 				} else {
 					$controller = new \Web\Controller\Error_Controller($this->core);
@@ -143,7 +143,7 @@ class Base_Controller {
 						$__instantiate_class->$action();
 					} else {
 						# Valid controller, but invalid action
-						if ($this->config->setting('debug_mode') === 'off' || $this->config->setting('debug_mode') === 'OFF') {
+						if ($this->config->setting('debug_mode') === 'OFF' {
 							$this->redirect('error/_404');
 						} else {
 							$this->template->assign('controller_path', $this->config->setting('controllers_path').$this->controller_filename);
@@ -152,7 +152,7 @@ class Base_Controller {
 					}
 				} else {
 					# Controller file exists, but class name is not formatted / spelled properly
-					if ($this->config->setting('debug_mode') === 'off' || $this->config->setting('debug_mode') === 'OFF') {
+					if ($this->config->setting('debug_mode') === 'OFF' {
 						$this->redirect('error/_404');
 					} else {
 						$this->template->assign('content', 'error/controller-bad-classname.tpl');
@@ -161,7 +161,7 @@ class Base_Controller {
 			} else {
 				# Controller file does not exist, or
 				# does not have read permissions
-				if ($this->config->setting('debug_mode') === 'off' || $this->config->setting('debug_mode') === 'OFF') {
+				if ($this->config->setting('debug_mode') === 'OFF' {
 					$this->redirect('error/_404');
 				} else {
 					$this->template->assign('content', 'error/controller.tpl');
