@@ -7,7 +7,7 @@
 	<p>
 		When creating models, they will always extend the base class <samp>System_Model</samp>:
 	</p>
-<pre class="terminal">
+<pre class="prettyprint">
 class WelcomeModel extends Hal\Model\System_Model {
 	// Do something
 }
@@ -15,14 +15,14 @@ class WelcomeModel extends Hal\Model\System_Model {
 	<legend style="width: auto;"><strong>Loading</strong> Models</legend>
 	<p>
 		Loading models is very simple. Models can be loaded from inside a controller with a simple function call:
-<pre class="terminal">
+<pre class="prettyprint">
 // Load WelcomeModel
 $this->model( 'Welcome' );
 </pre>
 	<p>
 		The above would search the<code>/public/models</code> directory for a file named <strong>Welcome</strong>Model.php. Note that this would only load the model; it does not access or execute any of it's methods. Often, you could use this in your controller <samp>__construct()</samp> by assigning it to a variable (i.e.  <code>$model = $this->model( 'Welcome' )</code>). You can load a model and access it's methods directly, as shown below:
 	</p>
-<pre class="terminal">
+<pre class="prettyprint">
 // Access "select" method from WelcomeModel.php
 $this->model( 'Welcome' )->select();
 </pre>
@@ -32,7 +32,7 @@ $this->model( 'Welcome' )->select();
 	<p>
 		Now we know how to load models, how do we display the data that it contains? <br>
 		Let's suppose that our <samp>select()</samp> method from the example above contains the following code:
-<pre class="terminal">
+<pre class="prettyprint">
 public function select()
 {
 	$query = "SELECT * FROM user_table";
@@ -53,7 +53,7 @@ public function select()
 	</p>
 	<p>
 	<samp>In our example controller</samp>
-<pre class="terminal">
+<pre class="prettyprint">
 // Fetch the array containing all of our users
 $users = $this->model('welcome')->select();
 
@@ -63,7 +63,7 @@ $this->template->assign('members', $users);
 	</p>
 	<p>
 	<samp>And then in our view file</samp>
-<pre class="terminal">
+<pre class="prettyprint">
 &#123;foreach $members as $member}
 &lt;div>
 	Username: &#123;$member['username']}

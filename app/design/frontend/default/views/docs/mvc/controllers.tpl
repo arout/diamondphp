@@ -13,7 +13,7 @@
 		Additionally, the class name must match the file name containing the controller. Let's look at some boilerplate controller setup:
 	</p>
 	<p>
-<pre class="terminal">
+<pre class="prettyprint">
 # file: /public/controllers/Example_Controller.php
 
 &lt;?php
@@ -70,7 +70,7 @@ class Example_Controller extends Base_Controller
 		Lets set a default message in our Example_Controller via the class constructor:
 	</p>
 
-<pre class="terminal">
+<pre class="prettyprint">
 # file: /public/controllers/Example_Controller.php
 
 &lt;?php

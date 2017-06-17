@@ -43,7 +43,7 @@
     </p>
     <p>
         Let's take a quick look at the code used to hash data:
-<pre class="terminal">
+<pre class="prettyprint">
 // You should always use the Sanitize module when handling user submitted data
 // For clarity, we will just use $_POST directly 
 $data = $_POST['password'];
