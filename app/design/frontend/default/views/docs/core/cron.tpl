@@ -11,18 +11,18 @@
 	the start up scripts. To find out if it's running do the following command from your terminal (SSH / shell window):
 </p>
 
-<p><span class="terminal">ps aux | grep crond</span></p>
+<p><span class="prettyprint">ps aux | grep crond</span></p>
 
 <p>If crond is running, it will return something similar to the below:</p>
 
-<p><span class="terminal">7823907  15243  0.0  0.0   4216   640 pts/0    SN+  16:33   0:00 grep crond</span></p>
+<p><span class="prettyprint">7823907  15243  0.0  0.0   4216   640 pts/0    SN+  16:33   0:00 grep crond</span></p>
 
 <p>
 	If it isn't running, and you have root access to the server, just add the line crond to one of your start up scripts. The 
 	process automatically goes into the background, so you don't have to force it with &. Cron will be started next time you reboot. To run cron without rebooting, just type crond as root:
 </p>
 
-<p><span class="terminal">sudo crond</span></p>
+<p><span class="prettyprint">sudo crond</span></p>
 
 <p>Note that you'll need to run cron manually with each reboot unless you add it to the system startup scripts.</p>
 
