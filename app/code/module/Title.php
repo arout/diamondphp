@@ -12,7 +12,7 @@ class Title
 	public function __construct($c)
 	{
 		$this->route         = $c['router'];
-		$this->controller    = $this->route->controller;
+		$this->controller    = $this->route->controller_class;
 		$this->action        = $this->route->action;
 		$this->default_title = (!empty($c['config']->setting['site_slogan']) ? $c['config']->setting['site_slogan'] : $c['config']->setting['site_name']);
 	}
