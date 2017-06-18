@@ -10,7 +10,7 @@
 	<!-- page-title end -->
 
 	<!-- blogpost start -->
-	<article class="clearfix blogpost object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+	<article class="clearfix blogpost" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
 		<div class="overlay-container">
 			<h3 class="text-center">Use it: <code>$this->template->assign('content', 'example.tpl');</code></h3>
 		</div>
@@ -69,7 +69,7 @@
 
 				<p>
 					Views are assigned in the Controller for each web page, using the following syntax:<br>
-<pre class="console">
+<pre class="prettyprint">
 $this->template->assign( 'content', 'example.tpl' );
 </pre>
 					Note that <strong>'content'</strong> is <span class="red">required</span> as the first parameter, in order to display a view.
@@ -78,7 +78,7 @@ $this->template->assign( 'content', 'example.tpl' );
 					There are occasions where you may wish to display partial views, or multiple view files, on a web page. 
 					To do so, simply create an array, with each key representing the view file to include, and pass the array as the second parameter. An example is provided below:
 					<br>
-<pre class="console">
+<pre class="prettyprint">
 $content = ['home/example_1.tpl', 'home/example_2.tpl', 'forms/example_3.tpl'];
 $this->template->assign('content', $content);
 </pre>
@@ -93,7 +93,7 @@ $this->template->assign('content', $content);
 					In the above code, parameter 1 is setting the variable name that will be used and parsed inside the view file, and parameter 2 is the value assigned to parameter 1. The primary purpose of this function is to set data, and then pass that data to the view file. Please view the following example:
 				</p>
 				<em>Controller file</em>
-<pre class="console">
+<pre class="prettyprint">
 public function get_user() 
 {ldelim}
     # Use the Session Toolbox to fetch username
@@ -115,7 +115,7 @@ public function get_user()
 </pre>
 
 				<em>View (hello.tpl)</em>
-<pre class="console">
+<pre class="prettyprint">
 # Say hello!
 Hello, {ldelim}$user{rdelim}
 </pre>				

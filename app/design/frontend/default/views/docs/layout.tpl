@@ -8,14 +8,14 @@
 	<!-- page-title end -->
 
 	<!-- blogpost start -->
-	<article class="clearfix blogpost object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+	<article class="clearfix blogpost" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
 		<div class="overlay-container">
 			<h3 class="text-center">{$use_it}</h3>
 		</div>
 		<div class="blogpost-body">
 			<div class="post-info">
 				<span class="day">04</span>
-				<span class="month">Dec 2016</span>
+				<span class="month">Jun 2017</span>
 			</div>
 			<div class="blogpost-content">
 				<header>

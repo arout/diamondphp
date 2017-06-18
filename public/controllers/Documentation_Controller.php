@@ -9,11 +9,13 @@ class Documentation_Controller extends Base_Controller
 		parent::__construct($app);
 		$this->template->assign('sidebar', 'docs/toc.tpl');
 		$this->template->assign('content', 'docs/toc.tpl');
+		$this->template->assign('layout', 'docs/layout.tpl');
+		$this->template->assign('layout_close', 'docs/layout_close.tpl');
 	}
 
 	public function index()
 	{
-		$data['load']  = $this->load;
+		$data['load'] = $this->load;
 		$data['route'] = $this->route;
 
 		return $this->template->assign('content', 'docs/index.tpl');
@@ -21,9 +23,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function introduction()
 	{
-		$data['load']  = $this->load;
+		$data['load'] = $this->load;
 		$data['route'] = $this->route;
-		$page          = $data['route']->param1;
+		$page = $data['route']->param1;
 		switch ($page)
 		{
 		case "requirements":
@@ -43,15 +45,25 @@ class Documentation_Controller extends Base_Controller
 
 	public function mvc()
 	{
-		$data['load']  = $this->load;
+		$data['load'] = $this->load;
 		$data['route'] = $this->route;
-		$page          = $data['route']->param1;
+		$page = $data['route']->param1;
 		switch ($page)
 		{
 		case "controllers":
+			$this->template->assign('title', 'Controllers');
+			$this->template->assign('subtitle', 'Creating Controllers');
+			$this->template->assign('use_it', '');
+			$this->template->assign('icon', 'flag');
+			$this->template->assign('lead', "The controller's job is to handle data that the user inputs or submits, and update the model accordingly. The controller’s life blood is the user; without user interactions, the controller has no purpose. It is the only part of the pattern the user should be interacting with.");
 			$this->template->assign('content', 'docs/mvc/controllers.tpl');
 			break;
 		case "models":
+			$this->template->assign('title', 'Models');
+			$this->template->assign('subtitle', 'Creating Models');
+			$this->template->assign('use_it', 'Use it: <code>$this->model(\'Example\');</code>');
+			$this->template->assign('icon', 'database');
+			$this->template->assign('lead', "Models interact directly with your database. The model will perform your sql query and return the result, from which your controllers and views can then access the data.");
 			$this->template->assign('content', 'docs/mvc/models.tpl');
 			break;
 		case "views":
@@ -65,9 +77,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function core()
 	{
-		$data['load']  = $this->load;
+		$data['load'] = $this->load;
 		$data['route'] = $this->route;
-		$page          = $data['route']->param1;
+		$page = $data['route']->param1;
 		switch ($page)
 		{
 		case "cron":
@@ -80,6 +92,11 @@ class Documentation_Controller extends Base_Controller
 			$this->template->assign('content', 'docs/core/events.tpl');
 			break;
 		case "router":
+			$this->template->assign('title', 'Router');
+			$this->template->assign('subtitle', 'Working with the Router');
+			$this->template->assign('use_it', 'Use it: <code>$this->route(<samp>parameter</samp>);</code>');
+			$this->template->assign('icon', 'share-alt');
+			$this->template->assign('lead', "The Router class fetches the HTTP request and dynamically maps URLs to the corresponding controller.");
 			$this->template->assign('content', 'docs/core/router.tpl');
 			break;
 		case "sessions":
@@ -105,9 +122,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function modules()
 	{
-		$data['load']  = $this->load;
+		$data['load'] = $this->load;
 		$data['route'] = $this->route;
-		$page          = $data['route']->param1;
+		$page = $data['route']->param1;
 		switch ($page)
 		{
 		case "breadcrumbs":
@@ -123,6 +140,11 @@ class Documentation_Controller extends Base_Controller
 			$this->template->assign('content', 'docs/modules/geoip.tpl');
 			break;
 		case "hash":
+			$this->template->assign('title', 'Encryption Helper');
+			$this->template->assign('subtitle', 'Password Encryption');
+			$this->template->assign('use_it', 'Use it: <code>$this->toolbox(\'hash\');</code>');
+			$this->template->assign('icon', 'user-secret');
+			$this->template->assign('lead', "The Encryption helper uses PHP's built-in password_hash() function to encrypt and salt important data.");
 			$this->template->assign('content', 'docs/modules/hash.tpl');
 			break;
 		case "images":
@@ -171,7 +193,7 @@ class Documentation_Controller extends Base_Controller
 
 	public function faq()
 	{
-		$data['load']  = $this->load;
+		$data['load'] = $this->load;
 		$data['route'] = $this->route;
 		$this->template->assign('content', 'docs/faq.tpl');
 	}
