@@ -5,6 +5,7 @@ th, td { display: block; }
 </style>
 {/literal}
 
+{nocache}
 <h1>SEARCH RESULTS</h1>
 
 {foreach $user.username as $member}
@@ -17,4 +18,4 @@ th, td { display: block; }
 	</a>
 
 {/foreach}
-
+{/nocache}
