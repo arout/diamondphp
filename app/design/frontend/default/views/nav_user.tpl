@@ -61,7 +61,7 @@
 							</ul>
 						</div>
 						<div class="btn-group dropdown">
-							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Logged in as {$smarty.session.username}</button>
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Logged in as {$username}</button>
 							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
 								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/edit">Edit Profile</a></li>
 								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}login/logout">Log Out</a></li>
@@ -103,7 +103,7 @@
 
 					<!-- name-and-slogan -->
 					<div class="slogan text-center">
-						MVC Framework for PHP 7
+						{$slogan}
 					</div>
 
 				</div>
