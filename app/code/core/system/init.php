@@ -10,23 +10,6 @@ require_once BASE_PATH . 'vendor/autoload.php';
 require_once BASE_PATH . 'app/code/core/system/factory.php';
 require_once BASE_PATH . 'app/code/core/system/paths.php';
 
-switch ($app['config']->setting('error_reports'))
-{
-case "ON":
-	ini_set('display_errors', 1);
-	error_reporting(E_ALL & ~E_NOTICE);
-	break;
-
-case "DEV MODE":
-	ini_set('display_errors', 1);
-	error_reporting(E_ALL);
-	break;
-
-default:
-	ini_set('display_errors', 0);
-	error_reporting(0);
-}
-
 # Core Smarty settings
 $app['template']->setTemplateDir(VIEWS_PATH);
 $app['template']->setCompileDir(VAR_PATH . 'templates_c');

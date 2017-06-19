@@ -6,8 +6,8 @@ namespace Hal\Block;
  * Purpose: Base class from which all blocks extend
  */
 
-class System_Block {
-
+class System_Block
+{
 	protected $core;
 	protected $db;
 	private $controller;
@@ -30,50 +30,52 @@ class System_Block {
 	// Helpers located in /app/code/helpers
 	public $helper;
 
-	public function __construct($app) {
-
-		$this->core    = $app;
-		$this->db      = $app['database'];
-		$this->config  = $app['config'];
-		$this->route   = $app['router'];
-		$this->model   = $app['system_model'];
-		$this->load    = $app['load'];
+	public function __construct($app)
+	{
+		$this->core = $app;
+		$this->db = $app['database'];
+		$this->config = $app['config'];
+		$this->route = $app['router'];
+		$this->model = $app['system_model'];
+		$this->load = $app['load'];
 		$this->toolbox = $app['toolbox'];
-		$this->log     = $app['log'];
+		$this->log = $app['log'];
 		$this->session = self::session();
-		// $this->input   = self::input();
-
-
 	}
 
-	public final function partial($block_file, $data = null) {
-
+	public final function partial($block_file, $data = null)
+	{
 		$this->load->block($block_file, $data = null);
 	}
 
-	public function model($model) {
+	public function model($model)
+	{
 		return $this->load->model("$model");
 	}
 
-	public function redirect($url) {
-
-		if (strpos($url, 'http://')) {
+	public function redirect($url)
+	{
+		if (strpos($url, 'http://'))
+		{
 			return header('Location: ' . $url);
-		} elseif (strpos($url, 'https://')) {
+		}
+		elseif (strpos($url, 'https://'))
+		{
 			return header('Location: ' . $url);
-		} else {
-
+		}
+		else
+		{
 			return header('Location: ' . BASE_URL . $url);
 		}
 	}
 
-	public function session() {
-
+	public function session()
+	{
 		return $this->toolbox('session');
 	}
 
-	public function toolbox($helper) {
-
+	public function toolbox($helper)
+	{
 		# Load a Toolbox helper
 		return $this->toolbox["$helper"];
 	}
