@@ -249,7 +249,7 @@
          <div class="col-md-12">
             <div class="row">
                <div class="col-sm-3">
-                  <div class="box-style-1 white-bg object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                  <div class="box-style-1 white-bg" data-animation-effect="fadeInUpSmall" data-effect-delay="0">
                      <i class="fa fa-users"></i>
                      <h2>For <br>Everyone</h2>
                      <p>Diamond PHP is a general use framework that allows you to build virtually any type of website quickly and efficiently.</p>
@@ -257,7 +257,7 @@
                   </div>
                </div>
                <div class="col-sm-3">
-                  <div class="box-style-1 white-bg object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="300">
+                  <div class="box-style-1 white-bg" data-animation-effect="fadeInUpSmall" data-effect-delay="300">
                      <i class="fa fa-book"></i>
                      <h2>Well Documented</h2>
                      <p>A framework is only as good as it's documentation, and you will find plenty of that <a href="{$smarty.const.BASE_URL}documentation">here</a></p>
@@ -265,7 +265,7 @@
                   </div>
                </div>
                <div class="col-sm-3">
-                  <div class="box-style-1 white-bg object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="600">
+                  <div class="box-style-1 white-bg" data-animation-effect="fadeInUpSmall" data-effect-delay="600">
                      <i class="fa fa-flag-checkered"></i>
                      <h2>Fast Performance</h2>
                      <p>With APC, memcache and other goodies baked in, you will enjoy the world class performance of our new framework.</p>
@@ -273,7 +273,7 @@
                   </div>
                </div>
                <div class="col-sm-3">
-                  <div class="box-style-1 white-bg object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="900">
+                  <div class="box-style-1 white-bg" data-animation-effect="fadeInUpSmall" data-effect-delay="900">
                      <i class="fa fa-cogs"></i>
                      <h2>Highly Customizable</h2>
                      <p>Many features are built-in, and just as importantly, the framework will get out of your way when you need to plugin third party libraries or other custom code</p>
