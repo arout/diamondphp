@@ -1,1 +1,1 @@
-Footer file <code><?= $data['file']; ?></code> not found
+Footer file <code>{$file}</code> not found

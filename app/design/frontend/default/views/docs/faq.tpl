@@ -4,7 +4,7 @@
 <legend>
 	<strong>F</strong>requently <strong>A</strong>sked <strong>Q</strong>uestions
 </legend>
-<p class="lead">The FAQ covers some of the more common questions you may have about the framework. For more technical questions on using the framework, please browse the <a href="https://diamondphp.com/documentation/index">documentation</a></p>
+<p class="lead">The FAQ covers some of the more common questions you may have about the framework. For more technical questions on using the framework, please browse the <a href="{$smarty.const.BASE_URL}documentation/index">documentation</a></p>
 <div class="divider"> </div>
 <div class="toogle toogle-accordion">
 	<div class="toggle active">

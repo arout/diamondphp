@@ -28,5 +28,5 @@
 >   {rdelim}
 >   </strong>
 >
->  View <a href="https://diamondphp.com/documentation/mvc/controllers">the Controllers documentation</a> for more information.
+>  View <a href="{$smarty.const.BASE_URL}documentation/mvc/controllers">the Controllers documentation</a> for more information.
 </pre>

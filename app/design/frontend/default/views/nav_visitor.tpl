@@ -65,10 +65,10 @@
 										<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
 											<li>
 												<div class="object-non-visible animated object-visible fadeInUpSmall">
-													<i class="fa fa-wechat"></i> &nbsp;<a class="white" href="https://diamondphp.com/forum/">Community Support Forums</a>
+													<i class="fa fa-wechat"></i> &nbsp;<a class="white" href="{$smarty.const.BASE_URL}forum/">Community Support Forums</a>
 												</div>
 												<div class="object-non-visible animated object-visible fadeInUpSmall">
-													<i class="fa fa-pencil"></i> &nbsp;<a class="white" href="https://diamondphp.com/forum/">Contact Tech Support</a>
+													<i class="fa fa-pencil"></i> &nbsp;<a class="white" href="{$smarty.const.BASE_URL}forum/">Contact Tech Support</a>
 												</div>
 											</li>
 										</ul>

@@ -20,5 +20,5 @@
 >  To correct this error, either create the view file specified above,
 >  or edit the controller to display a different view file.
 >
->  View <a href="https://diamondphp.com/documentation/mvc/views">the Views documentation</a> for more information.
+>  View <a href="{$smarty.const.BASE_URL}documentation/mvc/views">the Views documentation</a> for more information.
 </pre>

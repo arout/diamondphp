@@ -39,7 +39,7 @@
         Located in the root directory, you will find a configuration file named <code>.env.example</code>. Rename this file to <code>.env</code>, and then open it in a text editor.
     </p>
     <p>
-        You will find that most of the settings are blank, and a few are already filled out. For more information regarding these settings, view the <a href="https://diamondphp.com/documentation/introduction/configuration" target="_blank">configuration documentation</a>. Some of the settings are optional, but it is recommended to ensure all are completed.
+        You will find that most of the settings are blank, and a few are already filled out. For more information regarding these settings, view the <a href="{$smarty.const.BASE_URL}documentation/introduction/configuration" target="_blank">configuration documentation</a>. Some of the settings are optional, but it is recommended to ensure all are completed.
     </p>
     <p>
         <div class="alert alert-warning">

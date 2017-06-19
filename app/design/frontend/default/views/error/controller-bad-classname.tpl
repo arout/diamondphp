@@ -26,5 +26,5 @@
 >
 >  <strong>&lt?php class {$controller}_Controller extends Hal\Controller\Base_Controller ?></strong>
 >
->  View <a href="https://diamondphp.com/documentation/mvc/controllers">the Controllers documentation</a> for more information.
+>  View <a href="{$smarty.const.BASE_URL}documentation/mvc/controllers">the Controllers documentation</a> for more information.
 </pre>
