@@ -1,1 +1,1 @@
-Header file <code><?= $data['file']; ?></code> not found
+Header file <code>{$file}</code> not found

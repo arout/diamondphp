@@ -31,5 +31,5 @@
 >  Finally, ensure that the index() method exists within the {$controller} class. Each controller falls back
 >  on the index() method as the default action.
 >
->  View <a href="https://diamondphp.com/documentation/mvc/controllers">the Controllers documentation</a> for more information.
+>  View <a href="{$smarty.const.BASE_URL}documentation/mvc/controllers">the Controllers documentation</a> for more information.
 </pre>
