@@ -45,6 +45,10 @@ else
 	$nav_menu = 'nav_visitor.tpl';
 }
 $app['template']->assign('slogan', $app['config']->setting('site_slogan'));
+if($app['session']->verify('username'))
+{
+	$app['template']->assign('username', $app['session']->get('username'));
+}
 
 # Memory usage
 $app['template']->assign('actual_ram', $actual_ram);

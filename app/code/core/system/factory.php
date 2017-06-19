@@ -190,12 +190,12 @@ $app['slider'] = function ($c) {
 	return new \Hal\Module\Slider($c);
 };
 
-$app['title'] = function ($c) {
+$app['title'] = function ($app) {
 
-	$title = new \Hal\Module\Title($c['toolbox']);
+	$title = new \Hal\Module\Title($app['toolbox']);
 	require_once MODULES_PATH.'Titlesettings.php';
 	# Pass the Titlesettings() function from the included file above to $title->set()
-	$title->set(Titlesettings($c));
+	$title->set(Titlesettings($app));
 	return $title;
 };
 
