@@ -4,6 +4,13 @@ use Hal\Controller\Base_Controller;
 
 class Signup_Controller extends Base_Controller
 {
+	public function __construct($app)
+	{
+		parent::__construct($app);
+
+		$this->template->assign('signup_email_confirmation', $this->config->setting('signup_email_confirmation'));
+		$this->template->assign('site_url', $this->config->setting('site_url'));
+	}
 	public function index()
 	{
 		$data = [];
@@ -14,12 +21,12 @@ class Signup_Controller extends Base_Controller
 		}
 		$this->template->assign('data', $data);
 
-		if ($this->route->action != 'complete') 
+		if ($this->route->action != 'complete')
 		{
 			return $this->template->assign('content', 'forms/signup_form.tpl');
 		}
 
-		if ($this->route->action == 'complete') 
+		if ($this->route->action == 'complete')
 		{
 			$this->template->assign('email_confirm', $this->config->setting('signup_email_confirmation'));
 		}
@@ -44,7 +51,7 @@ class Signup_Controller extends Base_Controller
 		$data['b'] = rand(1, 5);
 
 		$response = (int) $data['math'];
-		$answer   = (int) $data['math_answer'];
+		$answer = (int) $data['math_answer'];
 		if ($response !== $answer)
 		{
 			// Did not pass validation -- Show errors
@@ -56,10 +63,10 @@ class Signup_Controller extends Base_Controller
 		else
 		{
 			// Now we can check the submitted form to see if it is filled out properly
-			$check_if_valid = $this->toolbox('validate')->form($data, array(
-				'email' => 'required|valid_email',
+			$check_if_valid = $this->toolbox('validate')->form($data, [
+				'email'    => 'required|valid_email',
 				'password' => 'required|max_len,100|min_len,6',
-			));
+			]);
 
 			if ($check_if_valid === FALSE)
 			{
@@ -121,11 +128,11 @@ class Signup_Controller extends Base_Controller
 		else
 		{
 			// Now we can check the submitted form to see if it is filled out properly
-			$check_if_valid = $this->toolbox('validate')->form($data, array(
+			$check_if_valid = $this->toolbox('validate')->form($data, [
 
-				'email' => 'required|valid_email',
+				'email'    => 'required|valid_email',
 				'password' => 'required|max_len,100|min_len,6',
-			));
+			]);
 
 			if ($check_if_valid === FALSE)
 			{
@@ -193,9 +200,9 @@ class Signup_Controller extends Base_Controller
 		 */
 		$form = $this->toolbox('sanitize')->xss($_POST);
 
-		$q      = "SELECT username, email, password FROM users WHERE email = ?";
+		$q = "SELECT username, email, password FROM users WHERE email = ?";
 		$result = $this->db->prepare($q);
-		$result->execute(array($form['email']));
+		$result->execute([$form['email']]);
 
 		if (!empty($result))
 		{
@@ -203,7 +210,7 @@ class Signup_Controller extends Base_Controller
 			foreach ($result as $row)
 			{
 				$data['username'] = $row['username'];
-				$data['email']    = $row['email'];
+				$data['email'] = $row['email'];
 
 				$data['create_token'] = sha1($row['username'] . $row['email'] . time() . '#$!&^*(');
 				$data['create_token'] = str_replace('3', '-', $data['create_token']);
@@ -211,12 +218,12 @@ class Signup_Controller extends Base_Controller
 				$data['create_token'] = urlencode($data['create_token']);
 
 				$q2 = "INSERT INTO password_reset(email, hash, timestamp) VALUES(?, ?, ?)";
-				$r  = $this->db->prepare($q2);
-				$r->execute(array($row['email'], $data['create_token'], time()));
+				$r = $this->db->prepare($q2);
+				$r->execute([$row['email'], $data['create_token'], time()]);
 
-				$to      = $data['email'];
+				$to = $data['email'];
 				$subject = "Did You Forget Your Password?";
-				$from    = $this->config->setting('site_name');
+				$from = $this->config->setting('site_name');
 				$message = "You (or someone claiming to be you) has requested to reset your profile password on " . $this->config->setting('site_name') . ".<br>
 				If you requested your password to be reset, please do so here: " . BASEURL . 'member/password_reset/' . $data['create_token'] . ".<br>
 				If you did not request a password reset, or otherwise feel this is in error, there is no need to do anything. Your password and other information
@@ -235,9 +242,9 @@ class Signup_Controller extends Base_Controller
 
 		$data['token'] = $this->route->param1;
 
-		$q      = "SELECT email, hash, timestamp FROM password_reset WHERE hash = ?";
+		$q = "SELECT email, hash, timestamp FROM password_reset WHERE hash = ?";
 		$result = $this->db->prepare($q);
-		$result->execute(array($data['token']));
+		$result->execute([$data['token']]);
 
 		// It is only possible to have one (successful) result.
 		// If zero found, it is likely a hack attempt or malformed URL
@@ -299,20 +306,20 @@ class Signup_Controller extends Base_Controller
 			 * Pass the sanitized $form variable above
 			 * to the function below
 		*/
-		$check_if_valid = $this->toolbox('validate')->form($_POST, array(
+		$check_if_valid = $this->toolbox('validate')->form($_POST, [
 
-			'username' => 'required|alpha_numeric',
-			'password' => 'required|max_len,40|min_len,6',
+			'username'         => 'required|alpha_numeric',
+			'password'         => 'required|max_len,40|min_len,6',
 			'confirm_password' => 'required|contains,' . $_POST['password'] . '',
-			'first_name' => 'required|valid_name',
-			'last_name' => 'required|valid_name',
-			'email' => 'required|valid_email',
-			'dob' => 'required',
-			'city' => 'required',
-			'state' => 'required|exact_len,2',
-			'zip' => 'required|numeric|exact_len,5',
-			'phone' => 'numeric|exact_len, 10',
-		));
+			'first_name'       => 'required|valid_name',
+			'last_name'        => 'required|valid_name',
+			'email'            => 'required|valid_email',
+			'dob'              => 'required',
+			'city'             => 'required',
+			'state'            => 'required|exact_len,2',
+			'zip'              => 'required|numeric|exact_len,5',
+			'phone'            => 'numeric|exact_len, 10',
+		]);
 
 		/*
 			 * Now validate the form according to the rules set above.
@@ -341,12 +348,12 @@ class Signup_Controller extends Base_Controller
 					if ($this->config->setting('signup_email_confirmation') === TRUE)
 					{
 						$confirmation_code = md5($form['email']);
-						$to                = $form['email'];
-						$recipient_name    = $form['first_name'] . ' ' . $form['last_name'];
-						$from              = $this->config->setting('site_name');
-						$reply_to          = $this->config->setting('site_email');
-						$subject           = "Confirm your registration on {$from}";
-						$message           = "<p>To activate your account, please visit the following link:</p>" .
+						$to = $form['email'];
+						$recipient_name = $form['first_name'] . ' ' . $form['last_name'];
+						$from = $this->config->setting('site_name');
+						$reply_to = $this->config->setting('site_email');
+						$subject = "Confirm your registration on {$from}";
+						$message = "<p>To activate your account, please visit the following link:</p>" .
 							"<p>{$this->config->setting('site_url')}signup/activate/{$confirmation_code}</p>" .
 							"<p>If you believe you received this email by mistake, no further action is necessary.</p>";
 
