@@ -188,21 +188,51 @@ class Sanitize
 		return strip_tags($string, "{$allowable_tags}");
 	}
 
-	public function remove_email($string = NULL)
+	public function remove_email($string, $warning = TRUE)
 	{
 		// Remove email addresses from string
-		// preg_match_all("/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches);
-		return preg_replace('/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i', '(email hidden)', $string);
+		if ($warning)
+		{
+			$warning = '[email address removed]';
+		}
+		else
+		{
+			$warning = '';
+		}
+
+		return preg_replace('/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i', "$warning", $string);
 	}
 
-	public function remove_url($string = NULL)
+	public function remove_url($string, $warning = TRUE)
 	{
-		// Remove URLs from string
-		// preg_match_all( "/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches );
-		// $cleaned = str_replace( $matches[0], '<< email adress removed >>', $matches[0] );
-		// foreach( $cleaned as $clean )
-		// 	echo $clean;
-		// return $string;
+		//** Remove URLs from string **//
+		if ($warning)
+		{
+			$warning = '[url removed]';
+		}
+		else
+		{
+			$warning = '';
+		}
+
+		# First check if URL contains http or https protocol
+		$regex  = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@";
+		$result = preg_replace($regex, "$warning", $string);
+
+		# Maybe the URL is just www.something.com, without the http(s) protocol
+		if ($result == FALSE)
+		{
+			$regex  = "@(www?([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@";
+			$result = preg_replace($regex, "$warning", $string);
+		}
+
+		if ($result == FALSE)
+		{
+			$regex  = "@(//?([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@";
+			$result = preg_replace($regex, "$warning", $string);
+		}
+
+		return $result;
 	}
 
 	public function toolbox($helper)
