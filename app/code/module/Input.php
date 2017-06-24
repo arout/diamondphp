@@ -40,6 +40,7 @@ class Input{
 		/**
 		 * Sanitize $_GET, where $input is the $_GET parameter
 		 * i.e. $_GET['example'] or $_GET['another_get_parameter']
+		 * Only alphanumeric, underscore, and dashes allowed
 		 */
 		if( isset($_GET[$input]) )
 			return preg_replace('/[^-a-zA-Z0-9~%.:_\-]/', '', $_GET[$input]);

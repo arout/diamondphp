@@ -28,8 +28,3 @@
 	top: 0;
 	z-index: 100;
 }
-
-.has-feedback label ~ .form-control-feedback {
-    top: 27px;
-    right: 10px !important;
-}

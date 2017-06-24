@@ -27,7 +27,8 @@ class Base_Controller {
 	public $toolbox;
 	public $view;
 
-	public function __construct($app) {
+	public function __construct($app) 
+	{
 		$this->config     = $app['config'];
 		$this->core       = $app;
 		$this->cron       = $app['cron'];
@@ -44,7 +45,8 @@ class Base_Controller {
 		$this->toolbox    = $app['toolbox'];
 	}
 
-	public final function parse() {
+	public final function parse() 
+	{
 		# Define child controller extending this class
 		$this->controller = $this->route->controller;
 		# The class name contained inside child controller

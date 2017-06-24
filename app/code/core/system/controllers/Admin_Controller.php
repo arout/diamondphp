@@ -24,6 +24,16 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 		return $this->home();
 	}
 
+	public function codegenie()
+	{
+		$data['controller_dir'] = CONTROLLERS_PATH;
+		$data['model_dir'] = MODELS_PATH;
+		$data['view_dir'] = VIEWS_PATH;
+
+		$this->template->assign('data', $data);
+		$this->template->assign('content', 'codegenie/index.tpl');
+	}
+
 	public function cms()
 	{
 		$data['session_username'] = $this->session->get('username');
@@ -32,7 +42,7 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 
 	public function home()
 	{
-		$format     = $this->toolbox('formatter');
+		$format = $this->toolbox('formatter');
 		$past_month = time() - 2592000;
 		$this->template->assign('female_members', $format->int_format($this->model('Admin')->count_where('users', 'gender', '=', 'female')));
 		$this->template->assign('male_members', $format->int_format($this->model('Admin')->count_where('users', 'gender', '=', 'male')));
@@ -43,12 +53,12 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 
 	public function login()
 	{
-		$data['a']      = rand(1, 5);
-		$data['b']      = rand(1, 5);
+		$data['a'] = rand(1, 5);
+		$data['b'] = rand(1, 5);
 		$data['answer'] = $data['a'] * $data['b'];
-		$data['route']  = $this->route->param2;
-		$data['uri']    = $_SERVER['REQUEST_URI'];
-		$login_math     = $this->toolbox('config')->setting['login_math'];
+		$data['route'] = $this->route->param2;
+		$data['uri'] = $_SERVER['REQUEST_URI'];
+		$login_math = $this->toolbox('config')->setting['login_math'];
 
 		$this->template->assign('a', $data['a']);
 		$this->template->assign('b', $data['b']);
@@ -72,7 +82,7 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 		$data['b'] = rand(1, 5);
 
 		$response = (int) $data['math'];
-		$answer   = (int) $data['math_answer'];
+		$answer = (int) $data['math_answer'];
 
 		if ($response !== $answer)
 		{
@@ -101,11 +111,11 @@ class Admin_Controller extends Hal\Controller\Base_Controller
 		if ($this->config->setting['login_math'] === FALSE || ($this->config->setting['login_math'] === TRUE && $this->login_validate_math($data) !== FALSE))
 		{
 			// Now we can check the submitted form to see if it is filled out properly
-			$check_if_valid = $this->toolbox('validate')->form($data, array(
+			$check_if_valid = $this->toolbox('validate')->form($data, [
 
 				'username' => 'required|min_len,5',
 				'password' => 'required|max_len,100|min_len,6',
-			));
+			]);
 
 			if ($check_if_valid === FALSE)
 			{

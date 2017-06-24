@@ -10,7 +10,7 @@
 	<!-- page-title end -->
 
 	<!-- blogpost start -->
-	<article class="clearfix blogpost object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+	<article class="clearfix blogpost" data-animation-effect="fadeInUpSmall" data-effect-delay="200">
 		<div class="overlay-container">
 			<h3 class="text-center">Use it: <code>$this->template->assign('content', 'example.tpl');</code></h3>
 		</div>

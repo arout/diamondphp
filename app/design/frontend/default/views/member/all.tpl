@@ -71,7 +71,7 @@
             <!-- section start -->
             <!-- ================ -->
             <div class="col-md-3" style="height: 320px; margin-bottom: 20px;">
-                <div class="box-style-1 gray-bg object-non-visible" data-animation-effect="fadeInLeft" data-effect-delay="300">
+                <div class="box-style-1 gray-bg" data-animation-effect="fadeInLeft" data-effect-delay="300">
                     <div class="overlay-container">
                         <img style="height: 180px; margin-right: auto; margin-left: auto;" src="<?= USER_PICS_URL; ?><?= $user['username']; ?>/<?= $user['pic']; ?>" alt="">
                         <a href="<?= BASE_URL; ?>member/view/<?= $user['username']; ?>" class="overlay small">

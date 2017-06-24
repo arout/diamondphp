@@ -45,7 +45,7 @@ else
 	$nav_menu = 'nav_visitor.tpl';
 }
 $app['template']->assign('slogan', $app['config']->setting('site_slogan'));
-if($app['session']->verify('username'))
+if ($app['session']->verify('username'))
 {
 	$app['template']->assign('username', $app['session']->get('username'));
 }

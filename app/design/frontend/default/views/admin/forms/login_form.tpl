@@ -46,7 +46,7 @@ You have registered on our site, but have not confirmed your account yet. Please
 {else}
 
   <section class="container">
-  <div class="main object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+  <div class="main" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
     <div class="form-block center-block">
       <h2 class="title">Login</h2>
       <hr>

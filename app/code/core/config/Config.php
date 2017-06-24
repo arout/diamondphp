@@ -149,6 +149,8 @@ class Config {
 		} else {
 			$this->setting['memcached'] = FALSE;
 		}
+		$this->setting['memcached_host'] = $env->get_global_configuration('memcached_host');
+		$this->setting['memcached_port'] = $env->get_global_configuration('memcached_port');
 
 		# Measure script execution time
 		$this->setting['execution_time'] = (microtime(true)-$_SERVER["REQUEST_TIME_FLOAT"]);

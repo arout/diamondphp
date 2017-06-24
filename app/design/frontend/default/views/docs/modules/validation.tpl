@@ -1,20 +1,10 @@
-<legend>Validation Helper</legend>
-<p>
-	The Validation helper is used to validate forms. It is accessible in the same way as other Toolbox helpers -- <code>Toolbox::helper('Validate')</code>,
-	however, it is also built into controllers, and it is recommended to access it from your controllers only. By keeping access restricted to your controllers, 
-	you can take advantage of the framework's ability to sanitize all input data by default, as well as keeping application responsibilities where they belong 
-	(for example, Views should not have to validate data, only present it; and so on).
-</p>
+{include file=$sidebar}
+{include file=$layout}
 
 <p>
-	The syntax for controller access is a bit different from other Toolbox helpers. Normally, you call a helper in your controller by using 
-	<code>$this->toolbox('name_of_helper')</code>. Since the validation helper is intended to be one component of a larger security/validation system, 
-	it is implemented a bit differently than other helpers.
-</p>
-
-<p>
-	To load the validation helper, we call it as follows: <code>$this->input->validate->form($param_one, $param_two)</code>.<br>
-	<em class="alert-danger"><i class="fa fa-exclamation-triangle"></i> Note that $param_one and $param_two are generic placeholders for demonstration purposes only. 
+	To load the validation helper, we call it as follows:<br> 
+	<code>$this->toolbox('validate')->form($param_one, $param_two)</code>.<br>
+	<em><i class="fa fa-info-circle"></i> Note that $param_one and $param_two are generic placeholders for demonstration purposes only. 
 	See below for more details.</em>
 </p>
 
@@ -23,12 +13,12 @@
 </p>
 
 <p>
-	The first parameter is the data to be validated. For example, if you are processing a $_POST form, you would use $_POST as the first parameter: 
-	<code>$this->input->validate->form($_POST, $param_two)</code>.
+	The first parameter is the data to be validated. For example, if you are processing a $_POST form, you would use $_POST as the first parameter: <br>
+	<code>$this->toolbox('validate')->form($_POST, $param_two)</code>.
 </p>
 
 <p>
-	The second parameter must be an array containing the validation rules to apply: <code>$this->input->validate->form($_POST, array(
+	The second parameter must be an array containing the validation rules to apply: <br><code>$this->toolbox('validate')->form($_POST, array(
 		
 			'input1' => '-- rules --',
 			'input2' => '-- rules --',
@@ -43,25 +33,77 @@
 	below:
 </p>
 
-<p>
-	<code>array( </code><br>
-	<code>'username' => 'required|alpha_numeric',</code><br>
-	<code>'password' => 'required|min_len,6'</code><br>
-	<code>)</code>
-</p>
+<pre>
+array( 
+	'username' => 'required|alpha_numeric',
+	'password' => 'required|min_len,6'
+)
+</pre>
 
 <p>
-So our complete validation call in our function should look like this:
+So our complete validation call in our function, with the rules, should look like this:
 </p>
 
-<p><code>
-	$this->input->validate->form($form, array(<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;	// Note that each rule is seperated by a | pipe<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;	'username' => 'required|alpha_numeric',<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;	'password' => 'required|min_len,6'<br>
-		));
-	</code>
+<pre class="prettyprint">
+$this->toolbox('validate')->form($form, 
+[
+	// Note that each rule is seperated by a '|' pipe
+	'username' => 'required|alpha_numeric',
+	'password' => 'required|min_len,6'
+]);
+</pre>
+<p>
+A complete list of all the available rules are listed below:
 </p>
+<p>
+<legend>AVAILABLE RULES</legend>
+<pre class="prettyprint"> 
+'required'       // Ensures the specified key value exists and is not empty
+'valid_email'    // Checks for a valid email address
+'max_len,n'      // Checks key value length, makes sure it is not longer than the specified length. n = length parameter.
+'min_len,n'      // Checks key value length, makes sure it is not shorter than the specified length. n = length parameter.
+'exact_len,n'    // Ensures that the key value length precisely matches the specified length. n = length parameter.
+'alpha'          // Ensure only alpha characters are present in the key value (a-z, A-Z)
+'alpha_numeric'  // Ensure only alpha-numeric characters are present in the key value (a-z, A-Z, 0-9)
+'alpha_dash'     // Ensure only alpha-numeric characters + dashes and underscores are present in the key value (a-z, A-Z, 0-9, _-)
+'numeric'        // Ensure only numeric key values
+'integer'        // Ensure only integer key values
+'boolean'        // Checks for PHP accepted boolean values, returns TRUE for "1", "true", "on" and "yes"
+'float'          // Checks for float values
+'valid_url'      // Check for valid URL or subdomain
+'url_exists'     // Check to see if the url exists and is accessible
+'valid_ip'       // Check for valid generic IP address
+'valid_ipv4'     // Check for valid IPv4 address
+'valid_ipv6'     // Check for valid IPv6 address
+'valid_cc'       // Check for a valid credit card number (Uses the MOD10 Checksum Algorithm)
+'valid_name'     // Check for a valid format human name
+'contains,n'     // Verify that a value is contained within the pre-defined value set
+'street_address' // Checks that the provided string is a likely street address. 1 number, 1 or more space, 1 or more letters
+'iban'           // Check for a valid IBAN
+</pre>
+
+</p>
+<legend>METHODS AVAILABLE</legend>
+<pre class="prettyprint">
+// Shorthand form validation
+form(array $data, array $rules) 
+// Get or set the validation rules
+validation_rules(array $rules); 
+// Get or set the filtering rules
+filter_rules(array $rules); 
+// Runs the filter and validation routines
+run(array $data); 
+// Strips and encodes unwanted characters
+xss_clean(array $data); 
+// Sanitizes data and converts strings to UTF-8 (if available)
+sanitize(array $input, $fields = NULL); 
+// Validates input data according to the provided ruleset (see example)
+validate(array $input, array $ruleset); 
+// Filters input data according to the provided filterset (see example)
+filter(array $input, array $filterset); 
+// Filters input data according to the provided filterset (see example)
+get_readable_errors($convert_to_string = false); // Returns human readable error text in an array or string
+</pre>
 
 
-<?php $this->view('support/helpers'); ?>
+{include file=$layout_close}
