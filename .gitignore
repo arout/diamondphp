@@ -1,3 +1,15 @@
 # Ignore vendor directory
 # Issue identified by rjd22 (https://github.com/arout/diamondphp/issues/2)
 vendor/
+app/code/core/system/Codegenerator.php
+app/design/frontend/default/views/sample/index.tpl
+app/design/frontend/default/views/test/index.tpl
+app/design/frontend/default/views/tests/apc.tpl
+app/design/frontend/default/views/tests/gritter.tpl
+app/design/frontend/default/views/tests/image.tpl
+app/design/frontend/default/views/tests/index.tpl
+app/design/frontend/default/views/tests/paginate.tpl
+app/design/frontend/default/views/tests/xdebug.tpl
+app/design/frontend/default/views/zzzzzzzz/index.tpl
+app/design/frontend/default/views/tests/validate.tpl
+app/design/frontend/default/views/tests/bc_title.tpl
