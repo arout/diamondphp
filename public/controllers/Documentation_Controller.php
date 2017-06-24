@@ -15,7 +15,7 @@ class Documentation_Controller extends Base_Controller
 
 	public function index()
 	{
-		$data['load'] = $this->load;
+		$data['load']  = $this->load;
 		$data['route'] = $this->route;
 
 		return $this->template->assign('content', 'docs/index.tpl');
@@ -23,9 +23,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function introduction()
 	{
-		$data['load'] = $this->load;
+		$data['load']  = $this->load;
 		$data['route'] = $this->route;
-		$page = $data['route']->param1;
+		$page          = $data['route']->param1;
 		switch ($page)
 		{
 		case "requirements":
@@ -45,9 +45,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function mvc()
 	{
-		$data['load'] = $this->load;
+		$data['load']  = $this->load;
 		$data['route'] = $this->route;
-		$page = $data['route']->param1;
+		$page          = $data['route']->param1;
 		switch ($page)
 		{
 		case "controllers":
@@ -77,9 +77,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function core()
 	{
-		$data['load'] = $this->load;
+		$data['load']  = $this->load;
 		$data['route'] = $this->route;
-		$page = $data['route']->param1;
+		$page          = $data['route']->param1;
 		switch ($page)
 		{
 		case "cron":
@@ -122,9 +122,9 @@ class Documentation_Controller extends Base_Controller
 
 	public function modules()
 	{
-		$data['load'] = $this->load;
+		$data['load']  = $this->load;
 		$data['route'] = $this->route;
-		$page = $data['route']->param1;
+		$page          = $data['route']->param1;
 		switch ($page)
 		{
 		case "breadcrumbs":
@@ -160,12 +160,22 @@ class Documentation_Controller extends Base_Controller
 			$this->template->assign('content', 'docs/modules/pagination.tpl');
 			break;
 		case "sanitize":
+			$this->template->assign('title', 'Data Sanitize Helper');
+			$this->template->assign('subtitle', 'Data Sanitization');
+			$this->template->assign('use_it', 'Use it: <code>$this->toolbox(\'sanitize\');</code>');
+			$this->template->assign('icon', 'medkit');
+			$this->template->assign('lead', "The Sanitize helper is used to enable/disable the submission of HTML tags in GET and POST data. Use the Sanitize helper in addition to the Validation helper when you want to customize the data processing of forms.");
 			$this->template->assign('content', 'docs/modules/sanitize.tpl');
 			break;
 		case "user-agent":
 			$this->template->assign('content', 'docs/modules/user-agent.tpl');
 			break;
 		case "validation":
+			$this->template->assign('title', 'Validation Helper');
+			$this->template->assign('subtitle', 'Form Validation');
+			$this->template->assign('use_it', 'Use it: <code>$this->toolbox(\'validate\');</code>');
+			$this->template->assign('icon', 'check');
+			$this->template->assign('lead', "The Validation helper is used to validate forms. It is recommended, but not required, to use this in conjuction with the JS form validation.");
 			$this->template->assign('content', 'docs/modules/validation.tpl');
 			break;
 		case "ckeditor":
@@ -193,7 +203,7 @@ class Documentation_Controller extends Base_Controller
 
 	public function faq()
 	{
-		$data['load'] = $this->load;
+		$data['load']  = $this->load;
 		$data['route'] = $this->route;
 		$this->template->assign('content', 'docs/faq.tpl');
 	}

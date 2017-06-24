@@ -10,18 +10,21 @@ class Codegenie_Controller extends Base_Controller
 	private $controller_create_url;
 	private $model_create_url;
 	private $view_create_url;
+	public $new_url;
+	public $errors        = [];
+	public $files_created = [];
 
 	public function __construct($app)
 	{
 		parent::__construct($app);
 
 		$this->controller_dir = CONTROLLERS_PATH;
-		$this->model_dir = MODELS_PATH;
-		$this->view_dir = VIEWS_PATH . '/';
+		$this->model_dir      = MODELS_PATH;
+		$this->view_dir       = VIEWS_PATH . '/';
 
 		$this->controller_create_url = $app['config']->setting('site_url') . 'codegenie/submit_controller';
-		$this->model_create_url = $app['config']->setting('site_url') . 'codegenie/submit_model';
-		$this->view_create_url = $app['config']->setting('site_url') . 'codegenie/submit_view';
+		$this->model_create_url      = $app['config']->setting('site_url') . 'codegenie/submit_model';
+		$this->view_create_url       = $app['config']->setting('site_url') . 'codegenie/submit_view';
 
 		$this->template->assign('submit_controller', $this->controller_create_url);
 		$this->template->assign('submit_model', $this->model_create_url);
@@ -47,27 +50,31 @@ class Codegenie_Controller extends Base_Controller
 	# Process form submission to create new files
 	public function submit_controller()
 	{
-		$data = $this->toolbox('sanitize')->xss($_POST);
-		$controller = ucwords($data['controller_name']) ?? '';
+		$data       = $this->toolbox('sanitize')->xss($_POST);
+		$controller = $data['controller_name'] ?? '';
+		$controller = ucwords($controller);
 
 		# Do validation check for special chars, spaces, numbers, etc first
-		// if ()
-		// {
-		// 	$this->redirect('codegenie/create_controller/error/controller-illegal-chars');
-		// 	exit;
-		// }
+		$check_if_valid = $this->toolbox('validate')->form($data, [
+			'create_controller' => 'required|max_len,75|min_len,1|alpha',
+		]);
 
-		if (empty($controller))
+		if ($check_if_valid === FALSE)
 		{
-			$this->redirect('codegenie/create_controller/error/controller-empty');
+			// Did not pass validation -- Show errors
+			$this->template->assign('errors', $check_if_valid);
+			$this->errors = $check_if_valid;
+			$this->redirect('codegenie/create_controller/error/controller');
 			exit;
 		}
 
-		$file = new \SplFileObject("{$this->controller_dir}{$controller}_Controller.php", "w");
-		$temp_assign = '';
+		$this->new_url                     = $this->config->setting('site_url') . strtolower($controller);
+		$this->files_created['controller'] = "{$this->controller_dir}{$controller}_Controller.php";
+		$file                              = new \SplFileObject("{$this->controller_dir}{$controller}_Controller.php", "w");
+		$temp_assign                       = '';
 		if ($data['create_view'] == 'on')
 		{
-			$temp_assign = '$this->template->assign("content", "index.tpl");';
+			$temp_assign = '$this->template->assign("content", "' . strtolower($controller) . '/index.tpl");';
 		}
 		$contents = <<<EOT
 <?php
@@ -79,12 +86,11 @@ class {$controller}_Controller extends Base_Controller
 	public function __construct(\$app)
 	{
 		parent::__construct(\$app);
-		{$temp_assign}
 	}
 
 	public function index()
 	{
-
+		{$temp_assign}
 	}
 
 }
@@ -97,9 +103,9 @@ EOT;
 		if ($data['create_model'] == 'on')
 		{
 			// Create model checkbox was selected; create a model
-			$model_file = new \SplFileObject("{$this->model_dir}{$controller}Model.php", "w");
-
-			$model_contents = <<<EOT
+			$this->files_created['model'] = "{$this->model_dir}{$controller}Model.php";
+			$model_file                   = new \SplFileObject("{$this->model_dir}{$controller}Model.php", "w");
+			$model_contents               = <<<EOT
 <?php
 
 class {$controller}Model extends Hal\Model\System_Model
@@ -115,23 +121,25 @@ EOT;
 
 		if ($data['create_view'] == 'on')
 		{
-			// Create view checkbox was selected; create a view
-			if (!is_dir($this->view_dir . strtolower($controller)))
-			{
-				mkdir($this->view_dir . strtolower($controller));
-			}
 			$controller = strtolower($controller);
-			$view_file = new \SplFileObject("{$this->view_dir}{$controller}/index.tpl", "w");
-
-			$view_contents = <<<EOT
-
-EOT;
+			// Create view checkbox was selected; create a view
+			if (!is_dir($this->view_dir . $controller))
+			{
+				mkdir($this->view_dir . $controller);
+			}
+			$this->files_created['view'] = "{$this->view_dir}{$controller}/index.tpl";
+			$view_file                   = new \SplFileObject("{$this->view_dir}{$controller}/index.tpl", "w");
+			$view_contents               = '';
 			//chmod($this->controller_dir . $controller . '_Controller.php', octdec(0777));
 			$view_written = $view_file->fwrite($view_contents);
 			// echo "Wrote $model_written bytes to file";
 		}
 
 		$this->template->assign('data', $data);
+		$this->template->assign('url', $this->new_url);
+		$this->template->assign('controller', $this->files_created['controller']);
+		$this->template->assign('model', $this->files_created['model']);
+		$this->template->assign('view', $this->files_created['view']);
 		$this->template->assign('content', 'codegenie/submit_controller.tpl');
 	}
 

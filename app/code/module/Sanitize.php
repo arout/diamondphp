@@ -54,36 +54,42 @@ namespace Hal\Module;
 class Sanitize
 {
 	// Used to store key/values for form sanitation
-	public $data = array();
-	public $key  = array();
+	public $data = [];
+	public $key  = [];
+	private $config;
 	private $toolbox;
 	private $allowable_tags = '';
 
-	public function __construct($toolbox)
+	public function __construct($app)
 	{
-		$this->toolbox = $toolbox;
+		$this->config  = $app['config'];
+		$this->toolbox = $app['toolbox'];
+		// Do not allow any tags by default.
+		// Config file must explicitly allow tags to be submitted
+		$this->allowable_tags = '';
+
 		// Get settings from Config.php to determine what users are allowed to send in messages
-		if ($this->toolbox('config')->setting['inbox_allow_formatting'] === TRUE)
+		if ($this->config->setting('inbox_allow_formatting') === "TRUE")
 		{
-			$this->allowable_tags = '<pre><code><strong><em><u><i><b><s><sub><small><h1><h2><h3><h4><h5><h6><p><div><blockquote><ol><ul><li>';
+			$this->allowable_tags = '<pre><code><var><samp><strong><em><u><i><b><s><sub><small><h1><h2><h3><h4><h5><h6><p><div><blockquote><ol><ul><li>';
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_image'] === TRUE)
+		if ($this->config->setting('inbox_allow_image') === "TRUE")
 		{
 			$this->allowable_tags .= '<img>';
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_link'] === TRUE)
+		if ($this->config->setting('inbox_allow_link') === "TRUE")
 		{
 			$this->allowable_tags .= '<a>';
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_email'] === FALSE)
+		if ($this->config->setting('inbox_allow_email') === "FALSE")
 		{
 			$this->allowable_tags .= $this->remove_email();
 		}
 
-		if ($this->toolbox('config')->setting['inbox_allow_url'] === FALSE)
+		if ($this->config->setting('inbox_allow_url') === "FALSE")
 		{
 			$this->allowable_tags .= $this->remove_url();
 		}
@@ -135,7 +141,6 @@ class Sanitize
 
 		if (is_array($input))
 		{
-
 			foreach ($input as $key => $value)
 			{
 
@@ -158,7 +163,7 @@ class Sanitize
 	public function allow_format($string)
 	{
 		// Allow only text formatting tags to pass through HTML filter
-		return strip_tags($string, '<pre><code><strong><em><u><i><b><s><sub><small><h1><h2><h3><h4><h5><h6><p><div><blockquote><ol><ul><li>');
+		return strip_tags($string, '<pre><code><var><samp><strong><em><u><i><b><s><sub><small><h1><h2><h3><h4><h5><h6><p><div><blockquote><ol><ul><li>');
 	}
 
 	public function allow_img($string)
@@ -186,14 +191,8 @@ class Sanitize
 	public function remove_email($string = NULL)
 	{
 		// Remove email addresses from string
-		preg_match_all("/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches);
-		$cleaned = str_replace($matches[0], '<< email adress removed >>', $matches[0]);
-		foreach ($cleaned as $clean)
-		{
-			echo $clean;
-		}
-
-		return $string;
+		// preg_match_all("/[\._a-zA-Z0-9- ]+@[\._a-zA-Z0-9- ]+/i", $string, $matches);
+		return preg_replace('/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i', '(email hidden)', $string);
 	}
 
 	public function remove_url($string = NULL)

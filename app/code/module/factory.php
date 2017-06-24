@@ -133,11 +133,6 @@ $app['base_controller'] = function ($c)
 	return new \Hal\Controller\Base_Controller($c);
 };
 
-$app['code_generator'] = function ($c)
-{
-	return new \Hal\Core\Codegenerator($c);
-};
-
 /*********************
  *   Toolbox helpers
  *********************/
@@ -192,13 +187,11 @@ $app['input'] = function ($c)
 
 $app['memcached'] = function ($c)
 {
-	$host            = $c['config']->setting('memcached_host');
-	$port            = $c['config']->setting('memcached_port');
+	$host = $c['config']->setting('memcached_host');
+	$port = $c['config']->setting('memcached_port');
 	return $instance = new \Hal\Module\Cache($host, $port);
 	return $instance->connect($host, $port);
-	if (!$connect)
-	{
-		$c['log']->save('Could not connect to Memcached');}
+	if(!$connect) {$c['log']->save('Could not connect to Memcached');}
 	// return $_s->connect();
 };
 
@@ -229,7 +222,7 @@ $app['performance'] = function ($c)
 
 $app['sanitize'] = function ($c)
 {
-	return new \Hal\Module\Sanitize($c);
+	return new \Hal\Module\Sanitize($c['toolbox']);
 };
 
 $app['search'] = function ($c)

@@ -2,6 +2,9 @@
 namespace Hal\Module;
 	
 	/*
+	 * 	FULL DOCUMENTATION:
+	 * 	https://github.com/Wixel/GUMP
+	 *
 	 * 		=====  Methods available  =====
 	 * form(array $data, array $rules) // Shorthand validation
 	 * validation_rules(array $rules); // Get or set the validation rules
@@ -1648,11 +1651,4 @@ Validate::add_validator("matches", function($field, $input, $param = NULL) {
 			'rule'  => __FUNCTION__,
 			'param' => $param
 		);
-});
-
-
-// Build Validation helper
-\Toolbox::register('Validate', function() {
-	
-	return new Validate;
 });
