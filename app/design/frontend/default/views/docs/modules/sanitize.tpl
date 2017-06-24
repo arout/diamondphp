@@ -148,4 +148,76 @@ $file_name = $this->toolbox('sanitize')->file($file);
 
 </pre>
 
+<p><hr></p>
+
+	<legend>remove_email</legend>
+<p>
+	The <code>remove_email()</code> method performs one duty: to remove email addresses from a string.
+</p>
+
+<p>
+	The parameter passed to this method must be a string. <code>remove_email( string );</code>
+</p>
+
+<p>
+	This method uses regex matching to find valid formatted email addresses, and remove them from the string. The email address is replaced with the warning text "[email address removed]".<br> 
+	<strong>To turn off the warning text, and replace the email with an empty string instead, pass a second parameter to the method with the value <code>FALSE</code></strong>.
+</p>
+
+<pre class="prettyprint">
+// The string that we want to check.
+// This could be a form field or database row, for example.
+$data = 'Contact us at abc@example.com';
+
+// Returns 'Contact us at [email address removed]'
+$email = $this->toolbox('sanitize')->remove_email($data);
+
+// If we do not want to inject the [email address removed] warning
+// we just set a second parameter with the value FALSE
+// Returns 'Contact us at '
+$email = $this->toolbox('sanitize')->remove_email($data, FALSE);
+</pre>
+<p class="alert alert-info">
+	Note that this method is not failproof. As an example, if your application has a member profile section in which users can view other profiles, and you do not want members to share their email addresses, they could still bypass this filter by simply not using a valid email format. Rather, they could submit <var>"jon doe at ya hoo dot com"</var>, or some variation thereof.
+</p>
+
+<p><hr></p>
+
+	<legend>remove_url</legend>
+<p>
+	The <code>remove_url()</code> method removes URLs from a string.
+</p>
+
+<p>
+	The parameter passed to this method must be a string. <code>remove_url( string );</code>
+</p>
+
+<p>
+	This method uses regex matching to find valid formatted URLs, and remove them from the string. The URL is replaced with the warning text "[url removed]".<br> 
+	<strong>To turn off the warning text, and replace the URL with an empty string instead, pass a second parameter to the method with the value <code>FALSE</code></strong>.
+</p>
+
+<pre class="prettyprint">
+$data = 'Visit our site at http://google.com';
+
+// Returns 'Visit our site at [url removed]'
+$strip_url = $this->toolbox('sanitize')->remove_url($data);
+
+// If we do not want to inject the [url removed] warning
+// we just set a second parameter with the value FALSE
+// Returns 'Visit our site at '
+$strip_url = $this->toolbox('sanitize')->remove_url($data, FALSE);
+</pre>
+
+<div class="alert alert-info">
+	Like the <code>remove_email</code> function above, this method is not failproof. While it will capture URLs containing http(s) protocols, www and even relative URLs, it is not possible to reliably identify plain URLs without the preceeding protocol.<br><br>
+	<ul>
+		<li>https://example.com will be filtered</li>
+		<li>http://example.com will be filtered</li>
+		<li>http://www.example.com will be filtered</li>
+		<li>//example.com will be filtered</li>
+		<li>example.com will <strong>NOT</strong> be filtered</li>
+	</ul>
+</div>
+
 {include file=$layout_close}
