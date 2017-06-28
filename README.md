@@ -32,7 +32,7 @@ to be an indispensable new tool in your web development repertoire.
 * Responsive theme included with framework
 
 ### Documentation
-Full and comprehensive documentation is currently in development, and will be available at https://diamondphp.com/documentation
+Full and comprehensive documentation is currently in development, and is packaged along with the framework. Once the framework is installed, visit http://yoursite.com/documentation.
 
 ### Installation
 1. Create an empty database. Using a tool of your choice (phpMyAdmin, SSH, etc), import the diamondphp.sql file located in the **/var/install** folder.
