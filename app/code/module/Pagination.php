@@ -53,6 +53,24 @@ class Pagination
 		$lastpage = ceil($this->total / $this->per_page);
 		$lpm1     = $lastpage - 1;
 
+		$controller = $this->route->request[0] . '/';
+		if ($this->route->request[1] == '')
+		{
+			$action = 'index';
+		}
+		else
+		{
+			$action = $this->route->request[1];
+		}
+
+		$action .= '/';
+		$goto = BASE_URL . $controller . $action;
+
+		if (strpos($goto, $controller . $action . $controller . $action))
+		{
+			$goto = str_replace($controller . $action . $controller . $action, $controller . $action, $goto);
+		}
+
 		$pagination = "";
 		if ($lastpage > 1)
 		{
@@ -68,7 +86,7 @@ class Pagination
 					}
 					else
 					{
-						$pagination .= "<li><a href=$counter>$counter</a></li>";
+						$pagination .= "<li><a href='{$goto}{$counter}'>$counter</a></li>";
 					}
 
 				}
@@ -85,18 +103,22 @@ class Pagination
 						}
 						else
 						{
-							$pagination .= "<li><a href=$counter>$counter</a></li>";
+							if (strpos($goto, "{$controller}{$action}{$controller}{$action}"))
+							{
+								str_replace("{$controller}{$action}{$controller}{$action}", $controller . $action, $goto);
+							}
+							$pagination .= "<li><a href={$goto}{$counter}>$counter</a></li>";
 						}
 
 					}
 					$pagination .= "<li class='dot'>...</li>";
-					$pagination .= "<li><a href=$lpm1>$lpm1</a></li>";
-					$pagination .= "<li><a href=$lastpage>$lastpage</a></li>";
+					$pagination .= "<li><a href={$goto}$lpm1>$lpm1</a></li>";
+					$pagination .= "<li><a href={$goto}$lastpage>$lastpage</a></li>";
 				}
 				elseif ($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
 				{
-					$pagination .= "<li><a href='1'>1</a></li>";
-					$pagination .= "<li><a href='2'>2</a></li>";
+					$pagination .= "<li><a href='{$goto}1'>1</a></li>";
+					$pagination .= "<li><a href='{$goto}2'>2</a></li>";
 					$pagination .= "<li class='dot'>...</li>";
 					for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
 					{
@@ -106,13 +128,13 @@ class Pagination
 						}
 						else
 						{
-							$pagination .= "<li><a href=$counter>$counter</a></li>";
+							$pagination .= "<li><a href={$goto}{$counter}>$counter</a></li>";
 						}
 
 					}
 					$pagination .= "<li class='dot'>..</li>";
-					$pagination .= "<li><a href=$lpm1>$lpm1</a></li>";
-					$pagination .= "<li><a href=$lastpage>$lastpage</a></li>";
+					$pagination .= "<li><a href={$goto}$lpm1>$lpm1</a></li>";
+					$pagination .= "<li><a href={$goto}$lastpage>$lastpage</a></li>";
 				}
 				else
 				{
@@ -126,7 +148,7 @@ class Pagination
 						}
 						else
 						{
-							$pagination .= "<li><a href=$counter>$counter</a></li>";
+							$pagination .= "<li><a href={$goto}{$counter}>$counter</a></li>";
 						}
 
 					}
@@ -135,8 +157,8 @@ class Pagination
 
 			if ($page < $counter - 1)
 			{
-				$pagination .= "<li><a href=$next>Next</a></li>";
-				$pagination .= "<li><a href=$lastpage>Last</a></li>";
+				$pagination .= "<li><a href={$goto}$next>Next</a></li>";
+				$pagination .= "<li><a href={$goto}$lastpage>Last</a></li>";
 			}
 			else
 			{
