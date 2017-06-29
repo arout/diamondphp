@@ -33,8 +33,6 @@ class Geoip extends \GeoIp2\Database\Reader
 		getenv('HTTP_FORWARDED_FOR') ?:
 		getenv('HTTP_FORWARDED') ?:
 		getenv('REMOTE_ADDR');
-		# Testing Puroses Only: $ip = '66.87.83.245';
-		$ip = '66.87.83.245';
 		$this->ip_address = $ip;
 
 		$this->record = $this->city($ip);
