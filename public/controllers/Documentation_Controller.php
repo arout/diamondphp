@@ -130,15 +130,19 @@ class Documentation_Controller extends Base_Controller
 		case "breadcrumbs":
 			$this->template->assign('content', 'docs/modules/breadcrumbs.tpl');
 			break;
+
 		case "formatter":
 			$this->template->assign('content', 'docs/modules/formatter.tpl');
 			break;
+
 		case "friends":
 			$this->template->assign('content', 'docs/modules/friends.tpl');
 			break;
+
 		case "geoip":
 			$this->template->assign('content', 'docs/modules/geoip.tpl');
 			break;
+
 		case "hash":
 			$this->template->assign('title', 'Encryption Helper');
 			$this->template->assign('subtitle', 'Password Encryption');
@@ -147,18 +151,28 @@ class Documentation_Controller extends Base_Controller
 			$this->template->assign('lead', "The Encryption helper uses PHP's built-in password_hash() function to encrypt and salt important data.");
 			$this->template->assign('content', 'docs/modules/hash.tpl');
 			break;
+
 		case "images":
 			$this->template->assign('content', 'docs/modules/images.tpl');
 			break;
+
 		case "messenger":
 			$this->template->assign('content', 'docs/modules/messenger.tpl');
 			break;
+
 		case "titles":
 			$this->template->assign('content', 'docs/modules/titles.tpl');
 			break;
+
 		case "pagination":
+			$this->template->assign('title', 'Pagination Helper');
+			$this->template->assign('subtitle', 'Paginating Data');
+			$this->template->assign('use_it', 'Use it: <code>$this->toolbox(\'pagination\');</code>');
+			$this->template->assign('icon', 'list-ol');
+			$this->template->assign('lead', "Paginate your data easily with the Pagination helper.");
 			$this->template->assign('content', 'docs/modules/pagination.tpl');
 			break;
+
 		case "sanitize":
 			$this->template->assign('title', 'Data Sanitize Helper');
 			$this->template->assign('subtitle', 'Data Sanitization');
@@ -167,9 +181,11 @@ class Documentation_Controller extends Base_Controller
 			$this->template->assign('lead', "The Sanitize helper is used to enable/disable the submission of HTML tags in GET and POST data. Use the Sanitize helper in addition to the Validation helper when you want to customize the data processing of forms.");
 			$this->template->assign('content', 'docs/modules/sanitize.tpl');
 			break;
+
 		case "user-agent":
 			$this->template->assign('content', 'docs/modules/user-agent.tpl');
 			break;
+
 		case "validation":
 			$this->template->assign('title', 'Validation Helper');
 			$this->template->assign('subtitle', 'Form Validation');
@@ -178,15 +194,19 @@ class Documentation_Controller extends Base_Controller
 			$this->template->assign('lead', "The Validation helper is used to validate forms. It is recommended, but not required, to use this in conjuction with the JS form validation.");
 			$this->template->assign('content', 'docs/modules/validation.tpl');
 			break;
+
 		case "ckeditor":
 			$this->template->assign('content', 'docs/modules/ckeditor.tpl');
 			break;
+
 		case "gritter":
 			$this->template->assign('content', 'docs/modules/gritter.tpl');
 			break;
+
 		case "mobile":
 			$this->template->assign('content', 'docs/modules/mobile.tpl');
 			break;
+
 		case "phpword":
 			$this->template->assign('content', 'docs/modules/phpword.tpl');
 			break;

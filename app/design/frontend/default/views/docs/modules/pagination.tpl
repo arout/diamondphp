@@ -1,21 +1,12 @@
-<div class="white-row styleSecondBackground">
-    
-    <div class="row">
-        <div class="col-xs-12 text-center"><h1><i class="featured-icon fa fa-list-ol"></i> Pagination Helper</h1></div>
-    </div>
-        <div class="clear"></div>
-        <p class="text-center">
-	        Paginate your data easily with the Pagination helper
-        </p>
-</div>
-
-<h1 class="text-center">Use it: <code>$this->toolbox('pagination')</code></h1>
+{include file=$sidebar}
+{include file=$layout}
+    {nocache}
 <div class="white-row">
 
 <p>
-Paginating data is to break up a large data set into small, manageable chunks. For example, if you have a hundred records to display, rather than displaying all 
-those records onto one page, you would instead break it up into five different pages, each containing 20 records. Each page would then contain links to the next 
-(or previous page). Below is an example of how the pagination links are commonly displayed:
+	Paginating data is to break up a large data set into small, manageable chunks. For example, if you have a hundred records to display, rather than displaying all 
+	those records onto one page, you would instead break it up into five different pages, each containing 20 records. Each page would then contain links to the next 
+	(or previous page). Below is an example of how the pagination links are commonly displayed:
 </p>
 
 <ul>
@@ -56,7 +47,7 @@ Next, you will need to setup a few configuration options.
 
 	<h4 class="bg10">$url_segment</h4>
 	The URL segment used to track the current page number. 
-	Use the <a href="<?= BASE_URL; ?>support/docs/router">router class</a> to identify the URL segment.<br><br>
+	Use the <a href="{$smarty.const.BASE_URL}support/docs/router">router class</a> to identify the URL segment.<br><br>
 
 	<div class="alert alert-warning"> 
 	Note that when using the router url segments, the first segment, <strong>$this->route->request[0]</strong> is always reserved for the controller, 
@@ -117,61 +108,55 @@ After the configuration options are set, they are passed to the Pagination helpe
 
 <legend>Setting up pagination</legend>
 
-<em>Controller file</em>
+<em><strong>Controller file</strong></em>
 
-<pre>
+<pre class="prettyprint">
 $pager = $this->toolbox("pagination");
-        
+
 $url_segment = (int) (empty($this->route->request[2]) ? 1 : $this->route->request[2]);
-
-$per_page = 10;
-
-# Optional
+$per_page    = 20;
+# Optional; send to paginate()
 $adjacent_links = 3;
-        
-# Table being queried
-$table = "zips";
-		
-$sql = "SELECT DISTINCT citycode, statecode FROM {$table} ORDER BY citycode ASC";
 
-$pager->config( $sql, $url_segment, $per_page );
+# Table being queried; needed to count results
+$table = "zips";
+
+//count records
+$sql = "SELECT DISTINCT citycode, statecode FROM $table ORDER BY citycode ASC";
+$pager->config($sql, $url_segment, $per_page);
+
+$query = $this->db->prepare("$sql LIMIT $pager->startpoint, $per_page");
+$query->execute();
+
+foreach ($query as $row)
+{
+	// Send results to view file
+	$data['location'][] = $row;
+}
+
+$data['pagination_links'] = $pager->paginate($adjacent_links);
+
+$this->template->assign('data', $data);
+$this->template->assign('content', 'geo/index.tpl');
 </pre>
 
-<div class="console">
+<p>&nbsp;</p>
 
-    // An example query to be paginated<br>
-    $query = $this->db->prepare("SELECT citycode, statecode FROM {$table} LIMIT {$startpoint}, {$per_page}");<br>
-    // Execute the query<br>
-    $query->execute();<br><br>
-    // Store the query results in an array named $data['location'][]<br>
-    // which will be passed to the view file for display<br>
-    foreach( $query as $row ) {<br>
-	    // Note the empty brackets []<br>
-	    $data['location'][] = $row;<br>
-    }<br><br>
-    // Create the pagination links. Store it to the $data array so that we can pass it to the view as well<br>
-    $data['pagination'] = $p->paginate( $table, $where = null, $where_values = null, $per_page, $page );<br><br>
-    // Fetch the view file, and pass $data array<br>
-	$this->view('geo/index', $data);<br>
+<em><strong>View file</strong></em>
+<pre class="prettyprint">
+/**
+ &nbsp;* $data['location'] is the array created by the query loop in the controller file
+ &nbsp;* $data['pagination'] is the pagination links, also created in the controller file
+ &nbsp;*/
+&#123;foreach $data.location as $city}:
+	 &#123;$city.citycode}, &#123;$city.statecode} &lt;br>
+&#123;/foreach}
 
-</div>
-</p>
-
-<p>
-<em>View file</em>
-<div class="console">
-/**<br>
- &nbsp;* $data['location'] is the array created by the query loop in the controller file<br>
- &nbsp;* $data['pagination'] is the pagination links, also created in the controller file<br>
- &nbsp;*/<br><br>
- &lt;?php foreach( $data['location'] as $city ): ?><br><br>
-
- &lt;?= $city['citycode'] . ', ' . $city['statecode'].'&lt;br>'; ?><br><br>
-
- &lt;?php endforeach; ?><br><br>
-
- &lt;?= $data['pagination']; ?>
-</div>
+&#123;$data.pagination}
+</pre>
 </p>
 
 </div>
+{/nocache}
+
+{include file=$layout_close}
