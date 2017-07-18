@@ -136,7 +136,7 @@
         Assuming you have access to those directories, simply follow the below steps:<br><br>
         1. Move all of the following files and folders up one level from your web root:<br>
         <code>app/, public/, vendor/ and var/</code> folders<br>
-        <code>composer.json and composer.lock</code> files<br><br>
+        <code>composer.json, composer.lock and .env</code> files<br><br>
         2. After moving the above files and folders, go back to your web root, and open up the front controller file (index.php)<br>
         &nbsp;&nbsp;&nbsp;- Find the following constant on line 19: <code>define('BASE_PATH', $dir . '/');</code><br>
         &nbsp;&nbsp;&nbsp;- Change it to the following: <code>define('BASE_PATH', $dir . '/../');</code><br><br>
@@ -154,8 +154,10 @@
         <code>RewriteCond {literal}%{REQUEST_URI}{/literal} !^/web/</code><br>
         <code>RewriteRule ^(.*)$ /web/$1 [L,R=301]</code><br>
         <em><small>* change /web/ to your new folder name if different</small></em>
-
     </p>
+	<p>
+		Note that this method changes the location from which the application is served via <code>.htaccess</code>; however, all of your assets are still physically located in the server document root. This provides some additional security over a vanilla installation, but is not as secure as the method above using the front controller. Use this method only if you do not have access to directories above the web root.
+	</p>
     <hr>
     <p>
         <blockquote id="template"><strong>Template Name</strong> <small><code>$this->setting['template_name']</code> (line 87)</small></blockquote>
