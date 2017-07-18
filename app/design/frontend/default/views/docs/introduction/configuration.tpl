@@ -138,7 +138,7 @@
         <code>app/, public/, vendor/ and var/</code> folders<br>
         <code>composer.json, composer.lock and .env</code> files<br><br>
         2. After moving the above files and folders, go back to your web root, and open up the front controller file (index.php)<br>
-        &nbsp;&nbsp;&nbsp;- Find the following constant on line 19: <code>define('BASE_PATH', $dir . '/');</code><br>
+        &nbsp;&nbsp;&nbsp;- Find the following constant on or around line 43: <code>define('BASE_PATH', $dir . '/');</code><br>
         &nbsp;&nbsp;&nbsp;- Change it to the following: <code>define('BASE_PATH', $dir . '/../');</code><br><br>
         That's it, you're done!
         <br><br>
