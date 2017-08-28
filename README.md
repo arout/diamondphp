@@ -3,7 +3,7 @@ tDIAMONDPHP
 Diamond PHP is a fully featured web development framework built for PHP 7 and offers extreme performance, a modular architecture, elegant syntax and an easy to use philosophy.
 
 ### PROJECT STATUS
-Diamond PHP is currently in **BETA** stages of development. As such, it is not recommended to use the framework in a production environment yet. Do not use the current Beta version in a live environment, there are still bugs needing fixed and a few more features to be added.
+Diamond PHP is currently in **BETA** stages of development. As such, it is not recommended to use the framework in a production environment yet - there are still bugs needing fixed and a few more features to be added.
 A production-ready version 1.0.0 is scheduled for public release on September 30, 2017.
 
 ### PHILOSOPHY & GOALS
