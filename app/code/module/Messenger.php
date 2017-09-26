@@ -30,9 +30,9 @@ class Messenger
 	{
 		// Display total number of messages in inbox
 		$mail = $this->db->prepare("SELECT COUNT(rid) as count FROM messenger_inbox WHERE rid = ? AND flag_delete = 0");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
-		));
+		]);
 		$count = $mail->fetch(\PDO::FETCH_ASSOC);
 		if ($mail)
 		{
@@ -49,9 +49,9 @@ class Messenger
 	{
 		// Display number of unread messages
 		$mail = $this->db->prepare("SELECT COUNT(rid) as count FROM messenger_inbox WHERE rid = ? AND flag_read = 0 AND flag_delete = 0");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
-		));
+		]);
 		$count = $mail->fetch(\PDO::FETCH_ASSOC);
 		if ($mail)
 		{
@@ -74,10 +74,10 @@ class Messenger
 		/**
 		 * Flag message as read
 		 */
-		$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_read = 1 WHERE mid = ? ");
-		$read->execute(array(
+		$read = $this->db->prepare("UPDATE messenger_inbox SET flag_read = 1 WHERE mid = ? ");
+		$read->execute([
 			$mid,
-		));
+		]);
 		return $read;
 	}
 
@@ -87,9 +87,9 @@ class Messenger
 		 * Flag message as unread
 		 */
 		$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_read = 0 WHERE mid = ? ");
-		$read->execute(array(
+		$read->execute([
 			$mid,
-		));
+		]);
 		return $read;
 	}
 
@@ -99,9 +99,9 @@ class Messenger
 		 * Flag message as deleted
 		 */
 		$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_delete = 1 WHERE mid = ? ");
-		$read->execute(array(
+		$read->execute([
 			$mid,
-		));
+		]);
 		return $read;
 	}
 
@@ -115,24 +115,24 @@ class Messenger
 		 */
 		$mid   = str_replace('star_', '', $mid);
 		$check = $this->db->prepare(" SELECT flag_star FROM messenger_inbox WHERE mid = ? ");
-		$check->execute(array(
+		$check->execute([
 			$mid,
-		));
+		]);
 		foreach ($check as $c)
 		{
 			if ($c['flag_star'] == 'star_1')
 			{
 				$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_star = 'star_0' WHERE mid = ? ");
-				$read->execute(array(
+				$read->execute([
 					$mid,
-				));
+				]);
 			}
 			else
 			{
 				$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_star = 'star_1' WHERE mid = ? ");
-				$read->execute(array(
+				$read->execute([
 					$mid,
-				));
+				]);
 			}
 			return $read;
 		}
@@ -145,24 +145,24 @@ class Messenger
 		 */
 		$mid   = str_replace('read_', '', $_POST['mid']);
 		$check = $this->db->prepare(" SELECT flag_read FROM messenger_inbox WHERE mid = ? ");
-		$check->execute(array(
+		$check->execute([
 			$mid,
-		));
+		]);
 		foreach ($check as $c)
 		{
 			if ($c['flag_read'] == '1')
 			{
 				$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_read = 0 WHERE mid = ? ");
-				$read->execute(array(
+				$read->execute([
 					$mid,
-				));
+				]);
 			}
 			else
 			{
 				$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_read = 1 WHERE mid = ? ");
-				$read->execute(array(
+				$read->execute([
 					$mid,
-				));
+				]);
 			}
 			return $read;
 		}
@@ -186,19 +186,19 @@ class Messenger
 		$mail = $this->db->prepare("
                 SELECT mid, sender, sid, member_id, recipient, rid, subject, message, date, username,  pic, dob, city, state, flag_read, flag_delete, flag_star
                 FROM messenger_inbox
-                LEFT JOIN users
+                JOIN users
                 ON messenger_inbox.sid = users.member_id
                 WHERE rid = ? AND mid = ?
             ");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
 			$mid,
-		));
+		]);
 		// Update inbox to indicate message has been read
 		$read = $this->db->prepare(" UPDATE messenger_inbox SET flag_read = 1 WHERE mid = ? ");
-		$read->execute(array(
+		$read->execute([
 			$mid,
-		));
+		]);
 		if ($mail)
 		{
 			return $mail;
@@ -221,9 +221,9 @@ class Messenger
                 WHERE rid = ? AND flag_delete = 0
                 ORDER BY date DESC
             ");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
-		));
+		]);
 		if ($mail->rowCount() >= 1)
 		{
 			return $mail;
@@ -242,9 +242,9 @@ class Messenger
 		// since the latter two may change, but member id
 		// will always point to the same user since it never changes
 		$id = $this->db->prepare("SELECT member_id FROM `users` WHERE username = ?");
-		$id->execute(array(
+		$id->execute([
 			$user,
-		));
+		]);
 		if (!$id)
 		{
 			return FALSE;
@@ -256,12 +256,12 @@ class Messenger
 		}
 
 		$mail = $this->db->prepare("SELECT * FROM `messenger_inbox` WHERE (sid = ? AND rid = ?) OR (sid = ? AND rid = ?) GROUP BY subject ORDER BY date DESC");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
 			$userid,
 			$userid,
 			$this->user,
-		));
+		]);
 		if ($mail->rowCount() < 1)
 		{
 			return FALSE;
@@ -274,9 +274,9 @@ class Messenger
 	{
 		// Display sent messages
 		$mail = $this->db->prepare("SELECT * FROM `messenger_sent_messages` WHERE sent_by = ?");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
-		));
+		]);
 		$count = $mail->fetch(\PDO::FETCH_ASSOC);
 		if ($mail)
 		{
@@ -299,9 +299,9 @@ class Messenger
             ON messenger_inbox.sid = users.member_id
             WHERE rid = ? AND flag_read = 0 AND flag_delete = 0
             ORDER BY date DESC");
-		$mail->execute(array(
+		$mail->execute([
 			$this->user,
-		));
+		]);
 		return $mail;
 	}
 
@@ -326,7 +326,7 @@ class Messenger
             INSERT INTO messenger_inbox(`mid`, `sender`, `sid`, `recipient`, `rid`, `subject`, `message`, `date`)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ");
-		$send->execute(array(
+		$send->execute([
 			$mid,
 			$this->admin_name,
 			$sid,
@@ -335,7 +335,7 @@ class Messenger
 			$subject,
 			$message,
 			time(),
-		));
+		]);
 		#if( ! $send ) return FALSE; else return TRUE;
 	}
 
@@ -353,9 +353,9 @@ class Messenger
 		if (!is_numeric($sendto))
 		{
 			$id = $this->db->prepare("SELECT member_id FROM users WHERE username = ?");
-			$id->execute(array(
+			$id->execute([
 				$sendto,
-			));
+			]);
 			// Kill processing now if member id not returned
 			if (!$id)
 			{
@@ -402,7 +402,7 @@ class Messenger
             INSERT INTO messenger_inbox(`mid`, `sender`, `sid`, `recipient`, `rid`, `subject`, `message`, `date`)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ");
-		$send->execute(array(
+		$send->execute([
 			$mid,
 			$sender,
 			$sid,
@@ -411,7 +411,7 @@ class Messenger
 			$subject,
 			$message,
 			time(),
-		));
+		]);
 		if (!$send)
 		{
 			return FALSE;

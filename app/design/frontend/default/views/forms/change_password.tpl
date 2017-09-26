@@ -1,5 +1,4 @@
 <div class="white-row">
-{$status}
 
 <legend>Change password</legend>
         

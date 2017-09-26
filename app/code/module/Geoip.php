@@ -33,6 +33,11 @@ class Geoip extends \GeoIp2\Database\Reader
 		getenv('HTTP_FORWARDED_FOR') ?:
 		getenv('HTTP_FORWARDED') ?:
 		getenv('REMOTE_ADDR');
+
+		if (gethostname() == 'localhost.localdomain' || gethostname() == 'DESKTOP-JQEEVE9')
+		{
+			$ip = '73.187.22.165';
+		}
 		$this->ip_address = $ip;
 
 		$this->record = $this->city($ip);
@@ -49,7 +54,7 @@ class Geoip extends \GeoIp2\Database\Reader
 		// Two letter abbreviation for country
 		$this->country_abbr = $record->country->isoCode;
 		// Latitude and longitude
-		$this->latitude = $this->record->location->latitude;
+		$this->latitude  = $this->record->location->latitude;
 		$this->longitude = $this->record->location->longitude;
 	}
 
@@ -61,11 +66,11 @@ class Geoip extends \GeoIp2\Database\Reader
 	public function distance($lat1, $lon1, $lat2, $lon2, $unit = "M")
 	{
 		$theta = $lon1 - $lon2;
-		$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-		$dist = acos($dist);
-		$dist = rad2deg($dist);
+		$dist  = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+		$dist  = acos($dist);
+		$dist  = rad2deg($dist);
 		$miles = $dist * 60 * 1.1515;
-		$unit = strtoupper($unit);
+		$unit  = strtoupper($unit);
 
 		if ($unit == "K")
 		{
@@ -94,15 +99,19 @@ class Geoip extends \GeoIp2\Database\Reader
 	{
 		# This function will try to find all cities within a given radius based on
 		# the current visitor's location
-		$q = "SELECT DISTINCT citycode, statecode, code,
+		$query = "SELECT DISTINCT citycode, statecode, code,
 		(
 			3959 * acos( cos( radians( ? ) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians( ? ) ) + sin( radians( ? ) ) * sin( radians( latitude ) ) )
 		)
-		AS distance FROM zips HAVING distance <= $miles ORDER BY distance ASC;";
-		$r = $this->db->prepare($q);
-		$r->execute([$this->latitude, $this->longitude, $this->latitude]);
+		AS distance
+		FROM zips
+		HAVING distance <= $milesORDER BY distance ASC;
+";
 
-		return $r;
+		$cities_in_radius = $this->db->prepare($query);
+		$cities_in_radius->execute([$this->latitude, $this->longitude, $this->latitude]);
+
+		return $cities_in_radius;
 	}
 
 	public function cities($zip)

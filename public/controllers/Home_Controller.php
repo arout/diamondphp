@@ -30,6 +30,7 @@ class Home_Controller extends Base_Controller {
 		$data['pagination_links'] = $data['pager']->paginate(3);
 		$data['profiles']         = $this->model('Member')->select($limit);
 		$this->template->assign('data', $data);
+		$this->template->assign('slider', 'homepage.tpl');
 		$this->template->assign('content', 'home/index.tpl');
 
 	}

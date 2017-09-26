@@ -1,37 +1,28 @@
-<div class="white-row">
+{nocache}
+
+<div>
 	
-	<?php foreach( $data['profile'] as $profile): ?>
+	{foreach $profile_data as $profile}
         
-            <legend>Editing <?= $profile['username']; ?>'s profile</legend>
-            <small>To change your password, <a href="<?= BASE_URL; ?>member/change_password">go here</a></small>
+            <legend>
+                <h3>Editing {$profile.username}'s profile 
+                    <small class="pull-right">
+                        <a href="{$smarty.const.BASE_URL}member/change_password" class="btn btn-danger btn-sm">Change Password</a>
+                    </small>
+                </h3>
+            </legend>
             
-            <form id="avatar_edit" class="white-row" method="post" action="" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-xs-11">
-                            <label>Profile Image</label>
-                            <input type="file" name="image" id="image" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="submit" name="edit_avatar" value="Update Image" class="btn btn-block btn-success pull-right push-bottom" data-loading-text="Loading...">
-                    </div>
-                </div>
-            </form>
-            <hr>
 
-            <?php if( isset( $data['saved'] ) ) echo $data['saved']; ?>
+            {include file="../forms/file_upload.tpl"}
 
-            <form id="avatar_edit" class="white-row" method="post" action="">
+
+            <form id="info_edit" method="post" action="">
 
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>First Name</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control" value="<?= $profile['first_name'] ?>" placeholder="First Name" >
+                        <input type="text" name="first_name" id="first_name" class="form-control" value="{$profile['first_name']}" placeholder="First Name" >
                     </div>
                 </div>
             </div>
@@ -39,7 +30,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control" value="<?= $profile['last_name'] ?>" placeholder="Last Name" >
+                        <input type="text" name="last_name" id="last_name" class="form-control" value="{$profile['last_name']}" placeholder="Last Name" >
                     </div>
                 </div>
             </div>
@@ -47,7 +38,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Username</label>
-                        <input type="text" name="username" id="username" class="form-control" value="<?= $profile['username'] ?>" placeholder="Username" >
+                        <input type="text" name="username" id="username" class="form-control" value="{$profile['username']}" placeholder="Username" >
                     </div>
                 </div>
             </div>
@@ -56,7 +47,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="<?= $profile['email'] ?>" placeholder="Email address" >
+                        <input type="email" name="email" id="email" class="form-control" value="{$profile['email']}" placeholder="Email address" >
                     </div>
                 </div>
             </div>
@@ -64,7 +55,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Date of birth</label>
-                        <input type="text" name="dob" id="dob" class="form-control datepicker" value="<?= $profile['dob'] ?>" placeholder="Enter DOB YYYY-MM-DD" >
+                        <input type="text" name="dob" id="dob" class="form-control datepicker" value="{$profile['dob']}" placeholder="Enter DOB YYYY-MM-DD" >
                     </div>
                 </div>
             </div>
@@ -72,7 +63,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Mobile Phone Number</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" value="<?= $profile['phone'] ?>" placeholder="Include area code" >
+                        <input type="tel" name="phone" id="phone" class="form-control" value="{$profile['phone']}" placeholder="Include area code" >
                     </div>
                 </div>
             </div>
@@ -80,7 +71,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Headline</label>
-                        <input type="text" name="headline" id="headline" class="form-control" value="<?= $profile['headline'] ?>" placeholder="Headline" >
+                        <input type="text" name="headline" id="headline" class="form-control" value="{$profile['headline']}" placeholder="Headline" >
                     </div>
                 </div>
             </div>
@@ -88,7 +79,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>About Me</label>
-                        <textarea name="about_me" id="about_me" class="form-control"><?= $profile['about_me']; ?></textarea>
+                        <textarea name="about_me" id="about_me" class="form-control">{$profile['about_me']}</textarea>
                     </div>
                 </div>
             </div>
@@ -96,7 +87,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Facebook Page</label>
-                        <input type="url" name="facebook_page" id="facebook_page" class="form-control" value="<?= $profile['facebook_page']; ?>">
+                        <input type="url" name="facebook_page" id="facebook_page" class="form-control" value="{$profile['facebook_page']}">
                     </div>
                 </div>
             </div>
@@ -104,7 +95,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Personal Website / URL</label>
-                        <input type="url" name="personal_website" id="personal_website" class="form-control" value="<?= $profile['personal_website']; ?>">
+                        <input type="url" name="personal_website" id="personal_website" class="form-control" value="{$profile['personal_website']}">
                     </div>
                 </div>
             </div>
@@ -112,7 +103,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label>Zip Code</label>
-                        <input type="number" name="zip" id="zip" class="form-control" maxlength="5" value="<?= $profile['zip']; ?>" placeholder="Zip Code" >
+                        <input type="number" name="zip" id="zip" class="form-control" maxlength="5" value="{$profile['zip']}" placeholder="Zip Code" >
                     </div>
                 </div>
             </div>
@@ -122,7 +113,7 @@
                         <label>City <small><em>(must change zip code first)</em></small></label>
                         <br>
                         <select name="city" id="city" class="form-control">
-                            <option value="<?= $profile['city'] ?>"><?= $profile['city'] ?></option>
+                            <option value="{$profile['city']}">{$profile['city']}</option>
                         </select>
                     </div>
                 </div>
@@ -133,7 +124,7 @@
                         <label>State <small><em>(must change zip code first)</em></small></label>
                         <br>
                         <select name="state" id="state" class="form-control">
-                            <option value="<?= $profile['state'] ?>"><?= $profile['state'] ?></option>
+                            <option value="{$profile['state']}">{$profile['state']}</option>
                         </select>
                     </div>
                 </div>
@@ -146,12 +137,14 @@
             </div>
         </form>
         
-	<?php endforeach; ?>
+	{/foreach}
 
 </div>
+
 {literal}
+
 <script>
-{* City and state autofill *}
+
 $(document).ready(function()
 {
     $("#zip").change(function()
@@ -159,7 +152,8 @@ $(document).ready(function()
         var zip = $(this).val();
         $.ajax(
         {
-            url:"<?= BASE_URL; ?>block/get_city/" + zip,
+
+            url: base_url() + "/block/get_city/" + zip,
             type:"post",
             data:{zip:$(this).val()},
             success:function(response)
@@ -177,7 +171,7 @@ $(document).ready(function()
         var zip = $(this).val();
         $.ajax(
         {
-            url:"<?= BASE_URL; ?>block/get_state/" + zip,
+            url: base_url() + "/block/get_state/" + zip,
             type:"post",
             data:{zip:$(this).val()},
             success:function(response)
@@ -187,7 +181,7 @@ $(document).ready(function()
         });
     });
 });
-{* End city and state autofill *}
+
 </script>
 
 <script type="text/javascript">
@@ -377,3 +371,4 @@ $(document).ready(function() {
 });
 </script>
 {/literal}
+{/nocache}

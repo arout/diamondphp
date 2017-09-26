@@ -91,7 +91,7 @@ class MemberModel extends Hal\Model\System_Model
 		# Fetch member ID
 		$username = $this->toolbox('sanitize')->xss($username);
 		$r        = $this->db->prepare("SELECT member_id FROM users WHERE username = ?");
-		$r->execute(array($username));
+		$r->execute([$username]);
 		if ($r)
 		{
 			foreach ($r as $r)
@@ -108,7 +108,7 @@ class MemberModel extends Hal\Model\System_Model
 		# Check if the submitted email already exists; reurns true/false
 		$email = $this->toolbox('sanitize')->xss($email);
 		$r     = $this->db->prepare("SELECT email FROM users WHERE email = ?");
-		$r->execute(array($email));
+		$r->execute([$email]);
 		if ($r)
 		{
 			foreach ($r as $r)
@@ -125,7 +125,7 @@ class MemberModel extends Hal\Model\System_Model
 		# Fetch username
 		$id = (int) $this->toolbox('sanitize')->xss($memberid);
 		$r  = $this->db->prepare("SELECT username FROM users WHERE member_id = ?");
-		$r->execute(array($id));
+		$r->execute([$id]);
 		foreach ($r as $r)
 		{
 			return $r['username'];
@@ -137,10 +137,14 @@ class MemberModel extends Hal\Model\System_Model
 	{
 		# Get user avatar
 		$r = $this->db->prepare("SELECT pic FROM users WHERE member_id = ?");
-		$r->execute(array($id));
-		if ($r->rowCount() >= 1)
+		$r->execute([$id]);
+		if ($r->rowCount())
 		{
-			return $r;
+			foreach ($r as $r)
+			{
+				return $r['pic'];
+			}
+
 		}
 		else
 		{
@@ -153,7 +157,7 @@ class MemberModel extends Hal\Model\System_Model
 	{
 		# Get user image gallery
 		$r = $this->db->prepare("SELECT * FROM images WHERE owner_id = ?");
-		$r->execute(array($id));
+		$r->execute([$id]);
 		if ($r->rowCount() >= 1)
 		{
 			return $r;
@@ -170,7 +174,7 @@ class MemberModel extends Hal\Model\System_Model
 		# Get profile data for selected user
 		# Used for viewing profiles
 		$r = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-		$r->execute(array($user));
+		$r->execute([$user]);
 		return $r;
 	}
 
@@ -189,7 +193,7 @@ class MemberModel extends Hal\Model\System_Model
 				SET username = ?, first_name = ?, last_name = ?, email = ?, dob = ?, about_me = ?, personal_website = ?, facebook_page = ?, phone = ?, city = ?, state = ?, zip = ?
 				WHERE username = ?
 		    ");
-			$r->execute(array($form['username'], $form['first_name'], $form['last_name'], $form['email'], $form['dob'], $form['about_me'], $form['personal_website'], $form['facebook_page'], $phone, $form['city'], $form['state'], $form['zip'], $form['username']));
+			$r->execute([$form['username'], $form['first_name'], $form['last_name'], $form['email'], $form['dob'], $form['about_me'], $form['personal_website'], $form['facebook_page'], $phone, $form['city'], $form['state'], $form['zip'], $form['username']]);
 			return $r;
 		}
 	}
@@ -207,7 +211,7 @@ class MemberModel extends Hal\Model\System_Model
 				WHERE username = ?
 		    ");
 
-			$r->execute(array($this->session->get('username'), $form['image']));
+			$r->execute([$this->session->get('username'), $form['image']]);
 			return $r;
 		}
 	}
@@ -237,6 +241,22 @@ class MemberModel extends Hal\Model\System_Model
 		return FALSE;
 	}
 
+	public function search_prefs_completed($id)
+	{
+		$sql   = "SELECT search_prefs_completed FROM users WHERE member_id = ?";
+		$query = $this->db->prepare($sql);
+		$query->execute([$id]);
+
+		foreach ($query as $value)
+		{
+			if ($value['search_prefs_completed'] === 0)
+			{
+				return FALSE;
+			}
+			return TRUE;
+		}
+	}
+
 	public function search_filters($post)
 	{
 		# POST data already sanitized in controller
@@ -246,7 +266,7 @@ class MemberModel extends Hal\Model\System_Model
 		$distance = $post['distance'];
 
 		$r = $this->db->prepare("SELECT member_id FROM users WHERE username = ?");
-		$r->execute(array($username));
+		$r->execute([$username]);
 		if ($r)
 		{
 			foreach ($r as $r)
@@ -264,7 +284,7 @@ class MemberModel extends Hal\Model\System_Model
 		$query = "SELECT * FROM `users` WHERE `email` = ?";
 
 		$row = $this->db->prepare($query);
-		$row->execute(array($form['email']));
+		$row->execute([$form['email']]);
 
 		foreach ($row as $result)
 		{
@@ -309,7 +329,7 @@ class MemberModel extends Hal\Model\System_Model
                 	SET last_login_ip = ?, latitude = ?, longitude = ?, last_login_time = ?
                 	WHERE member_id = ?
                 ");
-				$update->execute(array($ip, $lat, $long, time(), $result['member_id']));
+				$update->execute([$ip, $lat, $long, time(), $result['member_id']]);
 				return $result;
 			}
 			else
@@ -368,7 +388,7 @@ class MemberModel extends Hal\Model\System_Model
 		$password = $this->toolbox('hash')->encrypt($password);
 		$q        = "UPDATE users SET password = ? WHERE email = ?";
 		$r        = $this->db->prepare($q);
-		$r->execute(array($password, $email));
+		$r->execute([$password, $email]);
 	}
 
 }

@@ -1,7 +1,6 @@
 <?php
 namespace Web\Controller;
 use Hal\Controller\Base_Controller;
-use \R as R;
 
 class Login_Controller extends Base_Controller
 {
@@ -33,13 +32,13 @@ class Login_Controller extends Base_Controller
 		// R::store($user);
 
 		// $users = R::batch('user', array(1, 2, 3));
-		$users = R::find('user', 'age = ?',
-			array('NULL')
-		);
-		foreach ($users as $user)
-		{
-			R::wipe($user);
-		}
+		// $users = R::find('user', 'age = ?',
+		// 	['NULL']
+		// );
+		// foreach ($users as $user)
+		// {
+		// 	R::wipe($user);
+		// }
 
 		// Is two-step login process enabled?
 		if ($this->config->setting['login_math'] === "TRUE")
@@ -76,14 +75,14 @@ class Login_Controller extends Base_Controller
 	{
 		# Create listener
 		$this->event->_register('member.login', 'Login_Controller', 'hello');
-		// $this->dispatcher->dispatch('member.login');
+		$this->dispatcher->dispatch('member.login');
 	}
 
 	public static function hello($event)
 	{
 		echo "Hello, events!";
 		var_export($event);
-		// $this->log->save('login event worked', 'member.log');
+		$this->log->save('login event worked', 'member.log');
 	}
 
 	public function logout()
@@ -115,7 +114,7 @@ class Login_Controller extends Base_Controller
 	{
 		// Begin form validation by sanitizing all $_POST submitted
 		$data = $this->toolbox('validate')->xss_clean($_POST);
-		
+
 		if ($this->config->setting['login_math'] === "TRUE")
 		{
 			$this->login_validate_math($data);
@@ -130,11 +129,11 @@ class Login_Controller extends Base_Controller
 		if ($this->config->setting['login_math'] === "FALSE" || ($this->config->setting['login_math'] === "TRUE" && $this->login_validate_math($data) !== FALSE))
 		{
 			// Now we can check the submitted form to see if it is filled out properly
-			$check_if_valid = $this->toolbox('validate')->form($data, array(
+			$check_if_valid = $this->toolbox('validate')->form($data, [
 
-				'email' => 'required|valid_email',
+				'email'    => 'required|valid_email',
 				'password' => 'required|max_len,100|min_len,6',
-			));
+			]);
 
 			if ($check_if_valid === FALSE)
 			{
@@ -194,7 +193,7 @@ class Login_Controller extends Base_Controller
 
 		$q      = "SELECT username, email, password FROM users WHERE email = ?";
 		$result = $this->db->prepare($q);
-		$result->execute(array($form['email']));
+		$result->execute([$form['email']]);
 
 		if (!empty($result))
 		{
@@ -211,7 +210,7 @@ class Login_Controller extends Base_Controller
 
 				$q2 = "INSERT INTO password_reset(email, hash, timestamp) VALUES(?, ?, ?)";
 				$r  = $this->db->prepare($q2);
-				$r->execute(array($row['email'], $data['create_token'], time()));
+				$r->execute([$row['email'], $data['create_token'], time()]);
 
 				$to      = $data['email'];
 				$subject = "Did You Forget Your Password?";
@@ -236,7 +235,7 @@ class Login_Controller extends Base_Controller
 
 		$q      = "SELECT email, hash, timestamp FROM password_reset WHERE hash = ?";
 		$result = $this->db->prepare($q);
-		$result->execute(array($data['token']));
+		$result->execute([$data['token']]);
 
 		// It is only possible to have one (successful) result.
 		// If zero found, it is likely a hack attempt or malformed URL

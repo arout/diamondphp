@@ -2,6 +2,8 @@
 	"require": {
         "pimple/pimple": "~3.0",
         "symfony/event-dispatcher": "^3.1",
+        "smarty/smarty": "~3.1",
+        "gabordemooij/redbean": "dev-master",
         "geoip2/geoip2": "~2.0"
     },
     "autoload": {
@@ -19,7 +21,8 @@
             "Web\\Controller\\": "public/controllers",
             "Web\\Model\\": "public/models",
             "GeoIp2\\Database\\Reader\\": "vendor/geoip2/geoip2/src/Database",
-            "Database\\Orm\\R\\": "vendor/redbean"
+            "Database\\Orm\\R\\": "gabordemooij/redbean/RedBeanPHP",
+            "RedBeanPHP\\R\\": "gabordemooij/redbean/RedBeanPHP"
         }
     }
 }

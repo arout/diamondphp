@@ -99,7 +99,7 @@
 <script>
     $(document).ready(function() { 
 
-    {* assuming the input elements you want to attach the plugin to have the "datepicker" class set *}
+    // assuming the input elements you want to attach the plugin to have the "datepicker" class set
     $('input.datepicker').Zebra_DatePicker( { 
       view: 'years'
      } );
@@ -112,6 +112,7 @@
 
 
 {* Check for new messages *}
+{* 
 <script>
 function request() { 
 
@@ -122,28 +123,28 @@ function request() {
             url: "{$smarty.const.BASE_URL}block/check_new_messages",
 
             type:"post",
-            data:"rid=<?=$this->session->get('member_id');?>",
+            data:"rid={$smarty.session.member_id}",
             success:function(data) 
             { 
                 if(data) { 
 
                     $("#new_message_alert").html(data);
-                    {*
+                    /*
                      new PNotify({
                          title: 'New Message',
                          text: data
                      });
-                    *}
+                    */
                     $.gritter.add({
-                    {* (string | mandatory) the heading of the notification *}
+                    /* (string | mandatory) the heading of the notification */
                     title: 'New Message',
-                    {* (string | mandatory) the text inside the notification *}
+                    /* (string | mandatory) the text inside the notification */
                     text: data,
                     sticky: true,
                     before_open: function(){
-                            if($('.gritter-item-wrapper').length == 1)  {* Only allow one popup to be displayed at a time *}
+                            if($('.gritter-item-wrapper').length == 1)  /* Only allow one popup to be displayed at a time */
                             {
-                                {* Returning false prevents a new gritter from opening *}
+                                /* Returning false prevents a new gritter from opening */
                                 return false; 
                             } 
                         } 
@@ -151,17 +152,17 @@ function request() {
                 } 
 
             },
-            {* Restart the function after response sent *}
+            /* Restart the function after response sent */
             complete: request()
 
         } );
-     }, 5000); {* Check for new messages every 5 seconds *}
+     }, 5000); /* Check for new messages every 5 seconds */
 } 
-{* Initiate the request() function *}
+/* Initiate the request() function */
 request();
 
 </script>
-
+ *}
 
 
 {* Update unread message badges *}
@@ -169,8 +170,7 @@ request();
 function update_unread_total( elemid ) { 
 $.ajax( 
     { 
-
-        url: "{$smarty.const.MODULES_URL}ajax/messenger/update_unread_count.php",
+        url: "{$smarty.const.BASE_URL}block/update_unread_count",
 
         type: "post",
         data: { rid:"{$smarty.session.member_id}" },
@@ -182,7 +182,7 @@ $.ajax(
 } 
 </script>
 
-<script>
+{* <script>
   (function(i,s,o,g,r,a,m) { i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() { 
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
@@ -192,5 +192,19 @@ $.ajax(
   ga('set', 'userId', { { {$smarty.session.member_id} } } );
   ga('send', 'pageview');
 
-</script>
+</script> *}
 
+<script>
+
+// Get the site base url
+function base_url() {
+    var pathparts = location.pathname.split('/');
+    if (location.host == 'localhost') {
+        var url = location.origin+'/'+pathparts[1].trim('/')+'/';
+    }else{
+        var url = location.origin;
+    }
+    return url;
+}
+
+</script>

@@ -26,8 +26,22 @@ class Member_Controller extends Base_Controller
 
 	public function index()
 	{
-		$data['session_username'] = $this->toolbox('session')->get('username');
-		$this->template->assign('content', 'member/index.tpl');
+		$userid                 = $this->session->get('member_id');
+		$search_prefs_completed = $this->model("Member")->search_prefs_completed($userid);
+		if (!$search_prefs_completed)
+		{
+			$this->template->assign('content', 'forms/search_prefs.tpl');
+		}
+		else
+		{
+			$this->template->assign('content', 'member/index.tpl');
+		}
+
+	}
+
+	public function home()
+	{
+		return self::index();
 	}
 
 	public function password_reset()
@@ -45,30 +59,59 @@ class Member_Controller extends Base_Controller
 			{
 				return FALSE;
 			}
-			$this->model('Member')->update_password($password, $this->toolbox('session')->get('email'));
+
+			if ($this->model('Member')->update_password($password, $this->toolbox('session')->get('email')))
+			{
+				$data['saved']          = 'Password successfully updated';
+				$data['saved_message']  = 'To keep your account secure, it is recommended to change your passwords at least every 90 days, and create a unique password for different sites.';
+				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
+			}
+			else
+			{
+				$data['saved']          = 'Problem updating password';
+				$data['saved_message']  = 'There was a problem saving your password. Please make sure that your passwords match, and do not contain any illegal characters.';
+				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
+			}
+
+			$this->template->assign('new_pw_saved', $data['saved']);
+			$this->template->assign('data_saved_message', $data['saved_message']);
+			$this->template->assign('data_saved_btn', $data['data_saved_btn']);
 			$this->template->assign('content', 'forms/change_password.tpl');
 		}
 		else
 		{
-			$status = '<div class="alert alert-success text-center">Password successfully updated</div>';
-			$this->template->assign('status', $status);
 			$this->template->assign('content', 'forms/change_password.tpl');
 		}
 	}
 
 	public function edit()
 	{
-		$this->toolbox('image')->get_images();
+
+		$img_gallery = $this->toolbox('image')->get_images();
+
+		$data['notify_max_size'] = $this->config->setting['notify_img_size'];
+		$data['max_size']        = $this->config->setting['img_size'];
+		$data['member_id']       = $this->session->get('member_id');
+		$max_size                = $this->config->setting['img_size'];
 		# Display edit profile page
 		if (!empty($_POST['edit_profile']))
 		{
 			if ($this->model('Member')->update_profile_data())
 			{
-				$data['saved'] = '<div class="alert alert-success text-center"><i class="fa fa-check"></i> Profile settings saved</div>';
+				$info = [
+					'Did you know that profiles with images on average recieve 173% more views and 112% more responses?',
+					'Completing your profile helps us find the best possible matches according to your criteria.',
+				];
+				$display                = array_rand($info, 1);
+				$data['saved']          = 'Profile settings saved';
+				$data['saved_message']  = $info[$display];
+				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 			else
 			{
-				$data['saved'] = '<div class="alert alert-danger text-center"><i class="fa fa-ban"></i> There was a problem saving your profile information</div>';
+				$data['saved']          = 'There was a problem saving your profile information';
+				$data['saved_message']  = 'Profile settings were not saved';
+				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 		}
 
@@ -78,23 +121,24 @@ class Member_Controller extends Base_Controller
 
 			if (!$upload)
 			{
-				$data['saved'] = '<div class="alert alert-danger text-center"><i class="fa fa-ban"></i> There was a problem saving your profile image</div>';
+				$data['saved']          = 'There was a problem saving your profile image';
+				$data['saved_message']  = 'An unknown error occured while uploading your image. Please try again later. If the problem persists, contact support.';
+				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 
 		}
 
 		$data['username'] = $this->session->get('username');
 		$data['profile']  = $this->model('Member')->profile_data($this->session->get('username'));
-		$this->template->assign('content', 'member/edit.tpl');
-	}
+		$data['avatar']   = USER_PICS_URL . $data['username'] . '/' . $this->model('Member')->get_avatar($this->session->get('member_id'));
 
-	public function home()
-	{
-		$data['session_username'] = $this->toolbox('session')->get('username');
-		$data['day']              = ['Monday', 'Tuesday', 'Wednesday'];
-		$data['users']            = $this->model('Member')->select();
-		// $this->load->file( 'maintenance.php' );
-		$this->template->assign('content', 'member/index.tpl');
+		$this->template->assign('profile_data_saved', $data['saved']);
+		$this->template->assign('data_saved_message', $data['saved_message']);
+		$this->template->assign('data_saved_btn', $data['data_saved_btn']);
+		$this->template->assign('avatar', $data['avatar']);
+		$this->template->assign('max_size', $max_size);
+		$this->template->assign('profile_data', $data['profile']);
+		$this->template->assign('content', 'member/edit.tpl');
 	}
 
 	public function profile()
@@ -163,6 +207,15 @@ class Member_Controller extends Base_Controller
 		$query         = "SELECT * FROM users WHERE hidden = 0";
 		$data['pager'] = $this->toolbox('pagination');
 		$data['pager']->config($query, $this->route->param1, 20);
+		$data['profiles'] = $this->model('Member')->select($limit);
+		$this->load->view('member/all', $data);
+	}
+
+	public function search_settings()
+	{
+
+		$user = $this->session->get('member_id');
+
 		$data['profiles'] = $this->model('Member')->select($limit);
 		$this->load->view('member/all', $data);
 	}

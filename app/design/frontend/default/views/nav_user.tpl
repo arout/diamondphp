@@ -47,6 +47,21 @@
 					<!-- ================ -->
 					<div class="header-top-dropdown">
 						<div class="btn-group dropdown">
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages</button>
+							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}inbox">View Inbox</a></li>
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}inbox/notifications">Notifications</a></li>
+							</ul>
+						</div>
+						<div class="btn-group dropdown">
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Logged in as {$username}</button>
+							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/edit">Edit Profile</a></li>
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/search_settings">Search Settings</a></li>
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}login/logout">Log Out</a></li>
+							</ul>
+						</div>
+						<div class="btn-group dropdown">
 							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> Search</button>
 							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
 								<li>
@@ -60,16 +75,9 @@
 								</li>
 							</ul>
 						</div>
-						<div class="btn-group dropdown">
-							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Logged in as {$username}</button>
-							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/edit">Edit Profile</a></li>
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}login/logout">Log Out</a></li>
-							</ul>
-						</div>
-						<div class="btn-group dropdown">
+						{* <div class="btn-group dropdown">
 							<button type="button" title="Log Out" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-power-off"></i> </button>
-						</div>
+						</div> *}
 
 					</div>
 					<!--  header top dropdowns end -->
@@ -98,11 +106,13 @@
 
 					<!-- logo -->
 					<div class="logo">
-						<a href="{$smarty.const.BASE_URL}"><img id="logo" src="{$smarty.const.BASE_URL}media/default/images/logo.png" alt="DiamondPHP MVC Framework for PHP 7"></a>
+						<a href="{$smarty.const.BASE_URL}">
+							<img id="logo" src="{$smarty.const.BASE_URL}media/default/images/logo.png" style="max-height: 90px;" alt="{$slogan}">
+						</a>
 					</div>
 
 					<!-- name-and-slogan -->
-					<div class="slogan text-center">
+					<div class="slogan">
 						{$slogan}
 					</div>
 
@@ -137,10 +147,7 @@
 
 								<!-- Collect the nav links, forms, and other content for toggling -->
 								<div class="collapse navbar-collapse" id="navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="{$smarty.const.BASE_URL}documentation" class="dropdown-toggle">Documentation</a></li>
-              <li class="active"><a href="{$smarty.const.BASE_URL}download" class="dropdown-toggle">Download</a></li>
-                                   
+            <ul class="nav navbar-nav navbar-right">                                   
               <!-- mega-menu start -->
               <li class="dropdown mega-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community</a>
@@ -150,7 +157,7 @@
                       <div class="col-lg-4 col-md-3 hidden-sm">
                         <h4>Online Support</h4>
                         <p>Visit the member forums</p>
-                        <img src="{$smarty.const.MEDIA_URL}default/images/section-image-3.png" alt="DiamondPHP MVC framework for PHP 7">
+                        <img src="{$smarty.const.MEDIA_URL}default/images/section-image-3.png" alt="{$slogan}>
                       </div>
                       <div class="col-lg-8 col-md-9">
                         <h4>Community and Support</h4>

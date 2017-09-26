@@ -46,12 +46,28 @@ class Inbox_Controller extends Base_Controller
 	}
 
 	/*-----------------------------------------------------------
-	 *  Check for new messages
-	 *  Do not access directly; this is for AJAX notifications
-	 */
+		 *  Check for new messages
+		 *  Do not access directly; this is for AJAX notifications
+	*/
 	public function check_new()
 	{
 		$this->load->view('inbox/index');
+	}
+
+	public function reply($reply)
+	{
+		# Reply to message
+		$data     = $this->toolbox('sanitize')->xss($reply);
+		$reply_to = $data['reply_to'];
+		$subject  = $data['subject'];
+		$message  = $data['message'];
+
+		if ($this->toolbox('messenger')->send($subject, $message, $reply_to))
+		{
+			return TRUE;
+		}
+
+		return FALSE;
 	}
 
 	public function send()
@@ -79,6 +95,26 @@ class Inbox_Controller extends Base_Controller
 
 	public function view()
 	{
+		if ($_POST)
+		{
+			$data       = $this->toolbox('sanitize')->xss($_POST);
+			$send_reply = self::reply($data);
+
+			if ($send_reply)
+			{
+				$data['saved']          = 'Message sent to ' . $data['reply_to'];
+				$data['saved_message']  = 'To keep your account secure, it is recommended to change your passwords at least every 90 days, and create a unique password for different sites.';
+				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
+
+				$this->template->assign('message', $data['message']);
+				$this->template->assign('message_sent', $data['saved']);
+				$this->template->assign('data_saved_message', $data['saved_message']);
+				$this->template->assign('data_saved_btn', $data['data_saved_btn']);
+				$this->template->assign('view_mail', $data);
+
+				$this->redirect('inbox');
+			}
+		}
 		# Display selected message
 		$data = $this->toolbox('messenger')->view();
 
@@ -105,6 +141,12 @@ class Inbox_Controller extends Base_Controller
 	{
 		# Toggle flag message as read / unread
 		$this->toolbox('messenger')->toggle_read($_POST['mid']);
+	}
+
+	public function flag_delete()
+	{
+		# Toggle flag message as read / unread
+		$this->toolbox('messenger')->flag_delete($_POST['mid']);
 	}
 
 	public function total()

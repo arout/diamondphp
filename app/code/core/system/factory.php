@@ -90,8 +90,8 @@ $app['database'] = function ($c)
 $app['orm'] = function ($c)
 {
 	// Create instance of redbean orm
-	require_once VENDOR_PATH . 'redbean/rb.php';
-	return R::setup("mysql:host=" . $c['config']->setting('db_host') . ";
+	require_once VENDOR_PATH . 'gabordemooij/redbean/RedBeanPHP/R.php';
+	return \RedBeanPHP\R::setup("mysql:host=" . $c['config']->setting('db_host') . ";
 		dbname=" . $c['config']->setting('db_name') . "", $c['config']->setting('db_user'), $c['config']->setting('db_pass'));
 
 	// uncomment the below in production environment to prevent database columns from changing

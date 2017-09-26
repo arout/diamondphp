@@ -91,7 +91,7 @@ You have registered on our site, but have not confirmed your account yet. Please
             <i class="fa fa-lock form-control-feedback"></i>
           </div>
         </div>
-        {if $login_math}
+        {if $login_math eq 'TRUE'}
         <div class="form-group has-feedback">
           <label for="math" class="col-sm-3 control-label">Are you human? Math problem:</label>
           <div class="col-sm-8">
