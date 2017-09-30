@@ -10,15 +10,7 @@
 	</head>
 
 	<body class="front no-trans">
-	{* Edit profile alert *}
-	{if $profile_data_saved} {include file="alerts/edit_profile.tpl"} {/if}
-	{* Password successfully changed alert *}
-	{if $new_pw_saved} {include file="alerts/pw_changed.tpl"} {/if}
-	{* Message successfully sent alert *}
-	{if $message_sent} {include file="alerts/message_sent.tpl"} {/if}
-
 	{include file="$nav_menu"}
-	{include_if_exists file="sliders/$slider"}
 
 	<!-- ================ -->
 		<div class="scrollToTop"><i class="icon-up-open-big"></i></div>

@@ -1,22 +1,31 @@
-{nocache}
-
-<div>
-	
-	{foreach $profile_data as $profile}
+<div class="white-row">
+    
+    {foreach $userprofile as $profile}
         
-            <legend>
-                <h3>Editing {$profile.username}'s profile 
-                    <small class="pull-right">
-                        <a href="{$smarty.const.BASE_URL}member/change_password" class="btn btn-danger btn-sm">Change Password</a>
-                    </small>
-                </h3>
-            </legend>
+            <legend>Editing {$username}'s profile</legend>
+            <small>To change your password, <a href="{$smarty.const.BASE_URL}member/change_password">go here</a></small>
             
+            <form id="avatar_edit" class="white-row" method="post" action="" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-11">
+                            <label>Profile Image</label>
+                            <input type="file" name="image" id="image" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" name="edit_avatar" value="Update Image" class="btn btn-block btn-success pull-right push-bottom" data-loading-text="Loading...">
+                    </div>
+                </div>
+            </form>
+            <hr>
 
-            {include file="../forms/file_upload.tpl"}
+            {if $data['saved'] neq ''} {$data['saved']} {/if}
 
-
-            <form id="info_edit" method="post" action="">
+            <form id="avatar_edit" class="white-row" method="post" action="">
 
             <div class="row">
                 <div class="form-group">
@@ -137,14 +146,12 @@
             </div>
         </form>
         
-	{/foreach}
+    {/foreach}
 
 </div>
-
 {literal}
-
 <script>
-
+{* City and state autofill *}
 $(document).ready(function()
 {
     $("#zip").change(function()
@@ -152,8 +159,7 @@ $(document).ready(function()
         var zip = $(this).val();
         $.ajax(
         {
-
-            url: base_url() + "/block/get_city/" + zip,
+            url:"{$smarty.const.BASE_URL}block/get_city/" + zip,
             type:"post",
             data:{zip:$(this).val()},
             success:function(response)
@@ -171,7 +177,7 @@ $(document).ready(function()
         var zip = $(this).val();
         $.ajax(
         {
-            url: base_url() + "/block/get_state/" + zip,
+            url:"{$smarty.const.BASE_URL}block/get_state/" + zip,
             type:"post",
             data:{zip:$(this).val()},
             success:function(response)
@@ -181,7 +187,7 @@ $(document).ready(function()
         });
     });
 });
-
+{* End city and state autofill *}
 </script>
 
 <script type="text/javascript">
@@ -371,4 +377,3 @@ $(document).ready(function() {
 });
 </script>
 {/literal}
-{/nocache}

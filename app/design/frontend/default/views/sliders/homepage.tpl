@@ -1,5 +1,4 @@
-
-      <!-- banner start -->
+<!-- banner start -->
       <!-- ================ -->
       <div class="banner">
 
@@ -13,102 +12,369 @@
             <div class="slider-banner-2">
               <ul>
                 <!-- slide 1 start -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on" data-title="Create Your Free Profile">
+                <li data-transition="random-static" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Slide 1">
                 
                 <!-- main image -->
-                <img src="{$smarty.const.MEDIA_URL}images/sexy-women-wallpaper.jpg"  alt="slidebg1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-
-                <!-- Translucent background -->
-                <div class="tp-caption dark-translucent-bg"
-                  data-x="center"
-                  data-y="bottom"
-                  data-speed="800"
-                  data-start="0"
-                  style="background-color:rgba(0,0,0,0.5);">
-                </div>
+                <img src="<?=TEMPLATE_URL;?>images/slider-1-slide-1.jpg"  alt="slidebg1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
                 <!-- LAYER NR. 1 -->
                 <div class="tp-caption default_bg large sft tp-resizeme"
-                  data-x="center"
+                  data-x="0"
                   data-y="70" 
                   data-speed="700"
-                  data-start="200"
+                  data-start="700"
                   data-end="10000"
-                  data-endspeed="600">Adult Social Networking
+                  data-endspeed="600">Premium HTML5 template
                 </div>
 
                 <!-- LAYER NR. 2 -->
-                <div class="tp-caption small_thin_white sfb text-center tp-resizeme"
-                  data-x="center"
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
                   data-y="170" 
                   data-speed="700"
-                  data-start="400"
+                  data-start="700"
                   data-end="10000"
-                  data-endspeed="600">Meet local singles and swinging couples <br> who are looking some adult fun. <br> XXXies is a social network and online dating site for adults.
+                  data-endspeed="600"><i class="icon-check"></i>
                 </div>
 
                 <!-- LAYER NR. 3 -->
-                <div class="tp-caption tp-resizeme sfb"
-                  data-x="center"
-                  data-y="300" 
+                <div class="tp-caption light_gray_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="170" 
                   data-speed="700"
-                  data-start="600"
+                  data-start="700"
                   data-end="10000"
-                  data-endspeed="600"><a href="{$smarty.const.BASE_URL}signup" class="btn btn-white btn-lg">Create Your Free Profile <i class="fa fa-angle-right pl-10"></i></a>
+                  data-endspeed="600">100% Responsive
+                </div>
+
+                <!-- LAYER NR. 4 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="220" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 5 -->
+                <div class="tp-caption light_gray_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="220" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Bootstrap Based
+                </div>
+
+                <!-- LAYER NR. 6 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="270" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 7 -->
+                <div class="tp-caption light_gray_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="270" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Packed Full of Features
+                </div>
+
+                <!-- LAYER NR. 8 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="320" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 9 -->
+                <div class="tp-caption light_gray_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="320" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Very Easy to Customize
+                </div>
+
+                <!-- LAYER NR. 10 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="370" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">And Much More...
+                </div>
+
+                <!-- LAYER NR. 11 -->
+                <div class="tp-caption sft tp-resizeme"
+                  data-x="right"
+                  data-y="center" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><img src="<?=TEMPLATE_URL;?>images/slider-1-layer-1.png" alt="">
                 </div>
 
                 </li>
                 <!-- slide 1 end -->
 
                 <!-- slide 2 start -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on" data-title="Member Benefits">
+                <li data-transition="random-static" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Slide 2">
                 
                 <!-- main image -->
-                <img src="{$smarty.const.MEDIA_URL}images/bg1.jpg"  alt="slidebg1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-
-                <!-- Translucent background -->
-                <div class="tp-caption dark-translucent-bg"
-                  data-x="center"
-                  data-y="bottom"
-                  data-speed="800"
-                  data-start="0"
-                  style="background-color:rgba(0,0,0,0.5);">
-                </div>
+                <img src="<?=TEMPLATE_URL;?>images/slider-1-slide-2.jpg"  alt="slidebg1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
                 <!-- LAYER NR. 1 -->
-                <div class="tp-caption default_bg large sft tp-resizeme"
-                  data-x="center"
+                <div class="tp-caption white_bg large sft tp-resizeme"
+                  data-x="0"
                   data-y="70" 
                   data-speed="700"
-                  data-start="200"
+                  data-start="700"
                   data-end="10000"
-                  data-endspeed="600">Meet Sexy Singles and Couples
+                  data-endspeed="600">Powerful Bootstrap Theme
                 </div>
 
                 <!-- LAYER NR. 2 -->
-                <div class="tp-caption small_thin_white sfb text-center tp-resizeme"
-                  data-x="center"
+                <div class="tp-caption default_bg sft medium tp-resizeme"
+                  data-x="0"
                   data-y="170" 
                   data-speed="700"
-                  data-start="400"
+                  data-start="700"
                   data-end="10000"
-                  data-endspeed="600">Looking for sex? Hoping to meet someone special for a hot, sexual relationship or even just a quick fling?<br> Sign up at XXXies to access our thriving sex community and satiate your need for amazing sexual experiences. <br>XXXies has helped millions of people find traditional partners, swinger groups, <br>threesomes, and a variety of other alternative partners.
+                  data-endspeed="600"><i class="icon-check"></i>
                 </div>
 
                 <!-- LAYER NR. 3 -->
-                <div class="tp-caption tp-resizeme sfb"
-                  data-x="center"
-                  data-y="300" 
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="170" 
                   data-speed="700"
-                  data-start="600"
+                  data-start="700"
                   data-end="10000"
-                  data-endspeed="600"><a href="{$smarty.const.BASE_URL}signup" class="btn btn-white btn-lg">Sign up & Hook Up <i class="fa fa-angle-right pl-10"></i></a>
+                  data-endspeed="600">W3C Validated
+                </div>
+
+                <!-- LAYER NR. 4 -->
+                <div class="tp-caption default_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="220" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 5 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="220" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Unlimited layout variations
+                </div>
+
+                <!-- LAYER NR. 6 -->
+                <div class="tp-caption default_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="270" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 7 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="270" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Google Maps
+                </div>
+
+                <!-- LAYER NR. 8 -->
+                <div class="tp-caption default_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="320" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 9 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="320" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Very Flexible
+                </div>
+
+                <!-- LAYER NR. 10 -->
+                <div class="tp-caption default_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="370" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">And Much More...
+                </div>
+
+                <!-- LAYER NR. 11 -->
+                <div class="tp-caption sft tp-resizeme"
+                  data-x="right"
+                  data-y="center" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><img src="<?=TEMPLATE_URL;?>images/slider-1-layer-2.png" alt="">
                 </div>
 
                 </li>
                 <!-- slide 2 end -->
 
+                <!-- slide 3 start -->
+                <li data-transition="random-static" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Slide 3">
+                
+                <!-- main image -->
+                <img src="<?=TEMPLATE_URL;?>images/slider-1-slide-3.jpg" alt="slide 3" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+
+                <!-- LAYER NR. 1 -->
+                <div class="tp-caption white_bg large sft tp-resizeme"
+                  data-x="0"
+                  data-y="70" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Clean &amp; Unique Design
+                </div>
+
+                <!-- LAYER NR. 2 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="170" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 3 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="170" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">After Sale Support
+                </div>
+
+                <!-- LAYER NR. 4 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="220" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 5 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="220" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Crystal Clean Code
+                </div>
+
+                <!-- LAYER NR. 6 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="270" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 7 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="270" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Crossbrowser Compatible
+                </div>
+
+                <!-- LAYER NR. 8 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="320" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600"><i class="icon-check"></i>
+                </div>
+
+                <!-- LAYER NR. 9 -->
+                <div class="tp-caption white_bg sft medium tp-resizeme"
+                  data-x="50"
+                  data-y="320" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Latest Technologies Used
+                </div>
+
+                <!-- LAYER NR. 10 -->
+                <div class="tp-caption dark_gray_bg sft medium tp-resizeme"
+                  data-x="0"
+                  data-y="370" 
+                  data-speed="700"
+                  data-start="700"
+                  data-end="10000"
+                  data-endspeed="600">Don't miss out!
+                </div>
+
+                <!-- LAYER NR. 11 -->
+                <div class="tp-caption sft"
+                  data-x="right" data-hoffset="-660"
+                  data-y="center" 
+                  data-speed="700"
+                  data-start="700"
+                  data-endspeed="600"
+                  data-autoplay="false"
+                  data-autoplayonlyfirsttime="false"
+                  data-nextslideatend="true">
+                  <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src='https://www.youtube.com/embed/91J8pLHdDB0?enablejsapi=1&amp;html5=1&amp;hd=1&amp;wmode=opaque&amp;controls=1&amp;showinfo=0;rel=0;' width='640' height='360' style='width:640px;height:360px;'></iframe>
+                  </div>
+                </div>
+
+                </li>
+                <!-- slide 3 end -->
+
               </ul>
+              <div class="tp-bannertimer tp-bottom"></div>
             </div>
           </div>
           <!-- slider revolution end -->
@@ -116,8 +382,5 @@
         </div>
         <!-- slideshow end -->
 
-<div class="section text-center default-bg transparent clearfix">
-        <img style="margin-left: auto; margin-right: auto;" src="{$smarty.const.MEDIA_URL}images/awards.png"> <h3>#1 Adult Dating and Social Networking Site</h3>
-      </div>
       </div>
       <!-- banner end -->

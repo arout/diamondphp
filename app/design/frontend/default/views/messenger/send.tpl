@@ -24,7 +24,7 @@
 				<h4 class="black">{$recipient}</h4>
 				<small class="styleColor">
 				    <span class="pull-left">{$info.city}, {$info.state}</span> 
-				    <span class="pull-right"><?= $this->toolbox('formatter')->age( $info['dob'] ); ?> years old</span>
+				    <span class="pull-right">{$age} years old</span>
 				</small>
 			</div>
 		</div>

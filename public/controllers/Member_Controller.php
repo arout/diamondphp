@@ -26,7 +26,7 @@ class Member_Controller extends Base_Controller
 
 	public function index()
 	{
-		$userid                 = $this->session->get('member_id');
+		$userid = $this->session->get('member_id');
 		$search_prefs_completed = $this->model("Member")->search_prefs_completed($userid);
 		if (!$search_prefs_completed)
 		{
@@ -53,7 +53,7 @@ class Member_Controller extends Base_Controller
 	{
 		if ($_POST)
 		{
-			$password  = $_POST['password'];
+			$password = $_POST['password'];
 			$cpassword = $_POST['confirm_password'];
 			if ($password !== $cpassword)
 			{
@@ -62,14 +62,14 @@ class Member_Controller extends Base_Controller
 
 			if ($this->model('Member')->update_password($password, $this->toolbox('session')->get('email')))
 			{
-				$data['saved']          = 'Password successfully updated';
-				$data['saved_message']  = 'To keep your account secure, it is recommended to change your passwords at least every 90 days, and create a unique password for different sites.';
+				$data['saved'] = 'Password successfully updated';
+				$data['saved_message'] = 'To keep your account secure, it is recommended to change your passwords at least every 90 days, and create a unique password for different sites.';
 				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 			else
 			{
-				$data['saved']          = 'Problem updating password';
-				$data['saved_message']  = 'There was a problem saving your password. Please make sure that your passwords match, and do not contain any illegal characters.';
+				$data['saved'] = 'Problem updating password';
+				$data['saved_message'] = 'There was a problem saving your password. Please make sure that your passwords match, and do not contain any illegal characters.';
 				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 
@@ -90,9 +90,11 @@ class Member_Controller extends Base_Controller
 		$img_gallery = $this->toolbox('image')->get_images();
 
 		$data['notify_max_size'] = $this->config->setting['notify_img_size'];
-		$data['max_size']        = $this->config->setting['img_size'];
-		$data['member_id']       = $this->session->get('member_id');
-		$max_size                = $this->config->setting['img_size'];
+		$data['max_size'] = $this->config->setting['img_size'];
+		$data['member_id'] = $this->session->get('member_id');
+		$max_size = $this->config->setting['img_file_size'];
+		$allowed_types = $this->config->setting['img_type'];
+		$max_imgs_allowed = $this->config->setting['total_img_allowed'];
 		# Display edit profile page
 		if (!empty($_POST['edit_profile']))
 		{
@@ -102,15 +104,15 @@ class Member_Controller extends Base_Controller
 					'Did you know that profiles with images on average recieve 173% more views and 112% more responses?',
 					'Completing your profile helps us find the best possible matches according to your criteria.',
 				];
-				$display                = array_rand($info, 1);
-				$data['saved']          = 'Profile settings saved';
-				$data['saved_message']  = $info[$display];
+				$display = array_rand($info, 1);
+				$data['saved'] = 'Profile settings saved';
+				$data['saved_message'] = $info[$display];
 				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 			else
 			{
-				$data['saved']          = 'There was a problem saving your profile information';
-				$data['saved_message']  = 'Profile settings were not saved';
+				$data['saved'] = 'There was a problem saving your profile information';
+				$data['saved_message'] = 'Profile settings were not saved';
 				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 		}
@@ -121,22 +123,24 @@ class Member_Controller extends Base_Controller
 
 			if (!$upload)
 			{
-				$data['saved']          = 'There was a problem saving your profile image';
-				$data['saved_message']  = 'An unknown error occured while uploading your image. Please try again later. If the problem persists, contact support.';
+				$data['saved'] = 'There was a problem saving your profile image';
+				$data['saved_message'] = 'An unknown error occured while uploading your image. Please try again later. If the problem persists, contact support.';
 				$data['data_saved_btn'] = '<a href="#" data-dismiss="alert" class="btn btn-dark btn-sm">Close</a>';
 			}
 
 		}
 
 		$data['username'] = $this->session->get('username');
-		$data['profile']  = $this->model('Member')->profile_data($this->session->get('username'));
-		$data['avatar']   = USER_PICS_URL . $data['username'] . '/' . $this->model('Member')->get_avatar($this->session->get('member_id'));
+		$data['profile'] = $this->model('Member')->profile_data($this->session->get('username'));
+		$data['avatar'] = USER_PICS_URL . $data['username'] . '/' . $this->model('Member')->get_avatar($this->session->get('member_id'));
 
 		$this->template->assign('profile_data_saved', $data['saved']);
 		$this->template->assign('data_saved_message', $data['saved_message']);
 		$this->template->assign('data_saved_btn', $data['data_saved_btn']);
 		$this->template->assign('avatar', $data['avatar']);
+		$this->template->assign('max_allowed_imgs', $max_imgs_allowed);
 		$this->template->assign('max_size', $max_size);
+		$this->template->assign('allowed_types', $allowed_types);
 		$this->template->assign('profile_data', $data['profile']);
 		$this->template->assign('content', 'member/edit.tpl');
 	}
@@ -156,11 +160,11 @@ class Member_Controller extends Base_Controller
 
 	public function view()
 	{
-		$data['username']    = urldecode($this->route->param1);
-		$data['profile']     = $this->model('Member')->profile_data($data['username']);
-		$data['member_id']   = $this->model('Member')->get_member_id($data['username']);
+		$data['username'] = urldecode($this->route->param1);
+		$data['profile'] = $this->model('Member')->profile_data($data['username']);
+		$data['member_id'] = $this->model('Member')->get_member_id($data['username']);
 		$data['img_gallery'] = $this->model('Member')->img_gallery($data['member_id']);
-		$profile             = $data['profile'];
+		$profile = $data['profile'];
 
 		if ($_POST['search_filters'])
 		{
@@ -204,7 +208,7 @@ class Member_Controller extends Base_Controller
 		// $data['images'] = $this->model('Member')->get_images();
 		$limit = $this->route->param1;
 
-		$query         = "SELECT * FROM users WHERE hidden = 0";
+		$query = "SELECT * FROM users WHERE hidden = 0";
 		$data['pager'] = $this->toolbox('pagination');
 		$data['pager']->config($query, $this->route->param1, 20);
 		$data['profiles'] = $this->model('Member')->select($limit);

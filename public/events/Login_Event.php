@@ -7,22 +7,22 @@ class Login_Event extends Event
 {
 	const NAME = 'login.success';
 
-    protected $login;
+	protected $login;
 
-    public function __construct(Login_Controller $login)
-    {
-        $this->login = $login;
-    }
+	public function __construct(Login_Controller $login)
+	{
+		$this->login = $login;
+	}
 
-    public function getLogin()
-    {
-        return $this->login;
-    }
+	public function getLogin()
+	{
+		return $this->login;
+	}
 
-    public static function hello($event)
+	public static function hello($event)
 	{
 		echo "Hello, events!<br><br>";
-		// print_r($event);
-		// $this->log->save('login event worked', 'member.log');
+		print_r($event);
+		$this->log->save('login event worked', 'member.log');
 	}
 }

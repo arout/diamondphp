@@ -4,8 +4,7 @@ namespace Hal\Module;
  * DOCUMENTATION:
  * https://github.com/maxmind/GeoIP2-php
  */
-class Geoip extends \GeoIp2\Database\Reader
-{
+class Geoip extends \GeoIp2\Database\Reader {
 	# Database access needed for some calculations
 	private $db;
 	# Search radius properties
@@ -22,8 +21,7 @@ class Geoip extends \GeoIp2\Database\Reader
 	public $country;
 	public $country_abbr;
 
-	public function __construct($geo_db_file, $db)
-	{
+	public function __construct($geo_db_file, $db) {
 		parent::__construct($geo_db_file);
 		$this->db = $db;
 
@@ -33,9 +31,10 @@ class Geoip extends \GeoIp2\Database\Reader
 		getenv('HTTP_FORWARDED_FOR') ?:
 		getenv('HTTP_FORWARDED') ?:
 		getenv('REMOTE_ADDR');
-
-		if (gethostname() == 'localhost.localdomain' || gethostname() == 'DESKTOP-JQEEVE9')
-		{
+		if (gethostname() == 'localhost.localdomain' || gethostname() == 'DESKTOP-JQEEVE9' || gethostname() == 'Linux-Ubuntu') {
+			$ip = '73.187.22.165';
+		}
+		if (strpos($ip, '::1')) {
 			$ip = '73.187.22.165';
 		}
 		$this->ip_address = $ip;
@@ -54,40 +53,30 @@ class Geoip extends \GeoIp2\Database\Reader
 		// Two letter abbreviation for country
 		$this->country_abbr = $record->country->isoCode;
 		// Latitude and longitude
-		$this->latitude  = $this->record->location->latitude;
+		$this->latitude = $this->record->location->latitude;
 		$this->longitude = $this->record->location->longitude;
 	}
 
-	public function ip()
-	{
+	public function ip() {
 		return $this->ip_address;
 	}
 
-	public function distance($lat1, $lon1, $lat2, $lon2, $unit = "M")
-	{
+	public function distance($lat1, $lon1, $lat2, $lon2, $unit = "M") {
 		$theta = $lon1 - $lon2;
-		$dist  = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-		$dist  = acos($dist);
-		$dist  = rad2deg($dist);
+		$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+		$dist = acos($dist);
+		$dist = rad2deg($dist);
 		$miles = $dist * 60 * 1.1515;
-		$unit  = strtoupper($unit);
+		$unit = strtoupper($unit);
 
-		if ($unit == "K")
-		{
+		if ($unit == "K") {
 			return ($miles * 1.609344);
-		}
-		else if ($unit == "N")
-		{
+		} else if ($unit == "N") {
 			return ($miles * 0.8684);
-		}
-		else
-		{
-			if ($miles < 10)
-			{
+		} else {
+			if ($miles < 10) {
 				$miles = number_format($miles, 1, '.', '');
-			}
-			else
-			{
+			} else {
 				$miles = number_format($miles);
 			}
 
@@ -95,8 +84,7 @@ class Geoip extends \GeoIp2\Database\Reader
 		}
 	}
 
-	public function search_radius($miles): \PDOStatement
-	{
+	public function search_radius($miles): \PDOStatement{
 		# This function will try to find all cities within a given radius based on
 		# the current visitor's location
 		$query = "SELECT DISTINCT citycode, statecode, code,
@@ -114,34 +102,28 @@ class Geoip extends \GeoIp2\Database\Reader
 		return $cities_in_radius;
 	}
 
-	public function cities($zip)
-	{
+	public function cities($zip) {
 		# Return a list of cities for the specified state or zip code
-		if (strlen($zip) === 5)
-		{
+		if (strlen($zip) === 5) {
 			# Search by zip code
 			$q = "SELECT citycode, statecode FROM zips WHERE code = ? ";
 			$s = $this->db->prepare($q);
 			$s->execute([$zip]);
-		}
-		else
-		{
+		} else {
 			# Search by state
 			$q = "SELECT citycode FROM zips WHERE statecode = ? ";
 			$s = $this->db->prepare($q);
 			$s->execute([$zip]);
 		}
 
-		if ($s)
-		{
+		if ($s) {
 			return $s;
 		}
 
 		return false;
 	}
 
-	public function states($zip)
-	{
+	public function states($zip) {
 		$q = "SELECT statecode FROM zips WHERE code = ? ";
 		$s = $this->db->prepare($q);
 		$s->execute([$zip]);
@@ -149,8 +131,7 @@ class Geoip extends \GeoIp2\Database\Reader
 		return $s;
 	}
 
-	public function zipcode($city, $state)
-	{
+	public function zipcode($city, $state) {
 		$q = "SELECT code FROM zips WHERE citycode = ? AND statecode = ? ";
 		$s = $this->db->prepare($q);
 		$s->execute([$city, $state]);

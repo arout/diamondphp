@@ -9,14 +9,8 @@
 				<!-- ================ -->
 				<div class="header-top-first clearfix">
 					<ul class="social-links clearfix hidden-xs">
-						<li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-						<li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
-						<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-						<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-						<li class="youtube"><a target="_blank" href="http://www.youtube.com"><i class="fa fa-youtube-play"></i></a></li>
-						<li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
-						<li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-						<li class="pinterest"><a target="_blank" href="http://www.pinterest.com"><i class="fa fa-pinterest"></i></a></li>
+						<li class="twitter"><a href="{$smarty.const.BASE_URL}messenger"><i class="fa fa-comment-o"></i></a></li>
+						<li class="twitter"><a href="{$smarty.const.BASE_URL}friends"><i class="fa fa-users"></i></a></li>
 					</ul>
 					<div class="social-links hidden-lg hidden-md hidden-sm">
 						<div class="btn-group dropdown">
@@ -47,21 +41,6 @@
 					<!-- ================ -->
 					<div class="header-top-dropdown">
 						<div class="btn-group dropdown">
-							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages</button>
-							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}inbox">View Inbox</a></li>
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}inbox/notifications">Notifications</a></li>
-							</ul>
-						</div>
-						<div class="btn-group dropdown">
-							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Logged in as {$username}</button>
-							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/edit">Edit Profile</a></li>
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/search_settings">Search Settings</a></li>
-								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}login/logout">Log Out</a></li>
-							</ul>
-						</div>
-						<div class="btn-group dropdown">
 							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> Search</button>
 							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
 								<li>
@@ -75,9 +54,16 @@
 								</li>
 							</ul>
 						</div>
-						{* <div class="btn-group dropdown">
+						<div class="btn-group dropdown">
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Logged in as {$username}</button>
+							<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}member/edit">Edit Profile</a></li>
+								<li><a class="btn btn-group btn-default btn-sm" href="{$smarty.const.BASE_URL}login/logout">Log Out</a></li>
+							</ul>
+						</div>
+						<div class="btn-group dropdown">
 							<button type="button" title="Log Out" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-power-off"></i> </button>
-						</div> *}
+						</div>
 
 					</div>
 					<!--  header top dropdowns end -->
@@ -106,13 +92,11 @@
 
 					<!-- logo -->
 					<div class="logo">
-						<a href="{$smarty.const.BASE_URL}">
-							<img id="logo" src="{$smarty.const.BASE_URL}media/default/images/logo.png" style="max-height: 90px;" alt="{$slogan}">
-						</a>
+						<a href="{$smarty.const.BASE_URL}"><img id="logo" src="{$smarty.const.BASE_URL}media/default/images/logo.png" alt="DiamondPHP MVC Framework for PHP 7"></a>
 					</div>
 
 					<!-- name-and-slogan -->
-					<div class="slogan">
+					<div class="slogan text-center">
 						{$slogan}
 					</div>
 
@@ -147,7 +131,10 @@
 
 								<!-- Collect the nav links, forms, and other content for toggling -->
 								<div class="collapse navbar-collapse" id="navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">                                   
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="{$smarty.const.BASE_URL}documentation" class="dropdown-toggle">Documentation</a></li>
+              <li class="active"><a href="{$smarty.const.BASE_URL}download" class="dropdown-toggle">Download</a></li>
+                                   
               <!-- mega-menu start -->
               <li class="dropdown mega-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community</a>
@@ -157,7 +144,7 @@
                       <div class="col-lg-4 col-md-3 hidden-sm">
                         <h4>Online Support</h4>
                         <p>Visit the member forums</p>
-                        <img src="{$smarty.const.MEDIA_URL}default/images/section-image-3.png" alt="{$slogan}>
+                        <img src="{$smarty.const.MEDIA_URL}default/images/section-image-3.png" alt="DiamondPHP MVC framework for PHP 7">
                       </div>
                       <div class="col-lg-8 col-md-9">
                         <h4>Community and Support</h4>

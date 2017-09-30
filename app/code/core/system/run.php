@@ -19,8 +19,10 @@ require_once SYSTEM_PATH . 'factory.php';
 
 if ($app['config']->setting('maintenance_mode') === "TRUE")
 {
-	header('Location: ' . $app['config']->setting('site_url') . 'maintenance.php');
-	exit;
+	if ($app['router']->controller_class !== 'Maintenance_Controller')
+	{
+		header('Location: ' . $app['config']->setting('site_url') . 'maintenance');
+	}
 }
 
 if ($app['config']->setting('system_startup_check') === "TRUE")
