@@ -19,7 +19,8 @@ require_once SYSTEM_PATH . 'factory.php';
 
 if ($app['config']->setting('maintenance_mode') === "TRUE")
 {
-	if ($app['router']->controller_class !== 'Maintenance_Controller')
+	if ($app['router']->controller_class !== 'Maintenance_Controller' &&
+		$app['router']->controller_class !== 'Contact_Controller')
 	{
 		header('Location: ' . $app['config']->setting('site_url') . 'maintenance');
 	}

@@ -11,7 +11,7 @@ class Maintenance_Controller extends Base_Controller
 
 	public function index()
 	{
-		$this->template->assign("site_name", $this->config->setting('site_name'));
+		$this->template->assign("phone", $this->config->setting('telephone'));
 		$this->template->assign("content", "maintenance/index.tpl");
 	}
 
