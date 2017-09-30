@@ -15,6 +15,6 @@
     	We are currently performing upgrades and maintenance on our system, and will be back online shortly.
     </p>
     <p class="lead">
-    	Please check back soon, this shouldn't take long. If you need to contact us immediately, you can <a href="{$smarty.const.BASE_URL}contact/support">email support</a> or give us a call at <a href="tel:{$phone}">{$phone}</a>.
+    	Please check back soon, this shouldn't take long. If you need to contact us immediately, you can <a href="{$smarty.const.BASE_URL}contact/support">email support</a>{if $phone} or give us a call at <a href="tel:{$phone}">{$phone}</a>{/if}.
     </p>
 </div>
